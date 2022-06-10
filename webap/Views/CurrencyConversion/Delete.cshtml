@@ -1,0 +1,56 @@
+﻿@model Ica.SalesOrders.Web.ViewModels.CurrencyConversionViewModel
+
+@{
+    ViewBag.Title = "Delete";
+
+}
+
+<div class="box filtro">
+    <div class="box-header with-border">
+        <h3 class="box-title">@Html.Translate("Menu", "Currencies")</h3>
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body">
+        <dl class="dl-horizontal">
+            <dt>
+                <label class="control-label col-md-2">
+                    @Html.Translate("Currencies", "Currency")
+                </label>
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.SelectedItem.Currency)
+            </dd>
+            <dt>
+                <label class="control-label col-md-2">
+                    @Html.Translate("Currencies", "ExchangeRate")
+                </label>
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.SelectedItem.ConversionValue)
+            </dd>
+        </dl>
+
+        @using (Html.BeginForm())
+        {           
+
+        <div class="form-actions no-color">
+            <div class="col-sm-6">
+                <a href="/CurrencyConversion/Index">
+                    <span class="btn btn-primary">@Html.Translate("Currencies", "TornaALista")</span>
+                </a>
+            </div>
+            <div class="col-sm-6">
+                <button style="float:right" class="btn btn-danger">@Html.Translate("Shared", "Delete")</button>
+            </div>
+            
+
+            
+
+
+        </div>
+        }
+    </div>
+
+</div>

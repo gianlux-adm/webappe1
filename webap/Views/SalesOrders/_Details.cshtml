@@ -1,0 +1,116 @@
+﻿@model Ica.SalesOrders.Web.ViewModels.SalesOrderDetailViewModel
+
+<div class="box filtro">
+    <div class="box-header with-border">
+        <h3 class="box-title">@Html.Translate("SalesOrders", "OrderDetail")</h3>
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body">
+        @if (Model.Result.Result)
+        {
+        <div class="col-sm-12">
+            <div class="form-horizontal">
+                <div class="form-group">
+                    <label class="col-sm-1 control-label">@Html.Translate("SalesOrders", "OrderNumber")</label>
+                    <div class="col-sm-2">
+                        <label type="text" class="form-control">@Model.OrderNumber</label>
+                    </div>
+                    <div class="col-sm-2">
+                        <label type="text" class="form-control">@Model.OrderType</label>
+                    </div>
+                    <div class="col-sm-2">
+                        <label type="text" class="form-control">@Model.OrderCompany</label>
+                    </div>
+                    <label class="col-sm-2 control-label col-sm-offset-1">@Html.Translate("SalesOrders", "Branch/Plant")</label>
+                    <div class="col-sm-2">
+                        <label type="text" class="form-control">@Model.Plant</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-1 control-label">@Html.Translate("SalesOrders", "SoldTo")</label>
+                    <div class="col-sm-7">
+                        <label type="text" class="form-control">@Model.SoldTo</label>
+                    </div>
+                    <label class="col-sm-2 control-label">@Html.Translate("SalesOrders", "OrderDate")</label>
+                    <div class="col-sm-2">
+                        <label type="text" class="form-control">@String.Format("{0:dd/MM/yyyy}", Model.OrderDate)</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-1 control-label">@Html.Translate("SalesOrders", "ShipTo")</label>
+                    <div class="col-sm-7">
+                        <label type="text" class="form-control">@Model.ShipTo</label>
+                    </div>
+                    <label class="col-sm-2 control-label">@Html.Translate("SalesOrders", "CustomerPO")</label>
+                    <div class="col-sm-2">
+                        <label type="text" class="form-control">@Model.CustomerPO</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-1 control-label">@Html.Translate("SalesOrders", "Currency")</label>
+                    <div class="col-sm-2">
+                        <label type="text" class="form-control">@Model.Currency</label>
+                    </div>
+                    <label class="col-sm-2 control-label">@Html.Translate("SalesOrders", "ExchangeRate")</label>
+                    <div class="col-sm-2">
+                        <label type="text" class="form-control">@(Model.ExchangeRate == 0 ? String.Empty : Model.ExchangeRate.ToString())</label>
+                    </div>
+                    <label class="col-sm-1 control-label col-sm-offset-2">@Html.Translate("SalesOrders", "BaseCurr")</label>
+                    <div class="col-sm-2">
+                        <label type="text" class="form-control">@Model.Currency</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div id="tableContainerDetails" style="width:100%;overflow:auto;">
+                        <table id="tableDetail" class="table table-bordered table-striped myTable">
+                            <thead>
+                                <tr>
+                                    @foreach (var field in Model.Fields)
+                                    {
+                                <th>
+                                    <div style="min-width:@(field.Width)px">
+                                        @Html.Translate(field.PageTranslation, field.KeyTranslation)
+                                    </div>
+                                </th>
+                                    }
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var row in Model.Rows)
+                                {
+                            <tr data-id="@row.RowId">
+                                @foreach (var field in row.Fields)
+                                {
+                            <td>@field.Value</td>
+                                }
+                            </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        }
+        else
+        {
+            @Html.Partial("ValidationSummary")
+        }
+
+    </div>
+    <div class="box-footer">
+        <button type="button" data-dismiss="modal" class="btn" id="btn_confirm_modal_no">@Html.Translate("Shared", "Back")</button>
+
+    </div>
+</div>
+    
+
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#btn_confirm_modal_no").click(function () {
+                $("#home").show();
+                $("#details").hide();
+            })
+        })
+    </script>

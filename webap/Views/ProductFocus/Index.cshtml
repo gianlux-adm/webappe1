@@ -1,0 +1,144 @@
+﻿@{
+     ViewBag.Title = "Index";
+}
+@model Ica.SalesOrders.Web.ViewModels.ProductFocusViewModel
+
+
+<div class="box filtro">
+    <div class="box-header with-border">
+        <h3 class="box-title">@Html.Translate("ProductFocus", "PageTitle")</h3>
+        <div class="box-tools pull-right">
+            <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                <i class="fa fa-minus"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- /.box-header -->
+
+
+    <div class="box-body form-horizontal">
+        @using (Html.BeginForm("Index", "ProductFocus", FormMethod.Post))
+        {
+            <table class="table table-responsive form-group" border="0">
+                <tbody>
+                    <tr>
+                        <td><label>@Html.Translate("ProductFocus", "StartDate"):&nbsp;</label><input class="form-control" type="text" name="StartDate" value="@(Model.searchCriteria.DataInizio != DateTime.MinValue ? Model.searchCriteria.DataInizio.ToString("dd/MM/yyyy"):"")" /></td>
+                        <td><label>@Html.Translate("ProductFocus", "ContentSearch"):&nbsp;</label><input class="form-control" type="text" name="Content" value="@(Model.searchCriteria.Contenuto ?? "")" /></td>
+                        <td>
+                            <label>@Html.Translate("ProductFocus", "Division"):&nbsp;</label><select class="form-control" name="Company">
+                                <option @(Model.searchCriteria.Divisione == "" ? "selected" : "") value=""></option>
+                                <option @(Model.searchCriteria.Divisione == "ICA SpA - ICA" ? "selected" : "") value="ICA SpA - ICA">ICA SpA - ICA</option>
+                                <option @(Model.searchCriteria.Divisione == "ICA SpA - iCO" ? "selected" : "") value="ICA SpA - iCO">ICA SpA - iCO</option>
+                                <option @(Model.searchCriteria.Divisione == "ICA Polska" ? "selected" : "") value="ICA Polska">ICA Polska</option>
+                                <option @(Model.searchCriteria.Divisione == "ICA Pidilite" ? "selected" : "") value="ICA Pidilite">ICA Pidilite</option>
+                                <option @(Model.searchCriteria.Divisione == "ICA North America" ? "selected" : "") value="ICA North America">ICA North America</option>
+                                <option @(Model.searchCriteria.Divisione == "ICA For You" ? "selected" : "") value="ICA For You">ICA For You</option>
+                            </select>
+                        </td>
+                        <td>
+                            <label>@Html.Translate("ProductFocus", "Lang"):&nbsp;</label><select class="form-control" name="Lang">
+                                <option @(Model.searchCriteria.Lingua == "" ? "selected" : "") value=""></option>
+                                <option @(Model.searchCriteria.Lingua == "BG Bulgarian" ? "selected" : "") value="BG Bulgarian">BG - Bulgarian</option>
+                                <option @(Model.searchCriteria.Lingua == "CN Chinese" ? "selected" : "") value="CN Chinese">CN - Chinese</option>
+                                <option @(Model.searchCriteria.Lingua == "DE German" ? "selected" : "") value="DE German">DE - German</option>
+                                <option @(Model.searchCriteria.Lingua == "DU Dutch" ? "selected" : "") value="DU Dutch">DU - Dutch</option>
+                                <option @(Model.searchCriteria.Lingua == "EL Greek" ? "selected" : "") value="EL Greek">EL - Greek</option>
+                                <option @(Model.searchCriteria.Lingua == "EN English" ? "selected" : "") value="EN English">EN - English</option>
+                                <option @(Model.searchCriteria.Lingua == "ES Spanish" ? "selected" : "") value="ES Spanish">ES - Spanish</option>
+                                <option @(Model.searchCriteria.Lingua == "FR French" ? "selected" : "") value="FR French">FR - French</option>
+                                <option @(Model.searchCriteria.Lingua == "IT Italian" ? "selected" : "") value="IT Italian">IT - Italian</option>
+                                <option @(Model.searchCriteria.Lingua == "PL Polish" ? "selected" : "") value="PL Polish">PL - Polish</option>
+                                <option @(Model.searchCriteria.Lingua == "PT Portuguese" ? "selected" : "") value="PT Portuguese">PT - Portuguese</option>
+                                <option @(Model.searchCriteria.Lingua == "RO Romanian" ? "selected" : "") value="RO Romanian">RO - Romanian</option>
+                                <option @(Model.searchCriteria.Lingua == "RU Russian" ? "selected" : "") value="RU Russian">RU - Russian</option>
+                                <option @(Model.searchCriteria.Lingua == "SL Slovenian" ? "selected" : "") value="SL Slovenian">SL - Slovenian</option>
+                                <option @(Model.searchCriteria.Lingua == "TR Turkish" ? "selected" : "") value="TR Turkish">TR - Turkish</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>@Html.Translate("ProductFocus", "EndDate"):&nbsp;</label>
+                            <input class="form-control" type="text" name="EndDate" value="@(Model.searchCriteria.DataFine != DateTime.MinValue ? Model.searchCriteria.DataFine.ToString("dd/MM/yyyy"):"")" />
+                        </td>
+                        <td><label>@Html.Translate("ProductFocus", "DocCode"):&nbsp;</label><input class="form-control" type="text" name="Code" value="@(Model.searchCriteria.CodiceDocumento ?? "")" /></td>
+                        <td><label>@Html.Translate("ProductFocus", "Title"):&nbsp;</label><input class="form-control" type="text" name="Title" value="@(Model.searchCriteria.Titolo ?? "")" /></td>
+                        <td>
+                            <label>@Html.Translate("ProductFocus", "FocusTopic"):&nbsp;</label><select class="form-control" name="Focus">
+                                <option @(Model.searchCriteria.Focus == "" ? "selected" : "") value=""></option>
+                                <option @(Model.searchCriteria.Focus == "Exterior" ? "selected" : "") value="Exterior">Exterior</option>
+                                <option @(Model.searchCriteria.Focus == "Flooring" ? "selected" : "") value="Flooring">Flooring</option>
+                                <option @(Model.searchCriteria.Focus == "Glass" ? "selected" : "") value="Glass">Glass</option>
+                                <option @(Model.searchCriteria.Focus == "Interior" ? "selected" : "") value="Interior">Interior</option>
+                                <option @(Model.searchCriteria.Focus == "My Lab" ? "selected" : "") value="My Lab">My Lab</option>
+                                <option @(Model.searchCriteria.Focus == "Prometea" ? "selected" : "") value="Prometea">Prometea</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="4">
+                            <input class="btn btn-default" type="submit" value="@Html.Translate("ProductFocus", "Submit")">&nbsp;
+                            <input class="btn btn-default" type="reset" value="@Html.Translate("ProductFocus", "Clear")">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="5"><span style="color:Red;">@(Model.Error ?? "")</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        }
+    </div>
+</div>
+<div class="box filtro">
+    <div class="box-header with-border">
+        <h3 class="box-title">@Html.Translate("Shared", "Results")</h3>
+        <div class="box-tools pull-right">
+            <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                <i class="fa fa-minus"></i>
+            </button>
+        </div>
+    </div>
+    <div class="box-body form-horizontal">
+        <table class="table table-striped table-responsive" id="SearchResults">
+            <thead>
+                <tr>
+                    <td>@Html.Translate("ProductFocus", "Link")</td>
+                    <td>@Html.Translate("ProductFocus", "DocDate")</td>
+                    <td>@Html.Translate("ProductFocus", "DocCode")</td>
+                    <td>@Html.Translate("ProductFocus", "Title")</td>
+                    <td>@Html.Translate("ProductFocus", "Division")</td>
+                    <td>@Html.Translate("ProductFocus", "Lang")</td>
+                    <td>@Html.Translate("ProductFocus", "FocusTopic")</td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Ica.SalesOrders.Web.Models.ProductFocusResult item in Model.searchResults)
+                {
+                    <tr>
+                        <td><a href="@item.DownloadLink">@Html.Translate("ProductFocus", "Button")</a></td>
+                        <td>@item.DataDocumento.ToString("dd/MM/yyyy")</td>
+                        <td>@item.CodiceDocumento</td>
+                        <td>@item.Titolo</td>
+                        <td>@item.Società</td>
+                        <td>@item.Lingua</td>
+                        <td>@item.ArgomentoFocus</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#SearchResults").DataTable({
+            "lengthChange": false,
+            "searching": false,
+            "language": { "url": "@Html.DataTablesUrl()" }
+        });
+    });
+</script>
+

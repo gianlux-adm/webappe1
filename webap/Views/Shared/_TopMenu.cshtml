@@ -1,0 +1,145 @@
+﻿@model Ica.SalesOrders.Web.ViewModels.ViewModelBase
+<nav class="navbar navbar-static-top" role="navigation" style="@(Model.ShowLeftMenu == false ? "margin-left:0px;" : String.Empty)background-color: black;">
+    <!-- Sidebar toggle button-->
+    <div class="navbar-header">
+        @if (Model.ShowLeftMenu == false)
+        {
+
+            <img src="~/Content/Images/logo.png" height="40" style="margin-left:20px;margin-top:5px;" />
+        }
+    </div>
+
+    @if (Model.ShowLeftMenu)
+    {
+
+        <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+            <span class="sr-only">Toggle navigation</span>
+        </a>
+
+    }
+    <div class="navbar-custom-menu">
+        <ul class="nav navbar-nav">
+            @if (ViewBag.ShowLoginTutorial != null)
+            {
+                <li>
+                    <a href="#" data-toggle="modal" data-target="#LoginTutorialModal" id="LoginTutorialModalLnk">TUTORIAL</a>
+                    @{Html.RenderPartial("_TutorialLogin");}
+                </li>
+            }
+            @if (ViewBag.ShowConsultTutorial != null)
+            {
+                <li>
+                    <a href="#" data-toggle="modal" data-target="#ConsTutorialModal" id="ConsTutorialModalLnk">TUTORIAL</a>
+                    @{Html.RenderPartial("_TutorialCons");}
+                </li>
+            }
+            @if (ViewBag.ShowSalesTutorial != null)
+            {
+                <li>
+                    <a href="#" data-toggle="modal" data-target="#SalesTutorialModal" id="SalesTutorialModalLnk">TUTORIAL</a>
+                    @{Html.RenderPartial("_TutorialSales");}
+                </li>
+            }
+            @if (ViewBag.ShowWarehouseTutorial != null)
+            {
+                <li>
+                    <a href="#" data-toggle="modal" data-target="#WarehouseTutorialModal" id="WarehouseTutorialModalLnk">TUTORIAL</a>
+                    @{Html.RenderPartial("_TutorialWarehouse");}
+                </li>
+            }
+            @if (ViewBag.CurrentFunction != null)
+            {
+                var funzioneAttuale = (Function)ViewBag.CurrentFunction;
+                if (!String.IsNullOrEmpty(funzioneAttuale.IdManuale))
+                {
+                    <li><a href="/Sharepoint/GetManuale/?code=@ViewBag.CurrentFunction.IdManuale">TUTORIAL</a> </li>
+                }
+            }
+            <li class="dropdown messages-menu">
+                @{
+                    var lingue = ViewBag.Languages as List<Ica.SalesOrders.Models.Language>;
+                }
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                    <span class="selectedLanguage" data-lang="@System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName">@lingue.Where(w => w.LanguageID.Equals(System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName, StringComparison.InvariantCultureIgnoreCase)).FirstOrDefault().LanguageName</span>
+                    <i class="fa fa-angle-down pull-right"></i>
+                </a>
+                <ul class="dropdown-menu">
+                    <li class="header">@Html.Translate("Shared", "SelectLanguage")</li>
+                    <li>
+                        <div class="" style="position: relative; overflow: hidden; width: auto; height: 200px;">
+                            <ul class="menu" style="overflow: hidden; width: 100%; height: 200px;">
+                                @foreach (var lingua in lingue)
+                                {
+                                    <li>
+                                        <a href="/Home/SetLanguage/?langaugeId=@lingua.LanguageID">
+                                            <img src="\Content\Images\flags\@(lingua.LanguageID).png" style="float:left;" />
+                                            <span style="float:left;">@lingua.LanguageName </span>
+                                        </a>
+                                        <div style="clear:both"></div>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </li>
+            <!-- User Account: style can be found in dropdown.less -->
+            <li class="dropdown user user-menu">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <span class="fa fa-user"></span>
+                    <span class="hidden-xs">@User.Identity.Name</span>
+                </a>
+                <ul class="dropdown-menu">
+                    <!-- User image -->
+                    @{
+                        var roles = ((System.Security.Principal.GenericPrincipal)HttpContext.Current.User).Claims
+                        .Where(c => c.Type == System.Security.Claims.ClaimTypes.Role)
+                        .Select(c => c.Value);
+
+                    }
+
+                    <li class="user-header" style="padding-left:0px;padding-right:0px;padding-top:0px;">
+                        @foreach (var role in roles)
+                        {
+                            <a style="font-weight:bold;text-align:left;color:black">@role</a>
+                        }
+                        @if (!String.IsNullOrEmpty(Model.VersioneForm))
+                        {
+                            <a href="#" style="font-weight:bold;text-align:left;color:black">Form Version : @Model.VersioneForm</a>
+                        }
+                        @{
+                            var currentUserJde = ViewBag.CurrentUserJde as UserOrigin;
+                        }
+                        @if ((currentUserJde != null) && (!String.IsNullOrEmpty(currentUserJde.Username)))
+                        {
+                            <a href="#" style="font-weight:bold;text-align:left;color:black">JDE User : @currentUserJde.Username</a>
+                            <a style="font-weight:bold;text-align:left;color:black"
+                               href="@Url.Action("LogoutJde","Jde", new { source=ViewContext.RouteData.Values["controller"].ToString()})">@Html.Translate("Shared", "JdeLogout")</a>
+                        }
+                    </li>
+                    <!-- Menu Footer-->
+                    <li class="user-footer">
+                        <div class="pull-left">
+                            @if (!User.Identity.IsAuthenticated)
+                            {
+                                @Html.ActionLink("Login", "Login", "Account", null, new
+                {
+                    @class = "btn btn-default btn-flat"
+                })
+                            }
+                        </div>
+                        <div class="pull-right">
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                @Html.ActionLink("Logout", "Logout", "Account", null, new
+                {
+                    @class = "btn btn-default btn-flat"
+                })
+                            }
+                        </div>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</nav>

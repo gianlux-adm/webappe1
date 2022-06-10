@@ -1,0 +1,212 @@
+﻿@model Ica.SalesOrders.Web.ViewModels.WarehouseDetailViewModel
+
+<div class="box filtro">
+    <div class="box-header with-border">
+        <h3 class="box-title"><i class="fa fa-arrow-circle-left" style="cursor:pointer;" onclick="goHome()"></i>&nbsp;&nbsp;&nbsp;@Html.Translate("Warehouse", "Details")</h3>
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body form-horizontal">
+        <div class="form-horizontal">
+            <div class="form-group">
+                <label class="col-sm-2">@Html.Translate("Warehouse", "ArticleCode")</label>
+                <div class="col-sm-10">
+                    <label class="form-control">@Model.Articoli.FirstOrDefault().CodiceArticolo</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2">@Html.Translate("Warehouse", "Description")</label>
+                <div class="col-sm-10">
+                    <label class="form-control" ">@Model.Articoli.FirstOrDefault().Descrizione</label>
+                </div>
+
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2">@Html.Translate("Warehouse", "MCU")</label>
+                <div class="col-sm-4">
+                    @Html.DropDownListFor(m => m.MCU, new SelectList(Model.ValoriMCU, "Key", "Value"), new { @class = "form-control" })
+                    <input type="hidden" id="detail_article" value="@Model.Articoli.FirstOrDefault().CodiceArticolo" />
+                </div>
+                <label class="col-sm-2">@Html.Translate("Warehouse", "Availability")</label>
+                <div class="col-sm-4">
+                    @Html.DropDownListFor(m => m.DetailAvailability, new SelectList(Model.ValoriAvailability, "Key", "Value"), new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-12">
+                    <div id="detailsContainer">
+                        <div class="nav-tabs-custom">
+                            <ul class="nav nav-tabs">
+                                <li class="active"><a href="#tab_list" data-toggle="tab">Elenco</a></li>
+                                <li><a href="#tab_mappa" data-toggle="tab">Mappa</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="tab_list">
+                                    <table id="tableElencoDettaglio" class="table table-bordered table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>Deposito</th>
+                                                <th>Indirizzo</th>
+                                                <th>Disponibilità</th>
+                                                <th>Telefono</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var articolo in Model.Articoli)
+                    {
+                        <tr>
+                            <td>@articolo.CodiceDeposito - @articolo.DepositoDescrizione</td>
+                            <td>@articolo.Indirizzo @articolo.Citta @articolo.Cap</td>
+                            <td style="text-align:right;">@articolo.QtaDisponibile</td>
+                            <td>
+                                <a href="tel:@articolo.PrefissoTel@articolo.NumTelefono">@articolo.PrefissoTel @articolo.NumTelefono</a>
+                            </td>
+                        </tr>
+}
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <!-- /.tab-pane -->
+                                <div class="tab-pane" id="tab_mappa">
+                                    <div id="map" style="height:400px;"></div>
+                                    <div style="clear:both"></div>
+                                </div>
+                                <!-- /.tab-pane -->
+                            </div>
+                            <!-- /.tab-content -->
+                        </div>
+                    </div>
+                    <div id="detailsLoading" style="display:none;text-align:center">
+                        <i class="fa fa-refresh fa-spin" style="font-size:150px;margin-top:100px;margin-bottom:50px;"></i><br /><br />
+                        <span style="font-size:20px;">@Html.Translate("Shared", "Loading")</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+    <script>
+        var map;
+        var geocoder = null;
+        var markers = [];
+
+        function clearMarkers(map) {
+            for (var i = 0; i < markers.length; i++) {
+                markers[i].setMap(null);
+            }
+        }
+
+        function addMarker(address, nome) {
+            geocoder.geocode({ 'address': address }, function (results, status) {
+                if (status == google.maps.GeocoderStatus.OK) {
+                    debugger;
+                    map.setCenter(results[0].geometry.location);
+                    map.setZoom(11);
+
+                    var icon = '/Content/Images/map_ok.png';
+                    
+                    var marker = new google.maps.Marker({
+                        map: map,
+                        position: results[0].geometry.location,
+                        title: 'Open on Google Maps',
+                        icon: icon
+                    });
+
+                    markers.push(marker);
+
+                    var infoWindowContent = '<div class="info_content">' +
+                        '<table>' +
+                        '<tr>' +
+                        '<td><h3 style="margin-bottom:2px;margin-top:0;">' + nome + '</h3></td>' +
+                        '</tr>' +
+                        '</table>' +
+                        '<p>' + address + '</p>' +
+
+                        '<div style="width:100%;text-align:right;">'
+                        + '<a href="https://www.google.it/maps/place/' + encodeURI(address.replace("/","")) + '" target="_blank" class="btn btn-default btn-small">Open on Maps</a>'
+                        + '</div>'
+                    '</div>';
+
+                    var infoWindow = new google.maps.InfoWindow({
+                        content: infoWindowContent
+                    });
+
+                    marker.addListener('click', function () {
+                        infoWindow.open(map, marker);
+                    });
+
+                }
+            });
+        } 
+
+
+        $(document).ready(function () {
+            $("#DetailAvailability").change(function () {
+                refreshDetail();
+            })
+            $("#MCU").change(function () {
+                refreshDetail();
+            });
+
+            $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+                var target = $(e.target).attr("href") // activated tab
+                if (target == "#tab_mappa") {
+                    initMap();
+                }
+            });
+
+         
+        })
+
+        function initMap() {
+            if (geocoder == null) {
+                geocoder = new google.maps.Geocoder();
+
+                map = new google.maps.Map(document.getElementById('map'), {
+                    center: { lat: -34.397, lng: 150.644 },
+                    zoom: 8
+                });
+
+            @foreach(var item in Model.Articoli)
+            {
+                <text>
+                addMarker("@(item.Indirizzo+" "+ item.Cap +" "+ item.Citta + " " + item.Provincia)", "@item.CodiceDeposito - @item.DepositoDescrizione")
+                </text>
+            }
+            }
+        }
+
+        function refreshDetail() {
+            var codiceArticolo = $("#detail_article").val();
+            var mcu = $("#MCU").val();
+            var availability = $("#DetailAvailability").val()
+            $("#detailsContainer").hide();
+            $("#detailsLoading").show();
+            $.getJSON("/Warehouse/UpdateDetail?availability=" + availability + "&articolo=" + codiceArticolo + "&mcu=" + mcu, function (data) {
+
+                if (data.Success) {
+                    clearMarkers();
+                    $("tbody", "#tableElencoDettaglio").html("");
+                        $(data.Articoli).each(function (i, item) {
+                            var row = "<tr>"
+                            row += "<td>" + item.CodiceDeposito + " - " + item.DepositoDescrizione + "</td>";
+                            row += "<td>" + item.Indirizzo + " " + item.Citta + " " + item.Cap + "</td>";
+                            row += "<td style='text-align:right;'>" + item.QtaDisponibile + "</td>";
+                            row += "<td><a href='tel:" + item.PrefissoTel + "" + item.NumTelefono + "'>" + item.PrefissoTel + " " + item.NumTelefono +"</a></td>";
+                            row +="</tr>"
+                            $("tbody", "#tableElencoDettaglio").append(row);
+
+                            addMarker(item.Indirizzo + " " + item.Cap + " " + item.Citta + " " + item.Provincia, item.CodiceDeposito + " - " + item.DepositoDescrizione);
+                        });
+                    $("#detailsLoading").hide();
+                    $("#detailsContainer").show();
+                }
+                else {
+                    alert(data.Message);
+                }
+            });
+        }
+
+    </script>

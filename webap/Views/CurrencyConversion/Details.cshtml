@@ -1,0 +1,27 @@
+﻿@model Ica.SalesOrders.Web.ViewModels.CurrencyConversionViewModel
+
+@{
+    ViewBag.Title = "Details";
+   
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>CurrencyConversion</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.SelectedItem.ConversionValue)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SelectedItem.ConversionValue)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.SelectedItem.Currency }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

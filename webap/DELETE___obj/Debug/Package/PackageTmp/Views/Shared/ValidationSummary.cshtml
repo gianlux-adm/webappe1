@@ -1,0 +1,73 @@
+﻿@model Ica.SalesOrders.Web.ViewModels.ViewModelBase
+@using Ica.SalesOrders.Web.Helpers;
+@{    
+    var state = -1;
+    var headerMessage = String.Empty;
+    var message = String.Empty;
+    if (Model.Result != null)
+    {
+        message = Model.Result.Message ?? String.Empty;
+        
+            if (Model.Result.Result)
+            {
+                state = 1; //OK
+            }
+            else
+            {
+                state = 2; //ERROR
+            }
+            if (Model.Result.Warning)
+            {
+                state = 3; //Warning
+            }
+    }
+    var alertClass = "";
+    var alertIcon = "";
+    switch (state)
+    {
+        case 1:
+            alertClass = "alert-success";
+            alertIcon = "fa-check";
+            headerMessage = Html.Translate("Shared", "Success");
+            break;
+        case 2:
+            alertClass = "alert-danger";
+            alertIcon = "fa-ban";
+            headerMessage = Html.Translate("Shared", "Error");
+            break;
+        case 3:
+            alertClass = "alert-warning";
+            alertIcon = "fa-warning";
+            headerMessage = Html.Translate("Shared", "Warning");
+            break;
+    }
+}
+
+@if (state!=-1)
+{
+    <div class="alert @alertClass alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        <h4><i class="icon fa @alertIcon"></i>@headerMessage</h4>
+        <p>@message</p>
+        @if ((Model.Errors != null) || (ViewData.ModelState.IsValid == false))
+        {
+            <ul>
+                @if (ViewData.ModelState.IsValid == false)
+                {
+                    foreach (var modelError in ViewData.ModelState.SelectMany(k => k.Value.Errors))
+                    {
+                    <li>@modelError.ErrorMessage</li>
+                    }
+                }
+                @if (Model.Errors != null)
+                {
+                    foreach (String err in Model.Errors)
+                    {
+                    <li>@err</li>
+                    }
+                }
+            </ul>
+        }
+    </div>
+}
+

@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<preserve resultType="2" virtualPath="/Views/SalesOrders/_Results.cshtml" hash="ffffffffd86d5c2d" filehash="23e1dc95ef8d" flags="110000" assembly="AppCode" type="ASP._Page_Views_SalesOrders__Results_cshtml">
+  <filedeps>
+    <filedep name="/Views/SalesOrders/_Results.cshtml" />
+  </filedeps>
+</preserve>

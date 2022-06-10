@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="25b3511e-a5f6-422d-acc3-f3b3809687d2" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://ws2010/Schede/Schede.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="Schede.xsd" MetadataType="Schema" ID="a902ee7d-e93f-4c69-ba50-3fd07db625f1" SourceId="1" SourceUrl="http://ws2010/Schede/Schede.svc?xsd=xsd3" />
+    <MetadataFile FileName="Schede1.xsd" MetadataType="Schema" ID="a80f83a4-1c04-4958-8cd7-38d0a08c8625" SourceId="1" SourceUrl="http://ws2010/Schede/Schede.svc?xsd=xsd0" />
+    <MetadataFile FileName="Schede2.xsd" MetadataType="Schema" ID="5b7c4c10-4730-4560-89bf-db8bb1ad3760" SourceId="1" SourceUrl="http://ws2010/Schede/Schede.svc?xsd=xsd1" />
+    <MetadataFile FileName="Schede3.xsd" MetadataType="Schema" ID="fb10253a-c913-49b8-bbba-d6ced231759c" SourceId="1" SourceUrl="http://ws2010/Schede/Schede.svc?xsd=xsd2" />
+    <MetadataFile FileName="Schede.disco" MetadataType="Disco" ID="efce55d7-9ae8-43f5-9dc7-ff3051c382a8" SourceId="1" SourceUrl="http://ws2010/Schede/Schede.svc?disco" />
+    <MetadataFile FileName="Schede.wsdl" MetadataType="Wsdl" ID="16dda27f-b75b-44f8-aef0-db8b4f663a3e" SourceId="1" SourceUrl="http://ws2010/Schede/Schede.svc?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

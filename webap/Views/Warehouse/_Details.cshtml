@@ -1,0 +1,59 @@
+﻿@model Ica.SalesOrders.Web.ViewModels.WarehouseDetailViewModel
+
+<div class="box filtro">
+    <div class="box-header with-border">
+        <h3 class="box-title">@Html.Translate("Warehouse", "Results")</h3>
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body form-horizontal">
+        <div class="form-horizontal">
+            <div class="form-group">
+                <label class="col-sm-2">@Html.Translate("Warehouse", "ArticleCode")</label>
+                <div class="col-sm-10">
+                    <label class="form-control">@Model.Articoli.FirstOrDefault().CodiceArticolo</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2">@Html.Translate("Warehouse", "Description")</label>
+                <div class="col-sm-10">
+                    <label class="form-control" ">@Model.Articoli.FirstOrDefault().Descrizione</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-12">
+                    <table id="tableElencoDettaglio" class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>@Html.Translate("Warehouse", "Deposito")</th>
+                                <th>@Html.Translate("Warehouse", "Availability")</th>
+                                <th>@Html.Translate("Warehouse", "Address")</th>
+                                <th>@Html.Translate("Warehouse", "Phone")</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var articolo in Model.Articoli)
+                {
+                    <tr>
+                        <td>@articolo.CodiceDeposito - @articolo.DepositoDescrizione</td>
+                        <td style="text-align:right;">@String.Format("{0:0.00}", articolo.QtaDisponibile)</td>
+                        <td>@articolo.Indirizzo @articolo.Citta @articolo.Cap</td>
+                        <td>
+                            <a href="tel:@articolo.PrefissoTel@articolo.NumTelefono">@articolo.PrefissoTel @articolo.NumTelefono</a>
+                        </td>
+                    </tr>
+    }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#tableElencoDettaglio").DataTable({});
+    });
+</script>

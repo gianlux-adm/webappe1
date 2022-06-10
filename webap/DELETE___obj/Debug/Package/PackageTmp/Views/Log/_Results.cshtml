@@ -1,0 +1,49 @@
+﻿@model Ica.SalesOrders.Web.ViewModels.LogViewModel
+@{
+    ViewBag.Title = Html.Translate("Menu", "Logs");
+}
+
+
+<div class="box">
+        <div class="box-header with-border">
+            <h3 class="box-title">@Html.Translate("Logs", "Results")</h3>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+            <table class="table table-bordered table-striped">
+                <colgroup>
+                    <col class="col-sm-1" />
+                    <col class="col-sm-1" />
+                    <col class="col-sm-9" />
+                    <col class="col-sm-1" />
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th>@Html.Translate("Logs", "Date")</th>
+                        <th>@Html.Translate("Logs", "Action")</th>
+                        <th>@Html.Translate("Logs", "Message")</th>
+                        <th>@Html.Translate("Logs", "ExecutedBy")</th>
+                    </tr>
+                </thead>
+                @foreach (var item in Model.Logs)
+                {
+                    <tr>
+                        <td>@String.Format("{0:dd/MM/yyyy HH:mm}",item.Data)</td>
+                        <td>@item.LogActionName</td>
+                        <td>@item.Message</td>
+                        <td>@item.Author</td>
+                    </tr>
+                }
+                @if (Model.Logs.Count() == 0)
+                {
+                    <tr>
+                        <td colspan="4">
+                            @Html.Translate("Logs", "NoResultsFound")
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+</div>
+
+

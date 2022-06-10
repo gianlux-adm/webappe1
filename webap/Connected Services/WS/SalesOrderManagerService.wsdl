@@ -1,0 +1,467 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:tns="http://oracle.e1.bssv.JP420000/" xmlns:wssutil="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" name="SalesOrderManagerService" targetNamespace="http://oracle.e1.bssv.JP420000/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <wsp:UsingPolicy wssutil:Required="true" />
+  <wsp1_2:Policy wssutil:Id="bssvpolicy">
+    <ns1:TransportBinding xmlns:ns1="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702">
+      <wsp1_2:Policy>
+        <ns1:TransportToken>
+          <wsp1_2:Policy>
+            <ns1:HttpsToken />
+          </wsp1_2:Policy>
+        </ns1:TransportToken>
+        <ns1:AlgorithmSuite>
+          <wsp1_2:Policy>
+            <ns1:Basic256 />
+          </wsp1_2:Policy>
+        </ns1:AlgorithmSuite>
+        <ns1:Layout>
+          <wsp1_2:Policy>
+            <ns1:Lax />
+          </wsp1_2:Policy>
+        </ns1:Layout>
+      </wsp1_2:Policy>
+    </ns1:TransportBinding>
+    <ns2:SupportingTokens xmlns:ns2="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702">
+      <wsp1_2:Policy>
+        <ns2:UsernameToken ns2:IncludeToken="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702/IncludeToken/AlwaysToRecipient">
+          <wsp1_2:Policy>
+            <ns2:WssUsernameToken10 />
+          </wsp1_2:Policy>
+        </ns2:UsernameToken>
+      </wsp1_2:Policy>
+    </ns2:SupportingTokens>
+  </wsp1_2:Policy>
+  <types>
+    <xsd:schema>
+      <xsd:import schemaLocation="https://ica-bssv1:9192/PD910/SalesOrderManager?xsd=1" namespace="http://oracle.e1.bssv.JP420000/" />
+    </xsd:schema>
+  </types>
+  <message name="processSalesPriceAdjustment">
+    <part name="processSalesPriceAdjustment" element="tns:processSalesPriceAdjustment" />
+  </message>
+  <message name="processSalesPriceAdjustmentResponse">
+    <part name="processSalesPriceAdjustmentResponse" element="tns:processSalesPriceAdjustmentResponse" />
+  </message>
+  <message name="BusinessServiceException">
+    <part name="fault" element="tns:BusinessServiceException" />
+  </message>
+  <message name="processSalesPriceAdjustmentV2">
+    <part name="processSalesPriceAdjustmentV2" element="tns:processSalesPriceAdjustmentV2" />
+  </message>
+  <message name="processSalesPriceAdjustmentV2Response">
+    <part name="processSalesPriceAdjustmentV2Response" element="tns:processSalesPriceAdjustmentV2Response" />
+  </message>
+  <message name="getItemPriceAndAvailability">
+    <part name="getItemPriceAndAvailability" element="tns:getItemPriceAndAvailability" />
+  </message>
+  <message name="getItemPriceAndAvailabilityResponse">
+    <part name="getItemPriceAndAvailabilityResponse" element="tns:getItemPriceAndAvailabilityResponse" />
+  </message>
+  <message name="getItemPriceAndAvailabilityV2">
+    <part name="getItemPriceAndAvailabilityV2" element="tns:getItemPriceAndAvailabilityV2" />
+  </message>
+  <message name="getItemPriceAndAvailabilityV2Response">
+    <part name="getItemPriceAndAvailabilityV2Response" element="tns:getItemPriceAndAvailabilityV2Response" />
+  </message>
+  <message name="getItemPriceAndAvailabilityV3">
+    <part name="getItemPriceAndAvailabilityV3" element="tns:getItemPriceAndAvailabilityV3" />
+  </message>
+  <message name="getItemPriceAndAvailabilityV3Response">
+    <part name="getItemPriceAndAvailabilityV3Response" element="tns:getItemPriceAndAvailabilityV3Response" />
+  </message>
+  <message name="getCustomerItemPrice">
+    <part name="getCustomerItemPrice" element="tns:getCustomerItemPrice" />
+  </message>
+  <message name="getCustomerItemPriceResponse">
+    <part name="getCustomerItemPriceResponse" element="tns:getCustomerItemPriceResponse" />
+  </message>
+  <message name="getCustomerItemPriceV2">
+    <part name="getCustomerItemPriceV2" element="tns:getCustomerItemPriceV2" />
+  </message>
+  <message name="getCustomerItemPriceV2Response">
+    <part name="getCustomerItemPriceV2Response" element="tns:getCustomerItemPriceV2Response" />
+  </message>
+  <message name="getSalesOrderV2">
+    <part name="getSalesOrderV2" element="tns:getSalesOrderV2" />
+  </message>
+  <message name="getSalesOrderV2Response">
+    <part name="getSalesOrderV2Response" element="tns:getSalesOrderV2Response" />
+  </message>
+  <message name="getSalesOrderV3">
+    <part name="getSalesOrderV3" element="tns:getSalesOrderV3" />
+  </message>
+  <message name="getSalesOrderV3Response">
+    <part name="getSalesOrderV3Response" element="tns:getSalesOrderV3Response" />
+  </message>
+  <message name="getSalesOrderV4">
+    <part name="getSalesOrderV4" element="tns:getSalesOrderV4" />
+  </message>
+  <message name="getSalesOrderV4Response">
+    <part name="getSalesOrderV4Response" element="tns:getSalesOrderV4Response" />
+  </message>
+  <message name="processSalesOrder">
+    <part name="processSalesOrder" element="tns:processSalesOrder" />
+  </message>
+  <message name="processSalesOrderResponse">
+    <part name="processSalesOrderResponse" element="tns:processSalesOrderResponse" />
+  </message>
+  <message name="processSalesOrderV2">
+    <part name="processSalesOrderV2" element="tns:processSalesOrderV2" />
+  </message>
+  <message name="processSalesOrderV2Response">
+    <part name="processSalesOrderV2Response" element="tns:processSalesOrderV2Response" />
+  </message>
+  <message name="processSalesOrderV3">
+    <part name="processSalesOrderV3" element="tns:processSalesOrderV3" />
+  </message>
+  <message name="processSalesOrderV3Response">
+    <part name="processSalesOrderV3Response" element="tns:processSalesOrderV3Response" />
+  </message>
+  <message name="processSalesOrderV4">
+    <part name="processSalesOrderV4" element="tns:processSalesOrderV4" />
+  </message>
+  <message name="processSalesOrderV4Response">
+    <part name="processSalesOrderV4Response" element="tns:processSalesOrderV4Response" />
+  </message>
+  <message name="processSalesOrderV5">
+    <part name="processSalesOrderV5" element="tns:processSalesOrderV5" />
+  </message>
+  <message name="processSalesOrderV5Response">
+    <part name="processSalesOrderV5Response" element="tns:processSalesOrderV5Response" />
+  </message>
+  <message name="getItemListPrice">
+    <part name="getItemListPrice" element="tns:getItemListPrice" />
+  </message>
+  <message name="getItemListPriceResponse">
+    <part name="getItemListPriceResponse" element="tns:getItemListPriceResponse" />
+  </message>
+  <message name="getSalesOrder">
+    <part name="getSalesOrder" element="tns:getSalesOrder" />
+  </message>
+  <message name="getSalesOrderResponse">
+    <part name="getSalesOrderResponse" element="tns:getSalesOrderResponse" />
+  </message>
+  <message name="getSalesOrderPriceHistory">
+    <part name="getSalesOrderPriceHistory" element="tns:getSalesOrderPriceHistory" />
+  </message>
+  <message name="getSalesOrderPriceHistoryResponse">
+    <part name="getSalesOrderPriceHistoryResponse" element="tns:getSalesOrderPriceHistoryResponse" />
+  </message>
+  <portType name="SalesOrderManager">
+    <operation name="processSalesPriceAdjustment">
+      <input wsam:Action="http://oracle.e1.bssv.JP420000/SalesOrderManager/processSalesPriceAdjustmentRequest" message="tns:processSalesPriceAdjustment" />
+      <output wsam:Action="http://oracle.e1.bssv.JP420000/SalesOrderManager/processSalesPriceAdjustmentResponse" message="tns:processSalesPriceAdjustmentResponse" />
+      <fault wsam:Action="http://oracle.e1.bssv.JP420000/SalesOrderManager/processSalesPriceAdjustment/Fault/BusinessServiceException" name="BusinessServiceException" message="tns:BusinessServiceException" />
+    </operation>
+    <operation name="processSalesPriceAdjustmentV2">
+      <input wsam:Action="http://oracle.e1.bssv.JP420000/SalesOrderManager/processSalesPriceAdjustmentV2Request" message="tns:processSalesPriceAdjustmentV2" />
+      <output wsam:Action="http://oracle.e1.bssv.JP420000/SalesOrderManager/processSalesPriceAdjustmentV2Response" message="tns:processSalesPriceAdjustmentV2Response" />
+      <fault wsam:Action="http://oracle.e1.bssv.JP420000/SalesOrderManager/processSalesPriceAdjustmentV2/Fault/BusinessServiceException" name="BusinessServiceException" message="tns:BusinessServiceException" />
+    </operation>
+    <operation name="getItemPriceAndAvailability">
+      <input wsam:Action="http://oracle.e1.bssv.JP420000/SalesOrderManager/getItemPriceAndAvailabilityRequest" message="tns:getItemPriceAndAvailability" />
+      <output wsam:Action="http://oracle.e1.bssv.JP420000/SalesOrderManager/getItemPriceAndAvailabilityResponse" message="tns:getItemPriceAndAvailabilityResponse" />
+      <fault wsam:Action="http://oracle.e1.bssv.JP420000/SalesOrderManager/getItemPriceAndAvailability/Fault/BusinessServiceException" name="BusinessServiceException" message="tns:BusinessServiceException" />
+    </operation>
+    <operation name="getItemPriceAndAvailabilityV2">
+      <input wsam:Action="http://oracle.e1.bssv.JP420000/SalesOrderManager/getItemPriceAndAvailabilityV2Request" message="tns:getItemPriceAndAvailabilityV2" />
+      <output wsam:Action="http://oracle.e1.bssv.JP420000/SalesOrderManager/getItemPriceAndAvailabilityV2Response" message="tns:getItemPriceAndAvailabilityV2Response" />
+      <fault wsam:Action="http://oracle.e1.bssv.JP420000/SalesOrderManager/getItemPriceAndAvailabilityV2/Fault/BusinessServiceException" name="BusinessServiceException" message="tns:BusinessServiceException" />
+    </operation>
+    <operation name="getItemPriceAndAvailabilityV3">
+      <input wsam:Action="http://oracle.e1.bssv.JP420000/SalesOrderManager/getItemPriceAndAvailabilityV3Request" message="tns:getItemPriceAndAvailabilityV3" />
+      <output wsam:Action="http://oracle.e1.bssv.JP420000/SalesOrderManager/getItemPriceAndAvailabilityV3Response" message="tns:getItemPriceAndAvailabilityV3Response" />
+      <fault wsam:Action="http://oracle.e1.bssv.JP420000/SalesOrderManager/getItemPriceAndAvailabilityV3/Fault/BusinessServiceException" name="BusinessServiceException" message="tns:BusinessServiceException" />
+    </operation>
+    <operation name="getCustomerItemPrice">
+      <input wsam:Action="http://oracle.e1.bssv.JP420000/SalesOrderManager/getCustomerItemPriceRequest" message="tns:getCustomerItemPrice" />
+      <output wsam:Action="http://oracle.e1.bssv.JP420000/SalesOrderManager/getCustomerItemPriceResponse" message="tns:getCustomerItemPriceResponse" />
+      <fault wsam:Action="http://oracle.e1.bssv.JP420000/SalesOrderManager/getCustomerItemPrice/Fault/BusinessServiceException" name="BusinessServiceException" message="tns:BusinessServiceException" />
+    </operation>
+    <operation name="getCustomerItemPriceV2">
+      <input wsam:Action="http://oracle.e1.bssv.JP420000/SalesOrderManager/getCustomerItemPriceV2Request" message="tns:getCustomerItemPriceV2" />
+      <output wsam:Action="http://oracle.e1.bssv.JP420000/SalesOrderManager/getCustomerItemPriceV2Response" message="tns:getCustomerItemPriceV2Response" />
+      <fault wsam:Action="http://oracle.e1.bssv.JP420000/SalesOrderManager/getCustomerItemPriceV2/Fault/BusinessServiceException" name="BusinessServiceException" message="tns:BusinessServiceException" />
+    </operation>
+    <operation name="getSalesOrderV2">
+      <input wsam:Action="http://oracle.e1.bssv.JP420000/SalesOrderManager/getSalesOrderV2Request" message="tns:getSalesOrderV2" />
+      <output wsam:Action="http://oracle.e1.bssv.JP420000/SalesOrderManager/getSalesOrderV2Response" message="tns:getSalesOrderV2Response" />
+      <fault wsam:Action="http://oracle.e1.bssv.JP420000/SalesOrderManager/getSalesOrderV2/Fault/BusinessServiceException" name="BusinessServiceException" message="tns:BusinessServiceException" />
+    </operation>
+    <operation name="getSalesOrderV3">
+      <input wsam:Action="http://oracle.e1.bssv.JP420000/SalesOrderManager/getSalesOrderV3Request" message="tns:getSalesOrderV3" />
+      <output wsam:Action="http://oracle.e1.bssv.JP420000/SalesOrderManager/getSalesOrderV3Response" message="tns:getSalesOrderV3Response" />
+      <fault wsam:Action="http://oracle.e1.bssv.JP420000/SalesOrderManager/getSalesOrderV3/Fault/BusinessServiceException" name="BusinessServiceException" message="tns:BusinessServiceException" />
+    </operation>
+    <operation name="getSalesOrderV4">
+      <input wsam:Action="http://oracle.e1.bssv.JP420000/SalesOrderManager/getSalesOrderV4Request" message="tns:getSalesOrderV4" />
+      <output wsam:Action="http://oracle.e1.bssv.JP420000/SalesOrderManager/getSalesOrderV4Response" message="tns:getSalesOrderV4Response" />
+      <fault wsam:Action="http://oracle.e1.bssv.JP420000/SalesOrderManager/getSalesOrderV4/Fault/BusinessServiceException" name="BusinessServiceException" message="tns:BusinessServiceException" />
+    </operation>
+    <operation name="processSalesOrder">
+      <input wsam:Action="http://oracle.e1.bssv.JP420000/SalesOrderManager/processSalesOrderRequest" message="tns:processSalesOrder" />
+      <output wsam:Action="http://oracle.e1.bssv.JP420000/SalesOrderManager/processSalesOrderResponse" message="tns:processSalesOrderResponse" />
+      <fault wsam:Action="http://oracle.e1.bssv.JP420000/SalesOrderManager/processSalesOrder/Fault/BusinessServiceException" name="BusinessServiceException" message="tns:BusinessServiceException" />
+    </operation>
+    <operation name="processSalesOrderV2">
+      <input wsam:Action="http://oracle.e1.bssv.JP420000/SalesOrderManager/processSalesOrderV2Request" message="tns:processSalesOrderV2" />
+      <output wsam:Action="http://oracle.e1.bssv.JP420000/SalesOrderManager/processSalesOrderV2Response" message="tns:processSalesOrderV2Response" />
+      <fault wsam:Action="http://oracle.e1.bssv.JP420000/SalesOrderManager/processSalesOrderV2/Fault/BusinessServiceException" name="BusinessServiceException" message="tns:BusinessServiceException" />
+    </operation>
+    <operation name="processSalesOrderV3">
+      <input wsam:Action="http://oracle.e1.bssv.JP420000/SalesOrderManager/processSalesOrderV3Request" message="tns:processSalesOrderV3" />
+      <output wsam:Action="http://oracle.e1.bssv.JP420000/SalesOrderManager/processSalesOrderV3Response" message="tns:processSalesOrderV3Response" />
+      <fault wsam:Action="http://oracle.e1.bssv.JP420000/SalesOrderManager/processSalesOrderV3/Fault/BusinessServiceException" name="BusinessServiceException" message="tns:BusinessServiceException" />
+    </operation>
+    <operation name="processSalesOrderV4">
+      <input wsam:Action="http://oracle.e1.bssv.JP420000/SalesOrderManager/processSalesOrderV4Request" message="tns:processSalesOrderV4" />
+      <output wsam:Action="http://oracle.e1.bssv.JP420000/SalesOrderManager/processSalesOrderV4Response" message="tns:processSalesOrderV4Response" />
+      <fault wsam:Action="http://oracle.e1.bssv.JP420000/SalesOrderManager/processSalesOrderV4/Fault/BusinessServiceException" name="BusinessServiceException" message="tns:BusinessServiceException" />
+    </operation>
+    <operation name="processSalesOrderV5">
+      <input wsam:Action="http://oracle.e1.bssv.JP420000/SalesOrderManager/processSalesOrderV5Request" message="tns:processSalesOrderV5" />
+      <output wsam:Action="http://oracle.e1.bssv.JP420000/SalesOrderManager/processSalesOrderV5Response" message="tns:processSalesOrderV5Response" />
+      <fault wsam:Action="http://oracle.e1.bssv.JP420000/SalesOrderManager/processSalesOrderV5/Fault/BusinessServiceException" name="BusinessServiceException" message="tns:BusinessServiceException" />
+    </operation>
+    <operation name="getItemListPrice">
+      <input wsam:Action="http://oracle.e1.bssv.JP420000/SalesOrderManager/getItemListPriceRequest" message="tns:getItemListPrice" />
+      <output wsam:Action="http://oracle.e1.bssv.JP420000/SalesOrderManager/getItemListPriceResponse" message="tns:getItemListPriceResponse" />
+      <fault wsam:Action="http://oracle.e1.bssv.JP420000/SalesOrderManager/getItemListPrice/Fault/BusinessServiceException" name="BusinessServiceException" message="tns:BusinessServiceException" />
+    </operation>
+    <operation name="getSalesOrder">
+      <input wsam:Action="http://oracle.e1.bssv.JP420000/SalesOrderManager/getSalesOrderRequest" message="tns:getSalesOrder" />
+      <output wsam:Action="http://oracle.e1.bssv.JP420000/SalesOrderManager/getSalesOrderResponse" message="tns:getSalesOrderResponse" />
+      <fault wsam:Action="http://oracle.e1.bssv.JP420000/SalesOrderManager/getSalesOrder/Fault/BusinessServiceException" name="BusinessServiceException" message="tns:BusinessServiceException" />
+    </operation>
+    <operation name="getSalesOrderPriceHistory">
+      <input wsam:Action="http://oracle.e1.bssv.JP420000/SalesOrderManager/getSalesOrderPriceHistoryRequest" message="tns:getSalesOrderPriceHistory" />
+      <output wsam:Action="http://oracle.e1.bssv.JP420000/SalesOrderManager/getSalesOrderPriceHistoryResponse" message="tns:getSalesOrderPriceHistoryResponse" />
+      <fault wsam:Action="http://oracle.e1.bssv.JP420000/SalesOrderManager/getSalesOrderPriceHistory/Fault/BusinessServiceException" name="BusinessServiceException" message="tns:BusinessServiceException" />
+    </operation>
+  </portType>
+  <binding name="SalesOrderManagerPortBinding" type="tns:SalesOrderManager">
+    <wsp:PolicyReference URI="#bssvpolicy" />
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <operation name="processSalesPriceAdjustment">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+      <fault name="BusinessServiceException">
+        <soap:fault use="literal" name="BusinessServiceException" namespace="" />
+      </fault>
+    </operation>
+    <operation name="processSalesPriceAdjustmentV2">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+      <fault name="BusinessServiceException">
+        <soap:fault use="literal" name="BusinessServiceException" namespace="" />
+      </fault>
+    </operation>
+    <operation name="getItemPriceAndAvailability">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+      <fault name="BusinessServiceException">
+        <soap:fault use="literal" name="BusinessServiceException" namespace="" />
+      </fault>
+    </operation>
+    <operation name="getItemPriceAndAvailabilityV2">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+      <fault name="BusinessServiceException">
+        <soap:fault use="literal" name="BusinessServiceException" namespace="" />
+      </fault>
+    </operation>
+    <operation name="getItemPriceAndAvailabilityV3">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+      <fault name="BusinessServiceException">
+        <soap:fault use="literal" name="BusinessServiceException" namespace="" />
+      </fault>
+    </operation>
+    <operation name="getCustomerItemPrice">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+      <fault name="BusinessServiceException">
+        <soap:fault use="literal" name="BusinessServiceException" namespace="" />
+      </fault>
+    </operation>
+    <operation name="getCustomerItemPriceV2">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+      <fault name="BusinessServiceException">
+        <soap:fault use="literal" name="BusinessServiceException" namespace="" />
+      </fault>
+    </operation>
+    <operation name="getSalesOrderV2">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+      <fault name="BusinessServiceException">
+        <soap:fault use="literal" name="BusinessServiceException" namespace="" />
+      </fault>
+    </operation>
+    <operation name="getSalesOrderV3">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+      <fault name="BusinessServiceException">
+        <soap:fault use="literal" name="BusinessServiceException" namespace="" />
+      </fault>
+    </operation>
+    <operation name="getSalesOrderV4">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+      <fault name="BusinessServiceException">
+        <soap:fault use="literal" name="BusinessServiceException" namespace="" />
+      </fault>
+    </operation>
+    <operation name="processSalesOrder">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+      <fault name="BusinessServiceException">
+        <soap:fault use="literal" name="BusinessServiceException" namespace="" />
+      </fault>
+    </operation>
+    <operation name="processSalesOrderV2">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+      <fault name="BusinessServiceException">
+        <soap:fault use="literal" name="BusinessServiceException" namespace="" />
+      </fault>
+    </operation>
+    <operation name="processSalesOrderV3">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+      <fault name="BusinessServiceException">
+        <soap:fault use="literal" name="BusinessServiceException" namespace="" />
+      </fault>
+    </operation>
+    <operation name="processSalesOrderV4">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+      <fault name="BusinessServiceException">
+        <soap:fault use="literal" name="BusinessServiceException" namespace="" />
+      </fault>
+    </operation>
+    <operation name="processSalesOrderV5">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+      <fault name="BusinessServiceException">
+        <soap:fault use="literal" name="BusinessServiceException" namespace="" />
+      </fault>
+    </operation>
+    <operation name="getItemListPrice">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+      <fault name="BusinessServiceException">
+        <soap:fault use="literal" name="BusinessServiceException" namespace="" />
+      </fault>
+    </operation>
+    <operation name="getSalesOrder">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+      <fault name="BusinessServiceException">
+        <soap:fault use="literal" name="BusinessServiceException" namespace="" />
+      </fault>
+    </operation>
+    <operation name="getSalesOrderPriceHistory">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+      <fault name="BusinessServiceException">
+        <soap:fault use="literal" name="BusinessServiceException" namespace="" />
+      </fault>
+    </operation>
+  </binding>
+  <service name="SalesOrderManagerService">
+    <port name="SalesOrderManagerPort" binding="tns:SalesOrderManagerPortBinding">
+      <soap:address location="https://ica-bssv1:9192/PD910/SalesOrderManager" />
+    </port>
+  </service>
+</definitions>

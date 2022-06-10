@@ -1,0 +1,340 @@
+﻿@model Ica.SalesOrders.Web.ViewModels.Orders.OrderEditViewModel
+@{
+    ViewBag.Title = Html.Translate("OrdiniVendita", "DettaglioOrdine");
+}
+
+@section breadcrumb {
+    <ol class="breadcrumb">
+        <li>
+            <a href="/Orders">
+                @Html.Translate("Menu", "Orders")
+            </a>
+        </li>
+        <li class="active">
+            <a>
+                @Html.Translate("OrdiniVendita","CurrentOrder")
+            </a>
+        </li>
+    </ol>
+}
+
+<div class="box filtro">
+    <div class="box-header with-border">
+        <h3 class="box-title">@Html.Translate("OrdiniVendita", "DettaglioOrdine")</h3>
+    </div>
+    <div class="box-body form-horizontal">
+        @using (Html.BeginForm("AggiungiTestata", "Orders", FormMethod.Post))
+    {
+        <input type="hidden" id="stato" name="stato" value="@Model.Stato" />
+    if (Model.IdChiaveUnivoca != 0)
+    {
+        <div class="form-group" style="margin-left:0px;margin-right:0px">
+            <div class="col-sm-6 col-xs-12">
+                <label class="control-label">@Html.Translate("OrdiniVendita", "IdChiaveUnivoca")</label>
+            </div>
+        </div>
+        <div class="form-group" style="margin-left:0px;margin-right:0px">
+            <div class="col-sm-12 col-xs-12">
+                <label class="form-control">@Model.IdChiaveUnivoca</label>
+            </div>
+
+        </div>
+}
+    <div class="form-group" style="margin-left:0px;margin-right:0px">
+        <div class="col-sm-6 col-xs-12">
+            <label class="control-label">@Html.Translate("OrdiniVendita", "Cliente")</label>
+        </div>
+    </div>
+
+
+    <div class="form-group" style="margin-left:0px;margin-right:0px">
+        <div class="col-sm-12 col-xs-12">
+            @if (Model.IdChiaveUnivoca == 0)
+        {
+            <div class="input-group input-group">
+                <div class="typeahead-container">
+                    <div class="typeahead-field">
+                        <span class="typeahead-query">
+                            <input type="text" id="CodiceClienteText" class="form-control myText" autocomplete="off" />
+                        </span>
+                    </div>
+                </div>
+                <span class="input-group-addon" style="cursor: pointer;"><i class="fa fa-remove"></i></span>
+            </div>
+    }
+    else
+    {
+        <label class="form-control">@Model.CodiceCliente - @Model.DescrizioneCliente</label>
+}
+        </div>
+        <input type="hidden" id="CodiceCliente" name="CodiceCliente" value="@Model.CodiceCliente" />
+    </div>
+    <div class="form-group" style="margin-left:0px;margin-right:0px">
+        <div class="col-sm-6 col-xs-12">
+            <label class="control-label">@Html.Translate("OrdiniVendita", "Destinatario")</label>
+        </div>
+    </div>
+    <div class="form-group" style="margin-left:0px;margin-right:0px">
+        <div class="col-sm-12 col-xs-12">
+            @if (Model.IdChiaveUnivoca == 0)
+        {
+            <div class="input-group input-group">
+                <input type="text" id="CodiceDestinatario" name="CodiceDestinatario" readonly="readonly" class="form-control" />
+                <span class="input-group-addon" style="cursor: pointer;" id="searchDestinatario"><i class="fa fa-search"></i></span>
+            </div>
+    }
+    else
+    {
+        <label class="form-control">@Model.CodiceDestinatario - @Model.DescrizioneDestinatario</label>
+}
+        </div>
+
+
+    </div>
+if (Model.IdChiaveUnivoca == 0)
+{
+    <div class="form-group" style="margin-left:0px;margin-right:0px">
+        <div class="col-sm-6 col-xs-12">
+            <label class="control-label">@Html.Translate("OrdiniVendita", "DataRichiesta")</label>
+        </div>
+    </div>
+    <div class="form-group" style="margin-left:0px;margin-right:0px">
+        <div class="col-sm-12 col-xs-12">
+            @Html.EditorFor(m => m.DataRichiesta)
+        </div>
+    </div>
+}
+
+if (Model.Stato != 0)
+{
+    <div class="form-group" style="margin-left:0px;margin-right:0px">
+        <div class="col-sm-6 col-xs-12">
+            <label class="control-label">@Html.Translate("OrdiniVendita", "StatoOrdine")</label>
+        </div>
+    </div>
+    <div class="form-group" style="margin-left:0px;margin-right:0px">
+        <div class="col-sm-12 col-xs-12">
+            <label class="form-control">
+                @Model.Stato -
+                @switch (Model.Stato)
+            {
+                case 0:
+                    @Html.Translate("OrdiniVendita", "StatoOrdineInCreazione")
+                break;
+            case 15:
+                @Html.Translate("OrdiniVendita", "StatoOrdineSalvato")
+            break;
+        case 40:
+            @Html.Translate("OrdiniVendita", "StatoOrdineValidato")
+        break;
+    case 60:
+        @Html.Translate("OrdiniVendita", "StatoOrdineConfermato")
+    break;
+}
+            </label>
+        </div>
+    </div>
+}
+    <div class="form-group" style="margin-left:0px;margin-right:0px">
+        <div class="col-sm-12 col-xs-12">
+            <input type="hidden" id="idChiaveUnivoca" name="idChiaveUnivoca" value="@Model.IdChiaveUnivoca" />
+
+            @if (Model.IdChiaveUnivoca == 0)
+        {
+            <button class="btn btn-primary testataBtn">@Html.Translate("OrdiniVendita", "BtnAggiungiTestata")</button>
+    }
+    else
+    {
+
+    }
+        </div>
+    </div>
+}
+
+
+
+
+
+
+
+    </div>
+</div>
+
+@if (Model.IdChiaveUnivoca != 0)
+                {
+
+    <div class="box">
+        <div class="box-header with-border">
+            <h3 class="box-title">@Html.Translate("OrdiniVendita", "RigheOrdine")</h3>
+        </div>
+        <div class="box-body form-horizontal">
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>
+                            @if (Model.Stato < 60)
+                            {
+                            <span data-numriga="-1" class="btn btn-success btnEdit">@Html.Translate("OrdiniVendita", "PulsanteAggiungi")</span>
+                            }
+                        </th>
+                        <th>@Html.Translate("OrdiniVendita", "CodiceArticolo")</th>
+                        <th>@Html.Translate("OrdiniVendita", "UnitaMisura")</th>
+                        <th>@Html.Translate("OrdiniVendita", "Quantita")</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Righe)
+                {
+                        <tr>
+                            <td>
+                                @if (Model.Stato < 60)
+                                {
+                                <span data-numriga="@item.NumeroRiga" class="btn btn-danger btnDelete"><i class="glyphicon glyphicon-remove-circle"></i></span>
+                                <span data-numriga="@item.NumeroRiga"
+                                      class="btn btn-primary btnEdit"><i class="fa fa-edit"></i></span>
+                                }
+                                @Html.Hidden("articolo_" + item.NumeroRiga, item.CodiceArticolo)
+                                @Html.Hidden("um_" + item.NumeroRiga, item.UnitaMisura)
+                                @Html.Hidden("qta_" + item.NumeroRiga, String.Format("{0:0.00000}", item.Quantita))
+                                @Html.Hidden("dazio_" + item.NumeroRiga, item.StatoDazio)
+
+                            </td>
+                            <td>@item.CodiceArticolo</td>
+                            <td>@item.UnitaMisura</td>
+                            <td style="text-align:right">@item.Quantita.ToString().Replace(
+                             System.Globalization.CultureInfo.CurrentCulture.NumberFormat.CurrencyDecimalSeparator
+                             , ".")</td>
+                        </tr>
+                    }
+                    @if (Model.Righe.Count == 0)
+                {
+                        <tr>
+                            <td colspan="4">@Html.Translate("OrdiniVendita", "NessunaRigaEsistenteNellOrdine")</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div class="box-footer">
+            @if (Model.Stato < 60)
+    {
+        <a href="/Orders/DeleteCarello/@Model.IdChiaveUnivoca" data-target="#modal" data-toggle="modal">
+            <span class="btn btn-danger">@Html.Translate("OrdiniVendita", "BtnEliminaTestata")</span>
+        </a>
+if (Model.Righe.Count > 0)
+{
+        <a href="/Orders/ValidaCarrello/@Model.IdChiaveUnivoca" data-target="#modal" data-toggle="modal" style="float:right">
+            <span class="btn btn-success">@Html.Translate("OrdiniVendita", "BtnConfermaCarrello")</span>
+        </a>
+}
+else
+{
+        <div style="float:right">
+            <span class="btn btn-success" disabled="disabled">@Html.Translate("OrdiniVendita", "BtnConfermaCarrello")</span>
+        </div>
+}
+}
+        </div>
+    </div>
+}
+
+@section scripts {
+
+    <script type="text/javascript">
+
+                function setDestinatario(numIndirizzo) {
+                    $("#CodiceDestinatario").val(numIndirizzo);
+                    $("#modal").modal("hide");
+                    }
+
+    $(document).ready(function () {
+
+        $(".btnDelete").click(function() {
+                            var numRiga = $(this).attr("data-numriga");
+
+                            var articolo ="";
+                            var unitamisura = "";
+                            var quantita = "0";
+                            var statodazio = "";
+
+                            if (numRiga!=-1) {
+                                articolo= $("#articolo_" + numRiga ).val();
+                                unitamisura = $("#um_" + numRiga).val();
+                                quantita = $("#qta_" + numRiga ).val();
+                                statodazio = $("#dazio_" + numRiga).val();
+                            }
+
+            $("#modal").modal();
+            $("#modalContent", "#modal").html(getLoadingHtml());
+            $.get("/Orders/DeleteRow?societa=@Model.Societa&idChiaveUnivoca=@Model.IdChiaveUnivoca&numRiga=" + numRiga +"&um=" + unitamisura +"&quantita=" + quantita +"&codiceArticolo=" +   articolo  +"&statodazio=" + statodazio,function (data) {
+                $("#modalContent", "#modal").html(data);
+                            }).fail(function (obj) {
+                                check403Result(obj);
+                            });
+
+                        });
+
+        $(".btnEdit").click(function() {
+                            var numRiga = $(this).attr("data-numriga");
+
+                            var articolo ="";
+                            var unitamisura = "";
+                            var quantita = "0";
+                            var statodazio = "";
+
+                            if (numRiga!=-1) {
+                                articolo= $("#articolo_" + numRiga ).val();
+                                unitamisura = $("#um_" + numRiga).val();
+                                quantita = $("#qta_" + numRiga ).val();
+                                statodazio = $("#dazio_" + numRiga).val();
+                            }
+
+            $("#modal").modal();
+            $("#modalContent", "#modal").html(getLoadingHtml());
+            $.get("/Orders/EditRow?societa=@Model.Societa&idChiaveUnivoca=@Model.IdChiaveUnivoca&numRiga=" + numRiga +"&um=" + unitamisura +"&quantita=" + quantita +"&codiceArticolo=" +   articolo  +"&statodazio=" + statodazio,function (data) {
+                $("#modalContent", "#modal").html(data);
+                            }).fail(function (obj) {
+                                check403Result(obj);
+                            });
+
+                        });
+
+
+
+        $(".date").datetimepicker({
+                            sideBySide: true,
+                format: 'DD/MM/YYYY',
+                minDate: 'now',
+                daysOfWeekDisabled: [0,6],
+                locale: '@System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName',
+                useCurrent: false
+            });
+
+        initAutocompleteCliente("#CodiceClienteText", "#CodiceCliente", "@Html.Translate("Shared", "NoResults")", true);
+
+
+                $("#searchDestinatario").click(function() {
+                    var codiceCliente = $("#CodiceCliente").val();
+                    if (codiceCliente=="") {
+                        //alert : devi prima selezionare il cliente
+                    }
+                    else {
+                        //vado nel popup di selezione del destinatario
+
+                        $("#modal").modal();
+                        $("#modalContent", "#modal").html(getLoadingHtml());
+                        $.get("/Orders/PickDestinatario?codiceCliente=" + codiceCliente,
+                           function (data) {
+                                $("#modalContent", "#modal").html(data);
+                            }).fail(function (obj) {
+                                check403Result(obj);
+                            });
+
+
+                    }
+                });
+
+    });
+    </script>
+}
+

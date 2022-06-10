@@ -1,0 +1,116 @@
+﻿@model Ica.SalesOrders.Web.ViewModels.Consultazioni.RisultatoConsultazioneViewModel
+<link href="~/Content/Site.css" rel="stylesheet" />
+@if (Model.Success)
+{
+    <div class="box filtro">
+        <div class="box-header with-border">
+            <h3 class="box-title">@Html.Translate("Shared", "Results")</h3>
+            <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                    <i class="fa fa-minus"></i>
+                </button>
+            </div>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body form-horizontal">
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        @if (Model.Mode == Ica.SalesOrders.Web.Models.ConsultazioniMode.Articolo)
+                        {
+                            <th class="hide_landscape">@Html.Translate("Consultazioni", "Listino")</th>
+                        }
+                        <th>@Html.Translate("Consultazioni", "Articolo")</th>
+                        <th class="hide_landscape">@Html.Translate("Consultazioni", "DescrizioneArticolo")</th>
+                        <th>@Html.Translate("Consultazioni", "UnitaMisura")</th>
+                        <th>@Html.Translate("Consultazioni", "ConfezioneBase")</th>
+                        <th>@Html.Translate("Consultazioni", "Prezzo")</th>
+                        <!--<th class="hide_landscape">@Html.Translate("Consultazioni", "FamRett")</th>-->
+                        <th>@Html.Translate("Consultazioni", "Miscela")</th>
+                        <th>@Html.Translate("Consultazioni", "Scorta")</th>
+                        <th>@Html.Translate("Consultazioni", "Confezioni")</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Risultati)
+                    {
+                        bool isHeader = String.IsNullOrEmpty(item.Descrizione) && String.IsNullOrEmpty(item.UnitaMisura) && String.IsNullOrEmpty(item.ConfezioneBase);
+                        string headerStyle = Model.SearchMode == 82 ? "display:none" : "background-color:lightblue";
+                        <tr @if (isHeader) { <text> style="@headerStyle" </text> }>
+
+                            @if (Model.Mode == Ica.SalesOrders.Web.Models.ConsultazioniMode.Articolo)
+                            {
+                                <td class="hide_landscape">
+
+                                    @item.Listino
+                                </td>
+                            }
+                            <td>
+                                @{
+                                    var rowDict = new Dictionary<String, object>();
+                                    rowDict.Add("data-articolo", item.Articolo);
+                                    rowDict.Add("data-confid", item.ConfId);
+                                    rowDict.Add("data-um", item.UnitaMisura);
+                                    rowDict.Add("data-prezzolistino", item.PrezzoListino);
+                                    rowDict.Add("data-catalogo", item.Catalogo);
+                                    rowDict.Add("data-trasporto", item.Trasporto);
+                                    rowDict.Add("data-aumento", item.Aumento);
+                                    rowDict.Add("data-prezzocalcolato", item.Prezzo);
+                                    rowDict.Add("data-valuta", item.Valuta);
+                                    rowDict.Add("data-fammrett", item.FammRett);
+                                    rowDict.Add("data-confezionebase", item.ConfezioneBase);
+                                    rowDict.Add("data-language", item.Language);
+                                    rowDict.Add("class", "rowvalues");
+                                    rowDict.Add("data-validitaprezzi", item.ValiditaPrezzi);
+                                }
+                                @Html.Hidden("rowvalues[" + item.RowId + "]", "0", rowDict)
+                                @item.Articolo
+                            </td>
+                            <td class="hide_landscape">@item.Descrizione</td>
+                            <td>@item.UnitaMisura</td>
+                            <td>@item.ConfezioneBase</td>
+                            <td>
+                                @if (isHeader == false)
+                                {
+                                    @item.Prezzo
+                                }
+                            </td>
+                            <!--<td class="hide_landscape">@item.FammRett</td>-->
+                            <td>
+                                @if (item.Miscela.Equals("Y"))
+                                {
+                                    <img class="mix" src="~/Content/Images/mix.png" width="24" />
+                                }
+                            </td>
+                            <td>
+                                @if (item.Scorta.Equals("Y"))
+                                {
+                                    <img src="~/Content/Images/scorta.png" width="24" />
+                                }
+                            </td>
+                            <td>
+                                @if (item.Confezioni.Equals("Y"))
+                                {
+                                    <span class="btn btn-primary conf">Conf</span>
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+}
+else
+{
+    <div class="alert alert-error alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        <h4>
+            <label>
+                <i class="icon fa fa-ban"></i>
+                @Html.Translate("Consultazioni", "SearchError")
+            </label>
+        </h4>
+    </div>
+}

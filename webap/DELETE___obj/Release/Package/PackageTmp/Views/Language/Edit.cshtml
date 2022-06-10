@@ -1,0 +1,78 @@
+﻿@model Ica.SalesOrders.Web.ViewModels.EditLanguageViewModel
+@using Ica.SalesOrders.Web.Helpers
+@{
+    ViewBag.Title = "Language Data";
+}
+
+@section breadcrumb {
+    <ol class="breadcrumb">
+        <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="/Language"><i class="fa fa-flag"></i> @Html.Translate("Menu","LanguageManagement")</a></li>
+        <li class="active">@(String.IsNullOrEmpty(Model.Language.LanguageID) ? Html.Translate("Shared","New") : Model.Language.LanguageName)</li>
+    </ol>
+}
+
+
+@using (Html.BeginForm("Edit", "Language", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    <div class="box">
+        <div class="box-header with-border">
+            <h3 class="box-title">@Html.Translate("LanguageManagement","LanguageInfo")</h3>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+            <input type="hidden" id="mode" name="mode" value="@Model.Mode" />
+            <div class="form-group">
+                <div class="col-sm-2">
+                    @Html.LabelFor(l => l.Language.LanguageID, new { @class = "control-label" })
+                </div>
+                <div class="col-sm-2">
+                    @if (String.IsNullOrEmpty(Model.Language.LanguageID) || Model.Mode.Equals("creation"))
+                    {
+                        @Html.TextBoxFor(m => m.Language.LanguageID, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Language.LanguageID)
+                    }
+                    else
+                    {
+                        <label class="form-control">@Model.Language.LanguageID</label>
+                        @Html.HiddenFor(m=>m.Language.LanguageID)
+                    }
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2">
+                    @Html.LabelFor(l => l.Language.LanguageName, new { @class = "control-label" })
+                </div>
+                <div class="col-sm-2">
+                    @Html.TextBoxFor(m => m.Language.LanguageName, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Language.LanguageName)
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2">
+                    @Html.LabelFor(l => l.Language.LanguageEnabled, new { @class = "control-label" })
+                </div>
+                <div class="col-sm-2">
+                    @if (Model.Language.LanguageID == "EN")
+                    {
+                        @Html.TextBox("Status", "Enabled", new { @disabled = "disabled", @class = "form-control" })
+                        @Html.HiddenFor(m=>m.Language.LanguageEnabled)
+                    }
+                    else
+                    {         
+                        @Html.DropDownListFor(model => model.Language.LanguageEnabled, new SelectList(new[] { new { Value = true, Text = "Enabled" }, new { Value = false, Text = "Disabled" } }, "Value", "Text"), new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Language.LanguageEnabled, "*")            
+                    }
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2">
+                    
+                </div>
+                <div class="col-sm-2">
+                    <button type="submit" class="btn btn-info">@Html.Translate("Shared","Save")</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}

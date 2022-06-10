@@ -1,0 +1,386 @@
+﻿@model Ica.SalesOrders.Web.ViewModels.Consultazioni.ConsultazioniArticoloViewModel
+@{
+    ViewBag.Title = Model.Mode == Ica.SalesOrders.Web.Models.ConsultazioniMode.Articolo ? Html.Translate("Consultazioni", "ArticleTab") : Html.Translate("Consultazioni", "PriceListTab");
+}
+<style>
+    @@media (max-width:767px) {
+        .btn_full_xs {
+            width: 100%;
+        }
+    }
+
+    @@media (min-width:768px) and (max-width:992px) {
+        .btn_full_xs {
+            width: 200px;
+        }
+
+        .btnAction {
+            float: right;
+        }
+    }
+
+    @@media (min-width:993px) {
+        .btn_full_xs {
+            width: 200px;
+        }
+
+        .btnAction {
+            float: right;
+        }
+    }
+
+    @@media (orientation: landscape) {
+    }
+
+    @@media (orientation: portrait) {
+        .hide_landscape {
+            display: none;
+        }
+    }
+
+    [data-toggle="collapse"].collapsed .if-not-collapsed {
+        display: none;
+    }
+
+    [data-toggle="collapse"]:not(.collapsed) .if-collapsed {
+        display: none;
+    }
+</style>
+@using (Ajax.BeginForm("Search", "Consultazioni", new AjaxOptions()
+{
+    HttpMethod = "POST",
+    OnBegin = "ConsultazioniSearch_OnBegin"
+,
+    OnComplete = "ConsultazioniSearch_OnComplete"
+}, new { id = "form_search" }))
+{
+    <div id="searchForm">
+
+        <div class="box filtro">
+            <div class="box-header with-border">
+                <h3 class="box-title">@Html.Translate("Shared", "Filter")</h3>
+                <div class="box-tools pull-right">
+                    <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                        <i class="fa fa-minus"></i>
+                    </button>
+                </div>
+            </div>
+            <!-- /.box-header -->
+            @Html.HiddenFor(m => m.Mode)
+            <div class="box-body form-horizontal">
+                @if (Model.Mode == Ica.SalesOrders.Web.Models.ConsultazioniMode.Articolo)
+                {
+                    <div class="row">
+                        <label class="col-sm-2">@Html.Translate("Consultazioni", "CodiceArticolo")</label>
+                        @if (Model.CodiceArticoloAutocomplete == false)
+                        {
+                            <div class="col-sm-10">
+                                @Html.TextBoxFor(m => m.CodiceArticolo, new { @class = "form-control" })
+                            </div>
+
+                        }
+                        else
+                        {
+                            <div class="col-sm-10 col-xs-12">
+                                <div class="input-group input-group">
+                                    <div class="input-group-btn">
+                                        <button id="type_CodiceArticoloText" data-type="0" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                            @Html.Translate("Consultazioni", "CodiceArticolo")
+                                            <span class="fa fa-caret-down"></span>
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li onclick="changeMode(this)" data-type="0"><a href="#">@Html.Translate("Consultazioni", "CodiceArticolo")</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="typeahead-container">
+                                        <div class="typeahead-field">
+                                            <span class="typeahead-query">
+                                                <input type="text" id="CodiceArticoloText" class="form-control myText" autocomplete="off" />
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <span class="input-group-addon" style="cursor: pointer;"><i class="fa fa-remove"></i></span>
+                                </div>
+
+                                <input type="hidden" id="CodiceArticolo" name="CodiceArticolo" value="@Model.CodiceArticolo" />
+                            </div>
+                        }
+                    </div>
+                }
+                else
+                {<div class="row">
+                        <label class="col-sm-2">@Html.Translate("Consultazioni", "Listino")</label>
+                        <div class="col-sm-10">
+                            @Html.DropDownListFor(m => m.Listino, new SelectList(Model.ValoriListino, "Codice", "DescrizioneInLingua"), "-----", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.Listino, "*")
+                        </div>
+                    </div>
+                }
+                <div class="row">
+                    <label class="col-sm-2">@Html.Translate("Consultazioni", "ValiditaPrezzi")</label>
+                    <div class="col-sm-4">
+                        <select data-default="48" id="ValiditaPrezzi" name="ValiditaPrezzi" class="form-control">
+                            <option value="47">@Html.Translate("Consultazioni", "ValiditaPrezziPrecedente")</option>
+                            <option value="48" selected="selected">@Html.Translate("Consultazioni", "ValiditaPrezziCorrente")</option>
+                            <option value="49">@Html.Translate("Consultazioni", "ValiditaPrezziFuturo")</option>
+                        </select>
+                        @Html.ValidationMessageFor(m => m.ValiditaPrezzi, "*")
+                    </div>
+                    <label class="col-sm-2">@Html.Translate("Consultazioni", "Valuta")</label>
+                    <div class="col-sm-4">
+                        @Html.DropDownListFor(m => m.Valuta, new SelectList(Model.ValoriValuta, "Codice", "DescrizioneCompleta"), "-----", new { @class = "form-control", data_default = Model.Valuta })
+                        @Html.ValidationMessageFor(m => m.Valuta, "*")
+                    </div>
+                </div>
+
+                <div class="row">
+                    <label class="col-sm-2">@Html.Translate("Consultazioni", "PercentualeAumento")</label>
+                    <div class="col-sm-4">
+                        @Html.TextBoxFor(m => m.Aumento, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Aumento, "*")
+                    </div>
+
+                    <label class="col-sm-2">@Html.Translate("Consultazioni", "Trasporto")</label>
+                    <div class="col-sm-4">
+                        @Html.DropDownListFor(m => m.Trasporto, new SelectList(Model.Trasporti, "Key", "Value"), "-----", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Trasporto, "*")
+                    </div>
+                </div>
+                <div class="row">
+                    <label class="col-sm-2">@Html.Translate("Consultazioni", "Lingua")</label>
+                    <div class="col-sm-10">
+                        @Html.DropDownListFor(m => m.Lingua, new SelectList(Model.ValoriLingue, "Codice", "DescrizionePrincipale"), "-----", new { @class = "form-control", data_default = Model.Lingua })
+                        @Html.ValidationMessageFor(m => m.Lingua, "*")
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6">
+                        <div class="btn btn_full_xs btnAction collapsed" style="background-color: #DDEBF7;border-color: #DDEBF7" data-target="#div_filtri_aggiuntivi"
+                             data-toggle="collapse">
+                            <span class="if-collapsed">@Html.Translate("Consultazioni", "MostraFiltriAggiuntivi")</span>
+                            <span class="if-not-collapsed">@Html.Translate("Consultazioni", "NascondiFiltriAggiuntivi")</span>
+                        </div>
+                    </div>
+                    <div class="col-xs-6">
+                        <button id="btn_clear" type="button" style="border-color: #FFD966;background-color: #FFD966;" class="btn btn_full_xs">@Html.Translate("Consultazioni", "PulisciFiltri")</button>
+                    </div>
+                </div>
+                <div id="div_filtri_aggiuntivi" class="collapse">
+                    <div class="row">
+                        <label class="col-sm-2">@Html.Translate("Consultazioni", "CodiceCategoriaUno")</label>
+                        <div class="col-sm-4">
+                            @Html.DropDownListFor(m => m.CodiceCategoria1, new SelectList(Model.ValoriCodiciCategoriaUno, "Codice", "DescrizioneInLingua"), "-----", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.CodiceCategoria1, "*")
+                        </div>
+                        <label class="col-sm-2">@Html.Translate("Consultazioni", "Budget")</label>
+                        <div class="col-sm-4">
+                            @Html.DropDownListFor(m => m.Budget, new SelectList(Model.ValoriBudgets, "Codice", "DescrizioneInLingua"), "-----", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.Budget, "*")
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label class="col-sm-2">@Html.Translate("Consultazioni", "Tipologia")</label>
+                        <div class="col-sm-4">
+                            @Html.DropDownListFor(m => m.Tipologia, new SelectList(Model.ValoriTipologie, "Codice", "DescrizioneInLingua"), "-----", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.Tipologia, "*")
+                        </div>
+                        <label class="col-sm-2">@Html.Translate("Consultazioni", "SettoriUtilizzo")</label>
+                        <div class="col-sm-4">
+                            @Html.DropDownListFor(m => m.SettoreUtilizzo, new SelectList(Model.ValoriSettoriUtilizzo, "Codice", "DescrizioneInLingua"), "-----", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.SettoreUtilizzo, "*")
+                        </div>
+                    </div>
+                    <div class="row">
+                        <!-- <label class="col-sm-2">@Html.Translate("Consultazioni", "Ignifugo")</label>
+                        <div class="col-sm-4">
+                            @Html.DropDownListFor(m => m.Ignifugo, new SelectList(Model.ValoriIgnifugo, "Codice", "DescrizioneInLingua"), "-----", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.Ignifugo, "*")
+                        </div>-->
+                        <label class="col-sm-2">@Html.Translate("Consultazioni", "Aspetto")</label>
+                        <div class="col-sm-4">
+                            @Html.DropDownListFor(m => m.Aspetto, new SelectList(Model.ValoriAspetto, "Codice", "DescrizioneInLingua"), "-----", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.Aspetto, "*")
+                        </div>
+                        <label class="col-sm-2">@Html.Translate("Consultazioni", "CategoriaCommerciale")</label>
+                        <div class="col-sm-4">
+                            @Html.DropDownListFor(m => m.CategoriaCommerciale, new SelectList(Model.ValoriCategoriaCommerciale, "Codice", "DescrizioneInLingua"), "-----", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.CategoriaCommerciale, "*")
+                        </div>
+                    </div>
+                    @if (Model.Mode == Ica.SalesOrders.Web.Models.ConsultazioniMode.Articolo)
+                    {
+                        <div class="row">
+                            <label class="col-sm-2">@Html.Translate("Consultazioni", "CartellaColore")</label>
+                            <div class="col-sm-4">
+                                @Html.DropDownListFor(m => m.CartellaColore, new SelectList(Model.ValoriCartelleColore, "Codice", "DescrizioneInLingua"), "-----", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.CartellaColore, "*")
+                            </div>
+                            <label class="col-sm-2">@Html.Translate("Consultazioni", "Marchio")</label>
+                            <div class="col-sm-4">
+                                @Html.DropDownListFor(m => m.Marchio, new SelectList(Model.ValoriMarchio, "Codice", "DescrizioneInLingua"), "-----", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.Marchio, "*")
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-2">@Html.Translate("Consultazioni", "TipoUV")</label>
+                            <div class="col-sm-4">
+                                @Html.DropDownListFor(m => m.TipoUV, new SelectList(Model.ValoriTipiUV, "Codice", "DescrizioneInLingua"), "-----", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.TipoUV, "*")
+                            </div>
+                        </div>
+                    }
+                </div>
+                <div class="row">
+                    <div class="col-sm-4"></div>
+                    <div class="col-sm-4">
+                        <button data-mode="0" id="btn_search" type="button" style="background-color: #5B9BD5;border-color: #5B9BD5;width:100%" class="btn submit">@Html.Translate("Shared", "Search")</button>
+                        <input type="hidden" id="doAction" name="doAction" />
+                    </div>
+                    <div class="col-sm-4"></div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6">
+                        <button data-mode="82" id="btn_search_AZ" type="button" style="background-color:#D9D9D9;border-color:#D9D9D9" class="btn btnAction btn_full_xs submit">@Html.Translate("Consultazioni", "RicercaOrdineAlfabetico")</button>
+                    </div>
+                    <div class="col-xs-6">
+                        <button data-mode="81" id="btn_search_group" type="button" style="background-color:#D9D9D9;border-color:#D9D9D9;" class="btn btn_full_xs submit">@Html.Translate("Consultazioni", "RicercaPerGruppo")</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
+
+<div class="homeLoading" style="display:none;text-align:center;">
+    <i class="fa fa-refresh fa-spin" style="font-size:150px;margin-top:100px;margin-bottom:50px;"></i><br /><br />
+    <span id="homeLoadingSpan" style="font-size:20px;"></span>
+</div>
+
+<div id="results" style="display:none">
+</div>
+
+<form action="" target="_blank" method="post" id="form_detail" style="display:none"></form>
+
+@section scripts {
+
+    <script type="text/javascript">
+
+                function ConsultazioniSearch_OnBegin() {
+                 $("#homeLoadingSpan").html("@Html.Translate("Shared", "Loading")");
+                    $(".homeLoading").show();
+                    $("#results").hide();
+
+        }
+
+        function ConsultazioniSearch_OnComplete(data, a, b) {
+
+                    $(".homeLoading").hide();
+                    $("#results").html(data.responseText);
+                    $("#results").show();
+                }
+
+        function getDescriptionById(list, id) {
+            for (var i = 0; i < list.length; i++) {
+                if (list[i].Codice == id) {
+                    return list[i].Descrizione;
+                }
+            }
+            return "";
+        }
+
+    $(document).ready(function () {
+
+        $(".submit").click(function () {
+
+            $("#doAction").val($(this).attr("data-mode"));
+            $("#form_search").submit();
+        });
+
+        $("#Lingua").change(function () {
+            var curVal = $(this).val()
+
+            $.getJSON("/Consultazioni/DescrizioneDropDown/?id=" + curVal, function (data) {
+
+                jQuery.each(data, function (name, value) {
+                    $("option", "#" + name).each(function (i, item) {
+                        var id = $(this).val();
+                        if (id != "") {
+                            var description = getDescriptionById(data[name], id);
+                            $(this).html(description);
+                        }
+                    });
+                });
+            });
+
+        });
+
+        $("#Valuta").change(function () {
+            var curVal = $(this).val()
+            $.getJSON("/Consultazioni/Trasporti/?id=" + curVal, function (data) {
+
+                $("#Trasporto").html("");
+                var options = "<option value=''>-----</option>";
+                jQuery.each(data.Results, function (i, item) {
+
+                    options += "<option value='" + item.Key + "'>" + item.Value + "</option>";
+                });
+                $("#Trasporto").html(options);
+            });
+        });
+
+        $("#btn_clear").click(function () {
+
+            $("input,select", "#form_search").each(function (i, item) {
+                var defaultValue = $(this).attr("data-default");
+                if (defaultValue) {
+                    $(this).val(defaultValue);
+                }
+                else {
+                    $(this).val("");
+                }
+            });
+
+            $("#Valuta").trigger("change");
+        });
+
+        $(document).on("click", ".mix", function () {
+            $("#form_detail").html("");
+            $("#form_detail").attr("action", "/Consultazioni/Mix");
+            var tr = $(this).closest("tr");
+            var rowValues = $(".rowvalues", tr);
+            $(rowValues[0].attributes).each(function (i, item) {
+                if (item.name.startsWith("data")) {
+                    var input = $("<input>");
+                    input.attr("type", "hidden");
+                    input.attr("name", item.name.substr(5));
+                    input.val(item.value);
+                    $("#form_detail").append(input)
+                }
+            });
+            $("#form_detail").submit();
+        });
+
+        $(document).on("click", ".conf", function () {
+            $("#form_detail").html("");
+            $("#form_detail").attr("action", "/Consultazioni/Conf");
+            var tr = $(this).closest("tr");
+            var rowValues = $(".rowvalues", tr);
+            $(rowValues[0].attributes).each(function (i, item) {
+                if (item.name.startsWith("data")) {
+                    var input = $("<input>");
+                    input.attr("type", "hidden");
+                    input.attr("name", item.name.substr(5));
+                    input.val(item.value);
+                    $("#form_detail").append(input)
+                }
+            });
+            $("#form_detail").submit();
+        });
+
+             initAutocompleteCodiceArticolo("#CodiceArticoloText", "#CodiceArticolo", "@Html.Translate("Shared", "NoResults")",null,'@Model.Mode');
+
+    });
+    </script>
+}

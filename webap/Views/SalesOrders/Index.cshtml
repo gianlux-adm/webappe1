@@ -1,0 +1,94 @@
+﻿@model Ica.SalesOrders.Web.ViewModels.SearchSalesOrderViewModel
+
+<div class="col-sm-12 col-xs-12">
+    <div id="home" style="margin-top:10px;">
+
+
+        @using (Ajax.BeginForm("Results", "SalesOrders", new AjaxOptions() { HttpMethod = "POST", OnBegin = "searchSalesOrder_OnBegin", OnSuccess = "searchSalesOrder_OnComplete" }))
+        {
+            <div class="box filtro">
+                <div class="box-header with-border">
+                    <h3 class="box-title">@Html.Translate("Shared", "Filter")</h3>
+                    <div class="box-tools pull-right">
+                        <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                            <i class="fa fa-minus"></i>
+                        </button>
+                    </div>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <label class="control-label">@Html.Translate("SalesOrders", "BusinessUnit")</label>
+                                </div>
+                                <div class="col-sm-6">
+                                    <label class="control-label">@Html.Translate("SalesOrders", "SoldTo")</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    @Html.TextBoxFor(m => m.BusinessUnit, new { @class = "form-control" })
+                                </div>
+                                <div class="col-sm-6">
+                                    @Html.TextBoxFor(m => m.SoldTo, new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <label class="control-label">@Html.Translate("SalesOrders", "DocumentType")</label>
+                                </div>
+                                <div class="col-sm-6">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    @Html.TextBoxFor(m => m.DocumentType, new { @class = "form-control" })
+                                </div>
+                                <div class="col-sm-6">
+                                    <button id="btn_sarch" class="btn btn-default">@Html.Translate("Shared", "Search")</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+
+        <div id="results">
+
+        </div>
+
+    </div>
+
+    <div id="details" style="display:none;margin-top:10px">
+
+    </div>
+
+    <div class="homeLoading" style="display:none;text-align:center;">
+        <i class="fa fa-refresh fa-spin" style="font-size:150px;margin-top:100px;margin-bottom:50px;"></i><br /><br />
+        <span id="homeLoadingSpan" style="font-size:20px;"></span>
+    </div>
+</div>
+@section scripts {
+
+    <script type="text/javascript">
+
+        function searchSalesOrder_OnBegin() {
+            $("#results").html("");
+            $("#homeLoadingSpan").html("@Html.Translate("Shared", "Loading")");
+            $(".homeLoading").show();
+            
+        }
+
+        function searchSalesOrder_OnComplete(data, a, b) {
+            $(".homeLoading").hide();
+            $("#results").html(data);
+        }
+    </script>
+}

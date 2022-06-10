@@ -1,0 +1,223 @@
+﻿@model Ica.SalesOrders.Web.ViewModels.ListUserViewModel
+@{
+    ViewBag.Title = Html.Translate("Menu", "UserManagement");
+}
+
+@section breadcrumb {
+    <ol class="breadcrumb">
+        <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active"><a href="/Users"><i class="fa fa-user"></i> @Html.Translate("Menu","UserManagement")</a></li>
+    </ol>
+}
+
+<style>
+    #users_table_filter {
+        display:none;
+    }
+</style>
+<div class="homeList">
+<div class="box filtro">
+    <div class="box-header with-border">
+        <h3 class="box-title">@Html.Translate("Shared","Filter")</h3>
+        <div class="box-tools pull-right">
+            <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                <i class="fa fa-minus"></i>
+            </button>
+        </div>
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <label class="control-label">@Html.Translate("UserManagement","LoginName")</label>
+                    </div>
+                    <div class="col-sm-6">
+                        <label class="control-label">@Html.Translate("UserManagement","Name")</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="usernameFilter"></div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="nameFilter"></div>
+                    </div>
+                </div>
+                <div class="row" style="margin-top:10px;">
+                    <div class="col-sm-6">
+                        <label class="control-label">@Html.Translate("UserManagement","Role")</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="roleFilter"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="box">
+    <div class="box-header with-border">
+        <div class="col-sm-8">
+            <h3 class="box-title">@Html.Translate("UserManagement","UsersList")</h3>
+        </div>
+        <div class="col-sm-4" style="">
+            <!--
+    <a href="/Users/DownloadExcel">
+        <span class="btn btn-info pull-right">
+            Download EXCEL
+            <i class="fa fa-cloud-download"></i>
+        </span>
+    </a>
+    -->
+        </div>
+    </div>
+
+    <!-- /.box-header -->
+    <div class="box-body" id="bodyTable">
+        <div style="width:100%;overflow:auto">
+            <table id="users_table" class="table table-striped table-bordered" style="width:100% !important;">
+                <thead>
+                    <tr>
+                        <th class="center">
+                            <span class='btn btn-success' onclick="openDetail(0)">@Html.Translate("Shared","Add")</span>
+                        </th>
+                        <th>@Html.Translate("UserManagement","LoginName")</th>
+                        <th>@Html.Translate("UserManagement","Name")</th>                       
+                        <th>@Html.Translate("UserManagement","Role")</th>
+                        <th>@Html.Translate("UserManagement","Status")</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+                <tfoot hidden>
+                    <tr>
+                        <th></th>
+                        <th>@Html.Translate("Shared","All")</th>
+                        <th>@Html.Translate("Shared","All")</th>
+                        <th>@Html.Translate("Shared","All")</th>
+                        <th>@Html.Translate("Shared","All")</th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>
+</div>
+
+
+<div id="homeDetail" class="homeDetail" style="display:none">
+
+</div>
+
+
+@section scripts {
+    <script type="text/javascript">
+
+        function refreshHome() {
+            $(".homeDetail").hide();
+            $(".homeList").show();
+            table.fnDraw(false);
+        }
+
+        function openDetail(id) {
+            $(".homeList").hide();
+            $("#homeLoadingSpan").html("@Html.Translate("Shared","Loading")");
+            $(".homeLoading").show();
+
+            $.get("/Users/Edit/?id=" + id, function (data) {
+                $(".homeDetail").html(data);
+                $(".homeLoading").hide();
+                $(".homeDetail").show();
+            });
+        }
+        var table;
+        $(document).ready(function () {
+
+            $(document).on("click", ".btnDetails", function () {
+                var id = $(this).attr("data-id");
+                openDetail(id);
+            });
+
+            table  = $('#users_table')
+                .dataTable({
+                    dom: 'Bfrtip',
+                    "language": {
+                        "url": "/Scripts/AdminLte/plugins/datatables/@(System.Threading.Thread.CurrentThread.CurrentUICulture.TwoLetterISOLanguageName).js"
+                    },
+                    buttons: [],
+                    "bFilter": true,
+                    "sPaginationType": "full_numbers",
+                    "iDisplayLength": 10,
+                    "bProcessing": true,
+                    "bLengthChange": true,
+                    "bServerSide": true,
+                    "searchDelay": 1000,
+                    "sAjaxSource": "/Users/List",
+                    "fnRowCallback": function( nRow, aData, iDisplayIndex ) {
+                        /*if (aData.an_dtobsolescenza != "") {
+                            $(nRow).addClass("obsoleto");
+                        }*/
+                        return nRow;
+                    },
+                    "fnServerData": function (url, data, callback) {
+                        $.ajax({
+                            "url": url,
+                            "data": data,
+                            "success": callback,
+                            "contentType": "application/x-www-form-urlencoded; charset=utf-8",
+                            "dataType": "json",
+                            "type": "POST",
+                            "cache": false,
+                            "error": function () {
+                                alert("DataTables warning: JSON data from server failed to load or be parsed. " +
+                            "This is most likely to be caused by a JSON formatting error.");
+                            }
+                        });
+                    },
+                    //"oLanguage": {
+                    //    "sProcessing": "<img src='/Content/ImgKOS/ajax-loader.gif' alt='Loading..'/>"
+                    //},
+                    "aaSorting": [[1, "asc"]],
+                    "aoColumns": [
+                            {
+                                "sType": "string", "mData": "id",
+                                "sClass" : "center",
+                                "bSortable": false,
+                                "mRender": function (objId, type, full) {
+                                    var id = full.id;
+                                    var link = "<span class='btn btn-primary btnDetails' data-id='" + id + "'>@Html.Translate("Shared", "Details")</span>";
+                                    return link;
+                                }
+
+                            }, //Command
+                            { "sType": "string", "sName": "LoginName", "mData": "LoginName" }, //USername
+                            { "sType": "string", "sName": "Name", "mData": "Name" }, //Name
+                            { "sType": "string", "sName": "Role.RoleDescription", "mData": "RoleId" },
+                            { "sType": "string", "sName": "Enabled", "mData": "Enabled" } //Enabled
+                    ],
+                    "fnInitComplete": function () {
+                        /*releaseModal();*/
+                    }
+
+                });
+            
+            table.columnFilter({
+                iFilteringDelay: 1000,
+                aoColumns: [
+                        null, //Command
+                        { type: "text", sSelector: ".usernameFilter" }, //Username
+                        { type: "text", sSelector: ".nameFilter" }, //DataNascita
+                        { type: "select", sSelector: ".roleFilter", values: [{ value: 1, label: 'Admin' }, { value: 2, label: 'User' }] },
+                        
+                        { type: "select", sSelector: ".statusFilter", values: [{ value: 'true', label: 'Enabled' }, { value: 'false', label: 'Disabled' }] } //CittaResidenza
+                        
+                ]
+            });
+
+        });
+    </script>
+}

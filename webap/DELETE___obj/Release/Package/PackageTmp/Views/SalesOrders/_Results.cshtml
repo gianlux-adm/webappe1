@@ -1,0 +1,104 @@
+﻿@model Ica.SalesOrders.Web.ViewModels.SalesOrderResultsViewModel
+@{
+    Layout = null;
+}
+
+@if (Model.Result.Result == false)
+{
+    @Html.Partial("ValidationSummary")
+}
+else
+{
+<div class="box" style="padding-top:10px;">
+    <div class="box-header">
+        <h3 class="box-title">@Html.Translate("SalesOrders", "Results")</h3>
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body" id="bodyTable">
+        <div id="tableContainer" style="width:100%;overflow:auto;">
+            <table id="tableResults" class="table table-bordered table-striped myTable" >
+                <thead>
+                    <tr>
+                        @foreach (var field in Model.Fields)
+                        {
+                    <th>
+                        <div style="min-width:@(field.Width)px">
+                            @Html.Translate(field.PageTranslation, field.KeyTranslation)
+                        </div>
+                    </th>
+                        }
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var row in Model.Rows)
+                    {
+                <tr data-id="@row.RowId">
+                    @foreach (var field in row.Fields)
+                    {
+                <td>@field.Value</td>
+                    }
+                </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    var table;
+    $(document).ready(function () {
+        table = $("#tableResults").dataTable({
+            dom: 'Bfrtip',
+            //dom: 'Blfrtip',
+              "language": {
+                    "url": "@Html.DataTablesUrl()"
+            },
+            buttons: [
+                'colvis'
+            ],
+            "scrollX": true,
+            "bStateSave": true,
+            "deferLoading": 0,
+            "bFilter": true,
+            "bPaginate": "false",
+            "bProcessing": true,
+            "bLengthChange": true,
+            "bServerSide": false,
+            "searchDelay": 1000,
+            "aaSorting": [[1, "asc"]],
+            "fnRowCallback": function (nRow, aData, iDisplayIndex) {
+                return nRow;
+            }
+            ,"aoColumns": @Html.Raw(Html.DataTableColumns(Model.Fields, false))
+        }); 
+
+        $('#tableResults tbody')
+            .on('mouseenter', 'td', function () {
+                $('#tableResults tr').removeClass("highlight");
+                $(this).parent().addClass("highlight");
+            });
+
+        $('body')
+            .on('mouseleave', '#tableResults', function () {
+                $('#tableResults tr').removeClass("highlight");
+            });
+
+        $('#tableResults tbody').on('click', 'tr', function () {
+            var id = $(this).attr("data-id");
+            $("#home").hide();
+            $("#homeLoadingSpan").html("@Html.Translate("Shared", "Loading")");
+            $(".homeLoading").show();
+            $("#details").html("");
+            
+            $.get("/SalesOrders/Details/?rowId=" + id, function (data) {
+                $("#details").html(data);
+                $(".homeLoading").hide();
+                
+                $("#details").show();
+            })
+        });
+    });
+</script>
+}

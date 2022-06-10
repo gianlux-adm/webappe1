@@ -1,0 +1,116 @@
+﻿@model Ica.SalesOrders.Web.ViewModels.Orders.EditRowViewModel
+<div id="" class="modal-content" style="border-radius: 5px;">
+    <div class="modal-header">
+        <h3 class="modal-title">@Html.Translate("OrdiniVendita", "TitoloModaleDettaglioRiga")</h3>
+    </div>
+    <div id="edit_body" class="modal-body">
+        @Html.Partial("ValidationSummary")
+        @using (Ajax.BeginForm("EditRow", "Orders", new AjaxOptions() { HttpMethod = "POST",  OnSuccess = "ModalCallback_OnSuccess" }, new { @class = "form-horizontal", id = "form_edit_row" }))
+        {
+        @Html.HiddenFor(m=>m.IdChiaveUnivoca)
+        @Html.HiddenFor(m=>m.NumeroRiga)
+        @Html.HiddenFor(m=>m.Societa)
+        <div class="row">
+            <div class="col-sm-12 col-xs-12">
+                <label class="control-label">@Html.Translate("OrdiniVendita", "CodiceArticolo")</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 col-xs-12">
+                <div class="input-group input-group">
+                    <div class="typeahead-container">
+                        <div class="typeahead-field">
+                            <span class="typeahead-query">
+                                <input type="text" id="CodiceArticoloText" class="form-control myText" autocomplete="off"
+                                       @if (!String.IsNullOrEmpty(Model.CodiceArticolo)) { <text> disabled="disabled" </text> }
+                                       value="@Model.CodiceArticolo" />
+                            </span>
+                        </div>
+                    </div>
+                    <span class="input-group-addon" style="cursor: pointer;"><i class="fa fa-remove"></i></span>
+                </div>
+                <input type="hidden" id="CodiceArticolo" name="CodiceArticolo" value="@Model.CodiceArticolo" />
+                @Html.ValidationMessage("CodiceArticolo", "*")
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 col-xs-12">
+                <label class="control-label">@Html.Translate("OrdiniVendita", "UnitaMisura")</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 col-xs-12">
+                <label id="UnitaMisuraLabel" class="form-control">@Model.UnitaMisura</label>
+                @Html.HiddenFor(m => m.UnitaMisura)
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 col-xs-12">
+                <label class="control-label">@Html.Translate("OrdiniVendita", "Quantita")</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 col-xs-12">
+                <input type="text" id="Quantita"  name="Quantita" class="form-control"
+                       onkeypress="return isNumberKey(this, event);" 
+                       onkeyup="replaceComma(this)"
+                       style="text-align:right"
+                       value="@Model.Quantita.ToString().Replace(
+                             System.Globalization.CultureInfo.CurrentCulture.NumberFormat.CurrencyDecimalSeparator
+                             ,".")"
+                       />                
+                @Html.ValidationMessageFor(m => m.Quantita, "*")
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 col-xs-12">
+                <label class="control-label">@Html.Translate("OrdiniVendita", "ControlloQualita")</label>
+            </div>
+        </div>
+            <div class="row">
+            <div class="col-sm-12 col-xs-12">
+                @Html.DropDownListFor(m => m.StatoDazio, new SelectList(Model.ValoriDazio, "Key", "Value"), "---------", new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.StatoDazio, "*")
+            </div>
+        </div>
+
+}
+    </div>
+    <div id="edit_footer" class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">
+            @Html.Translate("Shared", "Close")
+        </button>
+        <button id="btnSaveRow" type="button" class="btn btn-primary">
+            @Html.Translate("OrdiniVendita", "BtnSalvaRiga")
+        </button>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+
+    function refreshOrder() {
+        window.location.href = "/Orders/Edit/@Model.IdChiaveUnivoca";
+    }
+
+    $(document).ready(function () {
+
+        initAutocompleteCodiceArticoloOrdine("#CodiceArticoloText", "#CodiceArticolo", "@Html.Translate("Shared", "NoResults")");
+
+    @if (Model.StatoDazioAbilitato == false)
+    {
+        <text>
+            $("#StatoDazio").attr("disabled","disabled");
+        </text>
+    }
+        
+
+       $("#btnSaveRow").click(function() {
+            $("#form_edit_row").submit();
+            $("#edit_footer").html("");
+            $("#edit_body").html('<div style="line-height:100px;font-size:20px;min-height:100px;"><i class="fa fa-circle-o-notch fa-spin"></i>@Html.Translate("OrdiniVendita","OperazioneInCorso")</div>');
+        });
+    });
+</script>
+
+

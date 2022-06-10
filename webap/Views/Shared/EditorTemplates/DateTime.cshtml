@@ -1,0 +1,21 @@
+﻿@model DateTime?
+
+@{
+    var dict = new Dictionary<String, object>();
+    dict.Add("class", "form-control ");
+    dict.Add("id",ViewData["id"]==null ? ViewData.TemplateInfo.GetFullHtmlFieldId(String.Empty) : ViewData["id"]);
+    dict.Add("Name",ViewData["Name"]==null ? ViewData.TemplateInfo.GetFullHtmlFieldName(String.Empty) : ViewData["Name"]);
+    if (ViewData["disabled"] != null)
+    {
+        dict.Add("disabled", "disabled");
+    }
+}
+<div class="input-group date" style="width:100%;" >
+@Html.TextBox("", (Model.HasValue ? Model.Value.ToShortDateString() :
+string.Empty),dict
+    
+)
+    <span class="input-group-addon">
+            <span class="glyphicon glyphicon-calendar"></span>
+    </span>
+</div>

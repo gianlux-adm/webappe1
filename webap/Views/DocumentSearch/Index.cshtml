@@ -1,0 +1,182 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+@model Ica.SalesOrders.Web.ViewModels.SharePointDocumentViewModel
+
+<link href="~/Content/bootstrap.min.css" />
+
+<div class="box filtro">
+    <div class="box-header with-border">
+        <h3 class="box-title">@Html.Translate("DocumentSearch", "PageTitle")</h3>
+        <div class="box-tools pull-right">
+            <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                <i class="fa fa-minus"></i>
+            </button>
+        </div>
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body form-horizontal">
+
+        @using (Html.BeginForm("Index", "DocumentSearch", FormMethod.Post))
+        {
+            <table class="table table-responsive" border="0">
+                <tbody>
+                    <tr>
+                        <td style="color:DarkBlue;font-weight:bold;">@Html.Translate("DocumentSearch", "DocType"):</td>
+                        <td colspan="2">
+                            <select name="Documents">
+                                <option @(Model.searchCriteria.TipoDocumento == "TDS" ? "selected" : "") value="TDS">@Html.Translate("DocumentSearch", "TecSheet")</option>
+                                <option @(Model.searchCriteria.TipoDocumento == "SDS" ? "selected" : "") value="SDS">@Html.Translate("DocumentSearch", "SecSheet")</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="color:DarkBlue;font-weight:bold;">@Html.Translate("DocumentSearch", "ProdCode"):</td>
+                        <td>
+                            <select name="SearchMode">
+                                <option @(Model.searchCriteria.CodiceProdottoMatch == '*' ? "selected" : "") value="*">*</option>
+                                <option @(Model.searchCriteria.CodiceProdottoMatch == '=' ? "selected" : "") value="=">=</option>
+                            </select>
+                        </td>
+                        <td><input name="ProdCode" style="font-family:Verdana;font-size:8pt;width:40.3mm;" type="text" value="@Model.searchCriteria.CodiceProdotto" required="required"></td>
+                        <td style="color:DarkBlue;font-weight:bold;">@Html.Translate("DocumentSearch", "Division"):</td>
+                        <td>
+                            <select name="Company">
+                                <option @(Model.searchCriteria.Divisione == "ICA SpA - ICA" ? "selected" : "") value="ICA SpA - ICA">ICA SpA - ICA</option>
+                                <option @(Model.searchCriteria.Divisione == "ICA SpA - iCO" ? "selected" : "") value="ICA SpA - iCO">ICA SpA - iCO</option>
+                                <option @(Model.searchCriteria.Divisione == "ICA For You" ? "selected" : "") value="ICA For You">ICA For You</option>
+                                <option @(Model.searchCriteria.Divisione == "Vernicolor" ? "selected" : "") value="Vernicolor">Vernicolor</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="color:DarkBlue;font-weight:bold;">@Html.Translate("DocumentSearch", "Description"):</td>
+                        <td></td>
+                        <td><input name="Descrizione" style="font-family:Verdana;font-size:8pt;width:40.3mm;" type="text" value="@Model.searchCriteria.Descrizione"></td>
+                        <td style="color:DarkBlue;font-weight:bold;">@Html.Translate("DocumentSearch", "Rules"):</td>
+                        <td>
+                            <select name="Rules">
+                                <option @(string.IsNullOrEmpty(Model.searchCriteria.Regolamento) ? "selected" : "") value=""></option>
+                                <option @(Model.searchCriteria.Regolamento == "CLP" ? "selected" : "") value="CLP">CLP</option>
+                                <option @(Model.searchCriteria.Regolamento == "DPD" ? "selected" : "") value="DPD">DPD</option>
+                                <option @(Model.searchCriteria.Regolamento == "GHS_CHN" ? "selected" : "") value="GHS_CHN">GHS_CHN</option>
+                                <option @(Model.searchCriteria.Regolamento == "GHS_USA" ? "selected" : "") value="GHS_USA">GHS_USA</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="color:DarkBlue;font-weight:bold;">@Html.Translate("DocumentSearch", "Lang"):</td>
+                        <td></td>
+                        <td>
+                            <select name="lang">
+                                <option @(Model.searchCriteria.Lingua == "" ? "selected" : "") value=""></option>
+                                <option @(Model.searchCriteria.Lingua == "AL" ? "selected" : "") value="AL">AL</option>
+                                <option @(Model.searchCriteria.Lingua == "BL" ? "selected" : "") value="BL">BL</option>
+                                <option @(Model.searchCriteria.Lingua == "BR" ? "selected" : "") value="BR">BR</option>
+                                <option @(Model.searchCriteria.Lingua == "CN" ? "selected" : "") value="CN">CN</option>
+                                <option @(Model.searchCriteria.Lingua == "CR" ? "selected" : "") value="CR">CR</option>
+                                <option @(Model.searchCriteria.Lingua == "CZ" ? "selected" : "") value="CZ">CZ</option>
+                                <option @(Model.searchCriteria.Lingua == "DA" ? "selected" : "") value="DA">DA</option>
+                                <option @(Model.searchCriteria.Lingua == "DE" ? "selected" : "") value="DE">DE</option>
+                                <option @(Model.searchCriteria.Lingua == "EL" ? "selected" : "") value="EL">EL</option>
+                                <option @(Model.searchCriteria.Lingua == "EN" ? "selected" : "") value="EN">EN</option>
+                                <option @(Model.searchCriteria.Lingua == "ES" ? "selected" : "") value="ES">ES</option>
+                                <option @(Model.searchCriteria.Lingua == "ET" ? "selected" : "") value="ET">ET</option>
+                                <option @(Model.searchCriteria.Lingua == "FI" ? "selected" : "") value="FI">FI</option>
+                                <option @(Model.searchCriteria.Lingua == "FR" ? "selected" : "") value="FR">FR</option>
+                                <option @(Model.searchCriteria.Lingua == "HU" ? "selected" : "") value="HU">HU</option>
+                                <option @(Model.searchCriteria.Lingua == "IT" ? "selected" : "") value="IT">IT</option>
+                                <option @(Model.searchCriteria.Lingua == "LT" ? "selected" : "") value="LT">LT</option>
+                                <option @(Model.searchCriteria.Lingua == "LV" ? "selected" : "") value="LV">LV</option>
+                                <option @(Model.searchCriteria.Lingua == "NL" ? "selected" : "") value="NL">NL</option>
+                                <option @(Model.searchCriteria.Lingua == "NO" ? "selected" : "") value="NO">NO</option>
+                                <option @(Model.searchCriteria.Lingua == "PL" ? "selected" : "") value="PL">PL</option>
+                                <option @(Model.searchCriteria.Lingua == "PT" ? "selected" : "") value="PT">PT</option>
+                                <option @(Model.searchCriteria.Lingua == "RM" ? "selected" : "") value="RM">RM</option>
+                                <option @(Model.searchCriteria.Lingua == "RO" ? "selected" : "") value="RO">RO</option>
+                                <option @(Model.searchCriteria.Lingua == "RU" ? "selected" : "") value="RU">RU</option>
+                                <option @(Model.searchCriteria.Lingua == "SK" ? "selected" : "") value="SK">SK</option>
+                                <option @(Model.searchCriteria.Lingua == "SL" ? "selected" : "") value="SL">SL</option>
+                                <option @(Model.searchCriteria.Lingua == "SR" ? "selected" : "") value="SR">SR</option>
+                                <option @(Model.searchCriteria.Lingua == "SV" ? "selected" : "") value="SV">SV</option>
+                                <option @(Model.searchCriteria.Lingua == "TR" ? "selected" : "") value="TR">TR</option>
+                            </select>
+                        </td>
+                        <td style="color:DarkBlue;font-weight:bold;">@Html.Translate("DocumentSearch", "DateInt"):</td>
+                        <td colspan="3">
+                            <input name="StartDate" style="font-family:Verdana;font-size:8pt;width:20mm;" type="text" value="@(Model.searchCriteria.DataInizio != DateTime.MinValue ? Model.searchCriteria.DataInizio.ToString("dd/MM/yyyy"):"")" />
+                            <input name="EndDate" style="font-family:Verdana;font-size:8pt;width:20mm;" type="text" value="@(Model.searchCriteria.DataFine != DateTime.MinValue ? Model.searchCriteria.DataFine.ToString("dd/MM/yyyy"):"")" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="5">
+                            <input class="btn btn-default" type="submit" value="@Html.Translate("DocumentSearch", "Submit")">&nbsp;
+                            <input class="btn btn-default" type="reset" value="@Html.Translate("DocumentSearch", "Clear")">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="5"><span style="color:Red;">@(Model.Error ?? "")</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        }
+    </div>
+</div>
+
+<div class="box filtro">
+    <div class="box-header with-border">
+        <h3 class="box-title">@Html.Translate("Shared", "Results")</h3>
+        <div class="box-tools pull-right">
+            <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                <i class="fa fa-minus"></i>
+            </button>
+        </div>
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body form-horizontal">
+        <table class="table table-striped table-responsive" id="SearchResults">
+            <thead>
+                <tr>
+                    <th>@Html.Translate("DocumentSearch", "ProdCode")</th>
+                    <th>@Html.Translate("DocumentSearch", "Description")</th>
+                    <th>@Html.Translate("DocumentSearch", "DateHeader")</th>
+                    <th>@Html.Translate("DocumentSearch", "Lang")</th>
+                    <th>@Html.Translate("DocumentSearch", "Division")</th>
+                    <th>@Html.Translate("DocumentSearch", "DocType")</th>
+                    <th>@Html.Translate("DocumentSearch", "Rules")</th>
+                    <th>@Html.Translate("DocumentSearch", "Revision")</th>
+                    <th>@Html.Translate("DocumentSearch", "Link")</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Ica.SalesOrders.Web.Models.SharePointDocumentSearchResult item in Model.searchResults)
+                {
+                    <tr>
+                        <td>@item.CodiceProdotto</td>
+                        <td>@item.Descrizione</td>
+                        <td>@item.Data.ToString("dd/MM/yyyy")</td>
+                        <td>@item.Lingua</td>
+                        <td>@item.Società</td>
+                        <td>@item.TipoScheda</td>
+                        <td>@item.Regolamento</td>
+                        <td>@item.Revisione</td>
+                        <td><a href="@item.DownloadLink"><span class="btn btn-primary">@Html.Translate("DocumentSearch", "Button")</span></a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#SearchResults").DataTable({
+            "lengthChange": false,
+            "searching": false,
+             "language": { "url": "@Html.DataTablesUrl()" }
+        });
+    });
+</script>

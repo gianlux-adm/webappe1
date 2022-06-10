@@ -1,0 +1,97 @@
+﻿@model Ica.SalesOrders.Web.ViewModels.WarehouseSearchViewModel
+
+<div class="box filtro">
+    <div class="box-header with-border">
+        <h3 class="box-title">@Html.Translate("Shared", "Results")</h3>
+        <div class="box-tools pull-right">
+            <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                <i class="fa fa-minus"></i>
+            </button>
+        </div>
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body form-horizontal">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>@Html.Translate("Warehouse", "ArticleCode")</th>
+                    <th>@Html.Translate("Warehouse", "Description")</th>
+                    <th>@Html.Translate("Warehouse", "Availability")</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Rows)
+                {
+                    <tr>
+                        <td>
+                            <span class="btn btn-primary">@Html.Translate("Warehouse", "Details")</span>
+                        </td>
+                        <td>@item.Values.Where(w => w.ColumnName == "z_LITM_23").FirstOrDefault().Value</td>
+                        <td>@item.Values.Where(w => w.ColumnName == "z_DSC1_24").FirstOrDefault().Value @item.Values.Where(w => w.ColumnName == "z_DSC2_25").FirstOrDefault().Value</td>
+                        <td>@item.Values.Where(w => w.ColumnName == "z_PQOH_50").FirstOrDefault().Value</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <nav aria-label="..." style="text-align:center">
+            <ul class="pagination">
+
+                <li class="page-item @((Model.Page>0) ? "" :  "disabled")">
+                    <span class="page-link">Previous</span>
+                </li>
+                <li class="page-item @((Model.Page>0) ? "" :  "disabled")">
+                    <span class="page-link @((Model.Page>0) ? "goToPage" :  "")" data-page="0">First</span>
+                </li>
+                @{ 
+                    var k = 0;
+                    if (Model.Page > 5)
+                    {
+                        k = Model.Page - 4;
+                    }
+                }
+                @for (int i = k; i <= Model.Page; i++)
+                {
+                    <li class="page-item @((i==Model.Page) ? "active" : "")">
+                        <a class="page-link @((i==Model.Page) ? "" : "goToPage")" data-page="@i">@(i + 1)</a>
+                    </li>
+                }
+
+                @if (Model.HasNext)
+    {
+            <li class="page-item">
+                <a class="page-link myNext" data-url="@Model.NextUrl" data-page="@(Model.Page + 1)">Next</a>
+            </li>
+}
+
+            </ul>
+        </nav>
+
+    </div>
+</div>
+
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".myNext").click(function () {
+            var page = $(this).attr("data-page");
+            var url = $(this).attr("data-url");
+            $.post("/Warehouse/Pagination", { page: page, url: url }, function (data) {
+                searchWarehouse_OnComplete(data);
+            }
+            );
+        });
+
+        $(".goToPage").click(function () {
+            var page = $(this).attr("data-page");
+            var url = "";
+            $.post("/Warehouse/Pagination", { page: page, url: url }, function (data) {
+                searchWarehouse_OnComplete(data);
+            }
+            );
+        })
+
+    });
+</script>

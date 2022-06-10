@@ -1,0 +1,60 @@
+﻿@model Ica.SalesOrders.Web.ViewModels.ListLanguageViewModel
+@{
+    ViewBag.Title = "Language Management";
+}
+
+@section breadcrumb {
+    <ol class="breadcrumb">
+        <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active"><a href="/Language"><i class="fa fa-flag"></i>@Html.Translate("Menu", "LanguageManagement")</a></li>
+    </ol>
+}
+
+<div class="box">
+    <div class="box-header with-border">
+        <h3 class="box-title">Language Management</h3>
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body">
+        <div class="row">
+            <table class="table table-striped table-bordered">
+                <colgroup>
+                    <col  style="width:120px" />
+                    <col  style="width:120px" />
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th class="center">
+                            <a href="/Language/Edit" title="Crea">
+                                <i class="fa fa-plus-circle"></i>
+                            </a>
+                        </th>
+                        <th>Language Id</th>
+                        <th>Name</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Languages)
+                    {
+                    <tr>
+                        <td class="center">
+                            <a href="/Language/Edit/@item.LanguageID" class="myic" title="Modifica">
+                                <i class="fa fa-edit"></i>
+                            </a>
+
+                            <a href="/Language/EditTranslations/@item.LanguageID" class="myic" title="Traduzioni" >
+                                <i class="glyphicon glyphicon-text-size"></i>
+                            </a>
+
+                        </td>
+                        <td>@Html.DisplayFor(m => item.LanguageID)</td>
+                        <td>@Html.DisplayFor(m => item.LanguageName)</td>
+                        <td>@(item.LanguageEnabled ? "Enabled" : "Disabled")</td>
+                    </tr>    
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

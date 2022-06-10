@@ -1,0 +1,51 @@
+﻿@model Ica.SalesOrders.Web.ViewModels.CurrencyConversionViewModel
+
+@{
+    ViewBag.Title = "Create";
+
+}
+
+<div class="box filtro">
+    <div class="box-header with-border">
+        <h3 class="box-title">@Html.Translate("Menu", "Currencies")</h3>
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body">
+
+        @using (Html.BeginForm())
+        {
+
+            <div class="form-horizontal">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    <label class="control-label col-md-2">
+                        @Html.Translate("Currencies", "Currency")
+                    </label>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.SelectedItem.Currency, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.SelectedItem.Currency, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-2">
+                        @Html.Translate("Currencies", "ExchangeRate")
+                    </label>
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(model => model.SelectedItem.ConversionValue, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.SelectedItem.ConversionValue, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Create" class="btn btn-default" />
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

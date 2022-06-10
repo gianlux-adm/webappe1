@@ -1,0 +1,60 @@
+﻿@model Ica.SalesOrders.Web.ViewModels.EditLanguageTranslationsViewModel
+@using (Html.BeginForm("EditTranslations","Language"))
+{
+    <div class="form-horizontal">
+        <div class="form-group">
+            <div class="col-sm-2">
+                <label class="control-label">@Html.Translate("LanguageManagement","Translations")</label>
+            </div>
+            <div class="col-sm-4">
+                <label class="control-label">Selected Language Translation</label>
+            </div>
+            <div class="col-sm-4">
+                <label class="control-label">English Translation</label>
+            </div>
+        </div>
+        @Html.Hidden("id",Model.Language.LanguageID)
+        @Html.Hidden("page",Model.SelectedPage)
+        @foreach (var key in Model.Entries.Where(w=>w.Page.Equals(Model.SelectedPage)))
+        {
+            <div class="form-group">
+                <div class="col-sm-2">
+                    @Html.Label(key.Key, new { @class = "control-label" })
+                </div>
+                <div class="col-sm-4">
+                    @if(key.Key.EndsWith("Subject")) {
+                        @Html.TextBox("li_" + key.Key, key.Value, new { @class="form-control" })
+                    }
+                    else
+                    {
+                    @Html.TextArea("li_" + key.Key, key.Value, new { @class="form-control myarea" })
+                    }
+                    @Html.ValidationMessage("li_" + key.Key, "*")
+                </div>
+                <div class="col-sm-4">
+                    @{
+                        var traEn = Model.EntriesEn.Where(w => w.Page.Equals(Model.SelectedPage) && w.Key.Equals(key.Key)).FirstOrDefault();
+                        if (traEn==null) {
+                            traEn = new Translation();    
+                        }
+                    }
+                    @if(key.Key.EndsWith("Subject")) {
+                            @Html.TextBox("en_" + key.Key, traEn.Value, new { @class="form-control", @readonly="readonly" })
+                        }
+                        else
+                        {
+                            @Html.TextArea("en_" + key.Key, traEn.Value, new { @class="form-control", @readonly="readonly" })
+                        }
+                        
+                </div>
+            </div>
+        }
+         <div class="form-group">
+                <div class="col-sm-2">
+                </div>
+                <div class="col-sm-10">
+                    <button class="btn btn-primary" style="float:right;">@Html.Translate("Shared","Save")</button> 
+                </div>
+        </div>
+    </div>
+}

@@ -1,0 +1,92 @@
+﻿@model Ica.SalesOrders.Web.ViewModels.LoginViewModel
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>EDI | Log in</title>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+     <link href="~/Content/AdminLte/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/AdminLte/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/AdminLte/css/ionicons.min.css" rel="stylesheet" />
+    <link href="~/Content/AdminLte/css/AdminLTE.min.css" rel="stylesheet" />
+    <link href="~/Content/AdminLte/css/skins/_all-skins.min.css" rel="stylesheet" />
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <link href="~/Scripts/AdminLte/plugins/datatables/dataTables.bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/AdminLte/jQueryUi/jquery-ui.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-switch/bootstrap-switch.css" rel="stylesheet" />
+    <link href="~/Content/boostrap-duallistbox/bootstrap-duallistbox.css" rel="stylesheet" />
+    <link href="~/Scripts/AdminLte/plugins/timepicker/bootstrap-timepicker.css" rel="stylesheet" />
+
+</head>
+<body class="login-page">
+    @using(Html.BeginForm()) {
+    <div class="login-box" style="width:450px;">
+        @{Html.RenderPartial("ValidationSummary", Model);}
+        <div class="login-logo">
+            <img src="~/Content/Images/logo.png" />            
+        </div><!-- /.login-logo -->
+        <div class="login-box-body">
+            <p class="login-box-msg">@Html.Translate("Login","SignIn")</p>
+            <form action="#" method="post">
+                <div class="form-group has-feedback">
+                    @Html.TextBoxFor(u=> u.Username, new {@class="form-control", placeholder="Username"})
+                    @Html.ValidationMessageFor(u=>u.Username)
+                    <!--
+                        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                    -->
+                    <span class="fa fa-user form-control-feedback"></span>
+                </div>
+                <div class="form-group has-feedback">
+                    @Html.PasswordFor(u => u.Password, new { @class = "form-control", placeholder = "Password" })
+                    @Html.ValidationMessageFor(u=>u.Password)
+                    <span class="fa fa-lock form-control-feedback"></span>
+                </div>
+                <div class="form-group">
+                    @Html.DropDownListFor(u => u.Language,new SelectList(Model.Languages,"LanguageID","LanguageName"), new { @class = "form-control",@style="padding-right:0px;padding-top:0px;padding-bottom:0px;" })
+                    @Html.ValidationMessageFor(u=>u.Language)
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <button id="btn_login" type="submit" class="btn btn-danger btn-block .btn-lg">Login</button>
+                    </div><!-- /.col -->
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        @Html.ValidationMessage("UtenteNonTrovato", new { id="user" })
+                    </div>
+                </div>
+            </form>
+            @*<a href="#">I forgot my password</a><br>*@
+        </div><!-- /.login-box-body -->
+    </div><!-- /.login-box -->
+    
+    <script src="~/Scripts/AdminLte/plugins/jQuery/jQuery-2.1.4.min.js" type="text/javascript"></script>
+      <script src="~/Scripts/jquery.validate.min.js" type="text/javascript"></script>
+       <script src="~/Scripts/jquery.validate.unobtrusive.min.js" type="text/javascript"></script>
+        <script src="~/Scripts/jquery.unobtrusive-ajax.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/AdminLte/plugins/jQueryUI/jquery-ui.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/AdminLte/noconflict.js" type="text/javascript"></script>
+    <script src="~/Scripts/AdminLte/bootstrap/bootstrap.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/AdminLte/app.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/AdminLte/plugins/fullcalendar/moment.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/AdminLte/plugins/fullcalendar/fullcalendar.js" type="text/javascript"></script>
+    <script src="~/Scripts/bootstrap.datetimepicker.js" type="text/javascript"></script>
+    <script src="~/Scripts/bootstrap-switch/bootstrap-switch.js" type="text/javascript"></script>
+    <script src="~/Scripts/boostrap-duallistbox/jquery.bootstrap-duallistbox.js" type="text/javascript"></script>
+    <script src="~/Scripts/AdminLte/plugins/timepicker/bootstrap-timepicker.js" type="text/javascript"></script>
+    <script src="~/Scripts/jquery.typeahead.js" type="text/javascript"></script>
+
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $("#btn_login").click(function () {
+                    $("#user").html("");
+                });
+            });
+        </script>
+    }
+</body>
+</html>
+

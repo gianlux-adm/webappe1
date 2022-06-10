@@ -1,0 +1,2769 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:ns0="http://oracle.e1.bssv.JP420000/" targetNamespace="http://oracle.e1.bssv.JP420000/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:complexType name="processSalesOrder">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:valueObject">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="header" type="ns0:processSOHeader" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="itemListPriceShared">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:valueObject">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="businessUnit" type="xsd:string" />
+          <xsd:element minOccurs="0" name="currencyCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="customer" type="ns0:entity" />
+          <xsd:element minOccurs="0" name="dateEffective" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="dateExpiration" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="item" type="ns0:itemGroupCustomer" />
+          <xsd:element minOccurs="0" name="unitOfMeasureCode" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="processSODetailProcessing">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:valueObject">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="actionType" type="xsd:string" />
+          <xsd:element minOccurs="0" name="useConfigurationRule" type="xsd:boolean" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="showSalesDetailV4">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:valueObject">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="agreementId" type="xsd:string" />
+          <xsd:element minOccurs="0" name="agreementSupplement" type="xsd:int" />
+          <xsd:element minOccurs="0" name="businessUnit" type="xsd:string" />
+          <xsd:element minOccurs="0" name="carrierGLN" type="xsd:string" />
+          <xsd:element minOccurs="0" name="categoryCodesPurchasing" type="ns0:categoryCodesPurchasing" />
+          <xsd:element minOccurs="0" name="categoryCodesSales" type="ns0:categoryCodesSales" />
+          <xsd:element minOccurs="0" name="company" type="xsd:string" />
+          <xsd:element minOccurs="0" name="costExtendedDomestic" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="costExtendedForeign" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="costUnitPurchasingDomestic" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="costUnitPurchasingForeign" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="currencyCodeFrom" type="xsd:string" />
+          <xsd:element minOccurs="0" name="customerPO" type="xsd:string" />
+          <xsd:element minOccurs="0" name="dateAccounting" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="dateActualShip" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="dateCancel" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="dateInvoice" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="dateOrdered" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="datePromisedDelivery" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="datePromisedOriginal" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="datePromisedShip" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="dateRequested" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="dateScheduledPick" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="deliverTo" type="ns0:entity" />
+          <xsd:element minOccurs="0" name="deliverToGLN" type="xsd:string" />
+          <xsd:element minOccurs="0" name="deliveryId" type="xsd:int" />
+          <xsd:element minOccurs="0" name="document" type="ns0:document" />
+          <xsd:element minOccurs="0" name="documentLineNumber" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="dutyStatusCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="endUseCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="entityIdSupplier" type="xsd:int" />
+          <xsd:element minOccurs="0" name="lineBilling" type="ns0:showSalesDetailLineBillingV2" />
+          <xsd:element minOccurs="0" name="lineOfBusinessCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="lineTypeCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="opportUnityId" type="xsd:string" />
+          <xsd:element minOccurs="0" name="originalOrder" type="ns0:showSalesDetailOriginalOrder" />
+          <xsd:element minOccurs="0" name="parent" type="ns0:entity" />
+          <xsd:element minOccurs="0" name="parentGLN" type="xsd:string" />
+          <xsd:element minOccurs="0" name="pickSlipId" type="xsd:int" />
+          <xsd:element minOccurs="0" name="product" type="ns0:showSalesDetailProduct" />
+          <xsd:element minOccurs="0" name="quantityBackOrdered" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="quantityCanceled" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="quantityOrdered" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="quantityShippable" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="rateExchangeOverride" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="reference" type="xsd:string" />
+          <xsd:element minOccurs="0" name="relatedOrder" type="ns0:relatedOrder" />
+          <xsd:element minOccurs="0" name="shipTo" type="ns0:entity" />
+          <xsd:element minOccurs="0" name="shipToGLN" type="xsd:string" />
+          <xsd:element minOccurs="0" name="shipmentId" type="xsd:int" />
+          <xsd:element minOccurs="0" name="soldTo" type="ns0:entity" />
+          <xsd:element minOccurs="0" name="soldToGLN" type="xsd:string" />
+          <xsd:element minOccurs="0" name="statusCodeLast" type="xsd:string" />
+          <xsd:element minOccurs="0" name="statusCodeNext" type="xsd:string" />
+          <xsd:element minOccurs="0" name="timePromisedDelivery" type="xsd:int" />
+          <xsd:element minOccurs="0" name="timePromisedOriginal" type="xsd:int" />
+          <xsd:element minOccurs="0" name="timePromisedShip" type="xsd:int" />
+          <xsd:element minOccurs="0" name="timeRequested" type="xsd:int" />
+          <xsd:element minOccurs="0" name="timeScheduledPick" type="xsd:int" />
+          <xsd:element minOccurs="0" name="unitOfMeasureCodeTransaction" type="xsd:string" />
+          <xsd:element minOccurs="0" name="userReservedData" type="ns0:userReservedData" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="showSalesDetailV3">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:valueObject">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="agreementId" type="xsd:string" />
+          <xsd:element minOccurs="0" name="agreementSupplement" type="xsd:int" />
+          <xsd:element minOccurs="0" name="businessUnit" type="xsd:string" />
+          <xsd:element minOccurs="0" name="carrierGLN" type="xsd:string" />
+          <xsd:element minOccurs="0" name="categoryCodesPurchasing" type="ns0:categoryCodesPurchasing" />
+          <xsd:element minOccurs="0" name="categoryCodesSales" type="ns0:categoryCodesSales" />
+          <xsd:element minOccurs="0" name="company" type="xsd:string" />
+          <xsd:element minOccurs="0" name="costExtendedDomestic" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="costExtendedForeign" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="costUnitPurchasingDomestic" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="costUnitPurchasingForeign" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="currencyCodeFrom" type="xsd:string" />
+          <xsd:element minOccurs="0" name="customerPO" type="xsd:string" />
+          <xsd:element minOccurs="0" name="dateAccounting" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="dateActualShip" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="dateCancel" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="dateInvoice" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="dateOrdered" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="datePromisedDelivery" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="datePromisedOriginal" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="datePromisedShip" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="dateRequested" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="dateScheduledPick" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="deliverTo" type="ns0:entity" />
+          <xsd:element minOccurs="0" name="deliverToGLN" type="xsd:string" />
+          <xsd:element minOccurs="0" name="deliveryId" type="xsd:int" />
+          <xsd:element minOccurs="0" name="document" type="ns0:document" />
+          <xsd:element minOccurs="0" name="documentLineNumber" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="dutyStatusCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="endUseCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="entityIdSupplier" type="xsd:int" />
+          <xsd:element minOccurs="0" name="lineBilling" type="ns0:showSalesDetailLineBillingV2" />
+          <xsd:element minOccurs="0" name="lineOfBusinessCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="lineTypeCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="originalOrder" type="ns0:showSalesDetailOriginalOrder" />
+          <xsd:element minOccurs="0" name="parent" type="ns0:entity" />
+          <xsd:element minOccurs="0" name="parentGLN" type="xsd:string" />
+          <xsd:element minOccurs="0" name="pickSlipId" type="xsd:int" />
+          <xsd:element minOccurs="0" name="product" type="ns0:showSalesDetailProduct" />
+          <xsd:element minOccurs="0" name="quantityBackOrdered" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="quantityCanceled" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="quantityOrdered" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="quantityShippable" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="rateExchangeOverride" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="reference" type="xsd:string" />
+          <xsd:element minOccurs="0" name="relatedOrder" type="ns0:relatedOrder" />
+          <xsd:element minOccurs="0" name="shipTo" type="ns0:entity" />
+          <xsd:element minOccurs="0" name="shipToGLN" type="xsd:string" />
+          <xsd:element minOccurs="0" name="shipmentId" type="xsd:int" />
+          <xsd:element minOccurs="0" name="soldTo" type="ns0:entity" />
+          <xsd:element minOccurs="0" name="soldToGLN" type="xsd:string" />
+          <xsd:element minOccurs="0" name="statusCodeLast" type="xsd:string" />
+          <xsd:element minOccurs="0" name="statusCodeNext" type="xsd:string" />
+          <xsd:element minOccurs="0" name="timePromisedDelivery" type="xsd:int" />
+          <xsd:element minOccurs="0" name="timePromisedOriginal" type="xsd:int" />
+          <xsd:element minOccurs="0" name="timePromisedShip" type="xsd:int" />
+          <xsd:element minOccurs="0" name="timeRequested" type="xsd:int" />
+          <xsd:element minOccurs="0" name="timeScheduledPick" type="xsd:int" />
+          <xsd:element minOccurs="0" name="unitOfMeasureCodeTransaction" type="xsd:string" />
+          <xsd:element minOccurs="0" name="userReservedData" type="ns0:userReservedData" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="showSalesDetailV2">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:valueObject">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="agreementId" type="xsd:string" />
+          <xsd:element minOccurs="0" name="agreementSupplement" type="xsd:int" />
+          <xsd:element minOccurs="0" name="businessUnit" type="xsd:string" />
+          <xsd:element minOccurs="0" name="categoryCodesPurchasing" type="ns0:categoryCodesPurchasing" />
+          <xsd:element minOccurs="0" name="categoryCodesSales" type="ns0:categoryCodesSales" />
+          <xsd:element minOccurs="0" name="company" type="xsd:string" />
+          <xsd:element minOccurs="0" name="costExtendedDomestic" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="costExtendedForeign" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="costUnitPurchasingDomestic" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="costUnitPurchasingForeign" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="currencyCodeFrom" type="xsd:string" />
+          <xsd:element minOccurs="0" name="customerPO" type="xsd:string" />
+          <xsd:element minOccurs="0" name="dateAccounting" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="dateActualShip" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="dateCancel" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="dateInvoice" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="dateOrdered" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="datePromisedDelivery" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="datePromisedOriginal" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="datePromisedShip" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="dateRequested" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="dateScheduledPick" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="deliverTo" type="ns0:entity" />
+          <xsd:element minOccurs="0" name="deliveryId" type="xsd:int" />
+          <xsd:element minOccurs="0" name="document" type="ns0:document" />
+          <xsd:element minOccurs="0" name="documentLineNumber" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="dutyStatusCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="endUseCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="entityIdSupplier" type="xsd:int" />
+          <xsd:element minOccurs="0" name="lineBilling" type="ns0:showSalesDetailLineBillingV2" />
+          <xsd:element minOccurs="0" name="lineOfBusinessCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="lineTypeCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="originalOrder" type="ns0:showSalesDetailOriginalOrder" />
+          <xsd:element minOccurs="0" name="parent" type="ns0:entity" />
+          <xsd:element minOccurs="0" name="pickSlipId" type="xsd:int" />
+          <xsd:element minOccurs="0" name="product" type="ns0:showSalesDetailProduct" />
+          <xsd:element minOccurs="0" name="quantityBackOrdered" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="quantityCanceled" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="quantityOrdered" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="quantityShippable" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="rateExchangeOverride" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="reference" type="xsd:string" />
+          <xsd:element minOccurs="0" name="relatedOrder" type="ns0:relatedOrder" />
+          <xsd:element minOccurs="0" name="shipTo" type="ns0:entity" />
+          <xsd:element minOccurs="0" name="shipmentId" type="xsd:int" />
+          <xsd:element minOccurs="0" name="soldTo" type="ns0:entity" />
+          <xsd:element minOccurs="0" name="statusCodeLast" type="xsd:string" />
+          <xsd:element minOccurs="0" name="statusCodeNext" type="xsd:string" />
+          <xsd:element minOccurs="0" name="timePromisedDelivery" type="xsd:int" />
+          <xsd:element minOccurs="0" name="timePromisedOriginal" type="xsd:int" />
+          <xsd:element minOccurs="0" name="timePromisedShip" type="xsd:int" />
+          <xsd:element minOccurs="0" name="timeRequested" type="xsd:int" />
+          <xsd:element minOccurs="0" name="timeScheduledPick" type="xsd:int" />
+          <xsd:element minOccurs="0" name="unitOfMeasureCodeTransaction" type="xsd:string" />
+          <xsd:element minOccurs="0" name="userReservedData" type="ns0:userReservedData" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="warehouse">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:valueObject">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="address" type="ns0:warehouseAddress" />
+          <xsd:element minOccurs="0" name="warehouse" type="xsd:int" />
+          <xsd:element minOccurs="0" name="warehouseDescriptive" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="customer">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:valueObject">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="shipTo" type="ns0:entity" />
+          <xsd:element minOccurs="0" name="soldTo" type="ns0:entity" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="messageValueObject">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:valueObject">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="e1MessageList" type="ns0:e1MessageList" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="originalOrder">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:valueObject">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="originalOrderKey" type="ns0:originalOrderKey" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="processSOHeaderBillingV2">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:valueObject">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="adjustmentScheduleCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="carrier" type="ns0:entity" />
+          <xsd:element minOccurs="0" name="checkNumber" type="xsd:string" />
+          <xsd:element minOccurs="0" name="creditCardAccountName" type="xsd:string" />
+          <xsd:element minOccurs="0" name="creditCardAccountNumber" type="xsd:string" />
+          <xsd:element minOccurs="0" name="creditCardTypeCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="customerPriceGroupCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="dateExpiration" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="deliveryInstruction1" type="xsd:string" />
+          <xsd:element minOccurs="0" name="deliveryInstruction2" type="xsd:string" />
+          <xsd:element minOccurs="0" name="freightHandlingCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="paymentInstrumentCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="paymentTermsCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="percentDiscountTrade" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="printMessageCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="taxExplanationCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="taxRateAreaCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="useTaxedPrices" type="xsd:boolean" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="confirmSalesPriceAdjustmentV2">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:messageValueObject">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="adjustmentTypeCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="costTypeCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="customer" type="ns0:entity" />
+          <xsd:element minOccurs="0" name="customerGLN" type="xsd:string" />
+          <xsd:element minOccurs="0" name="financial" type="ns0:financial" />
+          <xsd:element minOccurs="0" name="item" type="ns0:itemGroupCustomer" />
+          <xsd:element minOccurs="0" name="priceAdjustmentId" type="xsd:int" />
+          <xsd:element minOccurs="0" name="processing" type="ns0:processing" />
+          <xsd:element minOccurs="0" name="unitOfMeasureTransaction" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="processSODetailBilling">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:valueObject">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="carrier" type="ns0:entity" />
+          <xsd:element minOccurs="0" name="freightHandlingCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="modeOfTransportCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="paymentInstrumentCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="paymentTermsCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="pricing" type="ns0:pricing" />
+          <xsd:element minOccurs="0" name="printMessageCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="subledger" type="xsd:string" />
+          <xsd:element minOccurs="0" name="subledgerTypeCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="taxExplanationCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="taxRateAreaCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="taxableCode" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="priceAdjustmentLedger">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:valueObject">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="adjustmentCalculation" type="xsd:string" />
+          <xsd:element minOccurs="0" name="adjustmentGroup" type="xsd:string" />
+          <xsd:element minOccurs="0" name="adjustmentMutuallyExclusive" type="xsd:string" />
+          <xsd:element minOccurs="0" name="adjustmentReasonCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="adjustmentScheduleCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="adjustmentTypeCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="amountAdjustmentDomestic" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="amountAdjustmentForeign" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="basisCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="ledgerTypeCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="manualDiscount" type="xsd:string" />
+          <xsd:element minOccurs="0" name="overridePriceCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="promotionDisplayControl" type="xsd:string" />
+          <xsd:element minOccurs="0" name="quantityFrom" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="sequenceNumber" type="xsd:int" />
+          <xsd:element minOccurs="0" name="unitOfMeasureCodeFactorValue" type="xsd:string" />
+          <xsd:element minOccurs="0" name="valueBasedOn" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="valueFactor" type="xsd:decimal" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="showSalesDetailLineBilling">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:valueObject">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="carrier" type="ns0:entity" />
+          <xsd:element minOccurs="0" name="freightHandlingCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="linePricing" type="ns0:showSalesDetailLinePricing" />
+          <xsd:element minOccurs="0" name="modeOfTransport" type="xsd:string" />
+          <xsd:element minOccurs="0" name="paymentInstrumentCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="paymentTermsCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="printMessageCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="subledger" type="xsd:string" />
+          <xsd:element minOccurs="0" name="subledgerTypeCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="taxExplanationCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="taxRateAreaCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="taxableCode" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="quantity">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:valueObject">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="quantityBackOrdered" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="quantityCanceled" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="quantityOrdered" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="quantityShippable" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="unitOfMeasureCodeTransaction" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="confirmSODetailProduct">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:valueObject">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="item" type="ns0:itemGroupCustomer" />
+          <xsd:element minOccurs="0" name="lineTypeCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="lotNumber" type="xsd:string" />
+          <xsd:element minOccurs="0" name="statusCodeLast" type="xsd:string" />
+          <xsd:element minOccurs="0" name="statusCodeNext" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="documentKey">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:valueObject">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="documentCompany" type="xsd:string" />
+          <xsd:element minOccurs="0" name="documentNumber" type="xsd:int" />
+          <xsd:element minOccurs="0" name="documentTypeCode" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="processSODetail">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:valueObject">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="agreementId" type="xsd:string" />
+          <xsd:element minOccurs="0" name="agreementSupplement" type="xsd:int" />
+          <xsd:element minOccurs="0" name="billing" type="ns0:processSODetailBilling" />
+          <xsd:element minOccurs="0" name="businessUnit" type="xsd:string" />
+          <xsd:element minOccurs="0" name="businessUnitDestination" type="xsd:string" />
+          <xsd:element minOccurs="0" name="categoryCodesPurchasing" type="ns0:categoryCodesPurchasing" />
+          <xsd:element minOccurs="0" name="categoryCodesSales" type="ns0:categoryCodesSales" />
+          <xsd:element minOccurs="0" name="customerPO" type="xsd:string" />
+          <xsd:element minOccurs="0" name="dateCancel" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="datePromisedDelivery" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="datePromisedOriginal" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="datePromisedShip" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="dateRequested" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="dateScheduledPick" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="documentLineNumber" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="dutyStatusCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="endUseCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="lineOfBusinessCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="lineTypeCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="originalOrder" type="ns0:processSOOriginalOrder" />
+          <xsd:element minOccurs="0" name="priorityCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="processing" type="ns0:processSODetailProcessing" />
+          <xsd:element minOccurs="0" name="product" type="ns0:processSODetailProduct" />
+          <xsd:element minOccurs="0" name="quantityBackOrdered" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="quantityCanceled" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="quantityOrdered" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="quantityShippable" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="reference" type="xsd:string" />
+          <xsd:element minOccurs="0" name="relatedOrder" type="ns0:relatedOrder" />
+          <xsd:element minOccurs="0" name="shipTo" type="ns0:entity" />
+          <xsd:element minOccurs="0" name="statusCodeLast" type="xsd:string" />
+          <xsd:element minOccurs="0" name="statusCodeNext" type="xsd:string" />
+          <xsd:element minOccurs="0" name="supplier" type="ns0:entity" />
+          <xsd:element minOccurs="0" name="timePromisedDelivery" type="xsd:int" />
+          <xsd:element minOccurs="0" name="timePromisedOriginal" type="xsd:int" />
+          <xsd:element minOccurs="0" name="timePromisedShip" type="xsd:int" />
+          <xsd:element minOccurs="0" name="timeRequested" type="xsd:int" />
+          <xsd:element minOccurs="0" name="timeScheduledPick" type="xsd:int" />
+          <xsd:element minOccurs="0" name="unitOfMeasureCodeTransaction" type="xsd:string" />
+          <xsd:element minOccurs="0" name="userReservedData" type="ns0:userReservedData" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="confirmSODetailDelivery">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:valueObject">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="carrier" type="ns0:entity" />
+          <xsd:element minOccurs="0" name="modeOfTransportCode" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="categoryCodesSales">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:valueObject">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="categoryCode001" type="xsd:string" />
+          <xsd:element minOccurs="0" name="categoryCode002" type="xsd:string" />
+          <xsd:element minOccurs="0" name="categoryCode003" type="xsd:string" />
+          <xsd:element minOccurs="0" name="categoryCode004" type="xsd:string" />
+          <xsd:element minOccurs="0" name="categoryCode005" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="confirmSalesPriceAdjustment">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:messageValueObject">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="adjustmentTypeCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="costTypeCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="customer" type="ns0:entity" />
+          <xsd:element minOccurs="0" name="financial" type="ns0:financial" />
+          <xsd:element minOccurs="0" name="item" type="ns0:itemGroupCustomer" />
+          <xsd:element minOccurs="0" name="priceAdjustmentId" type="xsd:int" />
+          <xsd:element minOccurs="0" name="processing" type="ns0:processing" />
+          <xsd:element minOccurs="0" name="unitOfMeasureTransaction" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="confirmSODetailDates">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:valueObject">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="datePromisedDelivery" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="datePromisedShip" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="dateRequested" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="timePromisedDelivery" type="xsd:int" />
+          <xsd:element minOccurs="0" name="timePromisedShip" type="xsd:int" />
+          <xsd:element minOccurs="0" name="timeRequested" type="xsd:int" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="showSalesHeaderV2">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:valueObject">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="RMAId" type="xsd:int" />
+          <xsd:element minOccurs="0" name="RMAType" type="xsd:string" />
+          <xsd:element minOccurs="0" name="adjustmentScheduleCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="amountTotalOrderDomestic" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="amountTotalOrderForeign" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="businessUnit" type="xsd:string" />
+          <xsd:element minOccurs="0" name="company" type="xsd:string" />
+          <xsd:element minOccurs="0" name="currencyCodeFrom" type="xsd:string" />
+          <xsd:element minOccurs="0" name="currencyModeCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="customerPO" type="xsd:string" />
+          <xsd:element minOccurs="0" name="customerPriceGroupCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="dateActualShip" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="dateCancel" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="datePromisedShip" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="dateRequested" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="dateScheduledPick" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="dateTransaction" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="deliverTo" type="ns0:entity" />
+          <xsd:element minOccurs="0" name="deliveryInstruction1" type="xsd:string" />
+          <xsd:element minOccurs="0" name="deliveryInstruction2" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="detail" nillable="true" type="ns0:showSalesDetailV2" />
+          <xsd:element minOccurs="0" name="entityIdCarrier" type="xsd:int" />
+          <xsd:element minOccurs="0" name="forwardedTo" type="ns0:entity" />
+          <xsd:element minOccurs="0" name="freightHandlingCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="holdOrderCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="invoicedTo" type="ns0:entity" />
+          <xsd:element minOccurs="0" name="modeOfTransport" type="xsd:string" />
+          <xsd:element minOccurs="0" name="orderTakenBy" type="xsd:string" />
+          <xsd:element minOccurs="0" name="orderedBy" type="xsd:string" />
+          <xsd:element minOccurs="0" name="originalOrder" type="ns0:originalOrder" />
+          <xsd:element minOccurs="0" name="paidBy" type="ns0:entity" />
+          <xsd:element minOccurs="0" name="paymentInstrumentCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="paymentTermsCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="percentDiscountTrade" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="printMessageCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="rateExchangeOverride" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="reasonCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="routeCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="salesOrderKey" type="ns0:salesOrderKey" />
+          <xsd:element minOccurs="0" name="shipTo" type="ns0:showSalesShipTo" />
+          <xsd:element minOccurs="0" name="soldTo" type="ns0:entity" />
+          <xsd:element minOccurs="0" name="stopCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="taxExplanationCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="taxRateAreaCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="useTaxedPrices" type="xsd:boolean" />
+          <xsd:element minOccurs="0" name="userReservedData" type="ns0:userReservedData" />
+          <xsd:element minOccurs="0" name="zoneNumber" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="showSalesHeaderV3">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:valueObject">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="RMAId" type="xsd:int" />
+          <xsd:element minOccurs="0" name="RMAType" type="xsd:string" />
+          <xsd:element minOccurs="0" name="adjustmentScheduleCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="amountTotalOrderDomestic" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="amountTotalOrderForeign" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="businessUnit" type="xsd:string" />
+          <xsd:element minOccurs="0" name="carrierGLN" type="xsd:string" />
+          <xsd:element minOccurs="0" name="company" type="xsd:string" />
+          <xsd:element minOccurs="0" name="currencyCodeFrom" type="xsd:string" />
+          <xsd:element minOccurs="0" name="currencyModeCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="customerPO" type="xsd:string" />
+          <xsd:element minOccurs="0" name="customerPriceGroupCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="dateActualShip" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="dateCancel" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="datePromisedShip" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="dateRequested" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="dateScheduledPick" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="dateTransaction" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="deliverTo" type="ns0:entity" />
+          <xsd:element minOccurs="0" name="deliverToGLN" type="xsd:string" />
+          <xsd:element minOccurs="0" name="deliveryInstruction1" type="xsd:string" />
+          <xsd:element minOccurs="0" name="deliveryInstruction2" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="detail" nillable="true" type="ns0:showSalesDetailV3" />
+          <xsd:element minOccurs="0" name="entityIdCarrier" type="xsd:int" />
+          <xsd:element minOccurs="0" name="forwardToGLN" type="xsd:string" />
+          <xsd:element minOccurs="0" name="forwardedTo" type="ns0:entity" />
+          <xsd:element minOccurs="0" name="freightHandlingCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="holdOrderCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="invoiceToGLN" type="xsd:string" />
+          <xsd:element minOccurs="0" name="invoicedTo" type="ns0:entity" />
+          <xsd:element minOccurs="0" name="modeOfTransport" type="xsd:string" />
+          <xsd:element minOccurs="0" name="orderTakenBy" type="xsd:string" />
+          <xsd:element minOccurs="0" name="orderedBy" type="xsd:string" />
+          <xsd:element minOccurs="0" name="originalOrder" type="ns0:originalOrder" />
+          <xsd:element minOccurs="0" name="paidBy" type="ns0:entity" />
+          <xsd:element minOccurs="0" name="paidByGLN" type="xsd:string" />
+          <xsd:element minOccurs="0" name="paymentInstrumentCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="paymentTermsCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="percentDiscountTrade" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="printMessageCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="rateExchangeOverride" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="reasonCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="routeCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="salesOrderKey" type="ns0:salesOrderKey" />
+          <xsd:element minOccurs="0" name="shipTo" type="ns0:showSalesShipTo" />
+          <xsd:element minOccurs="0" name="shipToGLN" type="xsd:string" />
+          <xsd:element minOccurs="0" name="soldTo" type="ns0:entity" />
+          <xsd:element minOccurs="0" name="soldToGLN" type="xsd:string" />
+          <xsd:element minOccurs="0" name="stopCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="taxExplanationCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="taxRateAreaCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="useTaxedPrices" type="xsd:boolean" />
+          <xsd:element minOccurs="0" name="userReservedData" type="ns0:userReservedData" />
+          <xsd:element minOccurs="0" name="vendorGLN" type="xsd:string" />
+          <xsd:element minOccurs="0" name="zoneNumber" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="showSalesHeaderV4">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:valueObject">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="RMAId" type="xsd:int" />
+          <xsd:element minOccurs="0" name="RMAType" type="xsd:string" />
+          <xsd:element minOccurs="0" name="adjustmentScheduleCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="amountTotalOrderDomestic" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="amountTotalOrderForeign" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="businessUnit" type="xsd:string" />
+          <xsd:element minOccurs="0" name="carrierGLN" type="xsd:string" />
+          <xsd:element minOccurs="0" name="company" type="xsd:string" />
+          <xsd:element minOccurs="0" name="currencyCodeFrom" type="xsd:string" />
+          <xsd:element minOccurs="0" name="currencyModeCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="customerPO" type="xsd:string" />
+          <xsd:element minOccurs="0" name="customerPriceGroupCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="dateActualShip" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="dateCancel" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="datePromisedShip" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="dateRequested" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="dateScheduledPick" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="dateTransaction" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="deliverTo" type="ns0:entity" />
+          <xsd:element minOccurs="0" name="deliverToGLN" type="xsd:string" />
+          <xsd:element minOccurs="0" name="deliveryInstruction1" type="xsd:string" />
+          <xsd:element minOccurs="0" name="deliveryInstruction2" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="detail" nillable="true" type="ns0:showSalesDetailV4" />
+          <xsd:element minOccurs="0" name="entityIdCarrier" type="xsd:int" />
+          <xsd:element minOccurs="0" name="forwardToGLN" type="xsd:string" />
+          <xsd:element minOccurs="0" name="forwardedTo" type="ns0:entity" />
+          <xsd:element minOccurs="0" name="freightHandlingCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="holdOrderCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="invoiceToGLN" type="xsd:string" />
+          <xsd:element minOccurs="0" name="invoicedTo" type="ns0:entity" />
+          <xsd:element minOccurs="0" name="modeOfTransport" type="xsd:string" />
+          <xsd:element minOccurs="0" name="opportUnityId" type="xsd:string" />
+          <xsd:element minOccurs="0" name="orderTakenBy" type="xsd:string" />
+          <xsd:element minOccurs="0" name="orderedBy" type="xsd:string" />
+          <xsd:element minOccurs="0" name="originalOrder" type="ns0:originalOrder" />
+          <xsd:element minOccurs="0" name="paidBy" type="ns0:entity" />
+          <xsd:element minOccurs="0" name="paidByGLN" type="xsd:string" />
+          <xsd:element minOccurs="0" name="paymentInstrumentCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="paymentTermsCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="percentDiscountTrade" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="printMessageCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="rateExchangeOverride" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="reasonCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="routeCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="salesOrderKey" type="ns0:salesOrderKey" />
+          <xsd:element minOccurs="0" name="shipTo" type="ns0:showSalesShipTo" />
+          <xsd:element minOccurs="0" name="shipToGLN" type="xsd:string" />
+          <xsd:element minOccurs="0" name="soldTo" type="ns0:entity" />
+          <xsd:element minOccurs="0" name="soldToGLN" type="xsd:string" />
+          <xsd:element minOccurs="0" name="stopCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="taxExplanationCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="taxRateAreaCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="useTaxedPrices" type="xsd:boolean" />
+          <xsd:element minOccurs="0" name="userReservedData" type="ns0:userReservedData" />
+          <xsd:element minOccurs="0" name="vendorGLN" type="xsd:string" />
+          <xsd:element minOccurs="0" name="zoneNumber" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="pricing">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:valueObject">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="adjustmentScheduleCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="datePriceEffective" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="isZeroPriceOverride" type="xsd:boolean" />
+          <xsd:element minOccurs="0" name="priceCode1" type="xsd:string" />
+          <xsd:element minOccurs="0" name="priceCode2" type="xsd:string" />
+          <xsd:element minOccurs="0" name="priceCode3" type="xsd:string" />
+          <xsd:element minOccurs="0" name="priceExtendedDomestic" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="priceExtendedForeign" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="priceUnitDomestic" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="priceUnitForeign" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="unitOfMeasureCodePricing" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="processSODetailProduct">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:valueObject">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="configuration" nillable="true" type="ns0:configuration" />
+          <xsd:element minOccurs="0" name="description1" type="xsd:string" />
+          <xsd:element minOccurs="0" name="description2" type="xsd:string" />
+          <xsd:element minOccurs="0" name="item" type="ns0:itemGroupCustomer" />
+          <xsd:element minOccurs="0" name="itemVolume" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="itemWeight" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="location" type="xsd:string" />
+          <xsd:element minOccurs="0" name="lotNumber" type="xsd:string" />
+          <xsd:element minOccurs="0" name="unitOfMeasureCodeVolume" type="xsd:string" />
+          <xsd:element minOccurs="0" name="unitOfMeasureCodeWeight" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="valueObject" />
+  <xsd:complexType name="getDetailProduct">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:valueObject">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="item" type="ns0:itemGroupCustomer" />
+          <xsd:element minOccurs="0" name="lineTypeCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="location" type="xsd:string" />
+          <xsd:element minOccurs="0" name="lotNumber" type="xsd:string" />
+          <xsd:element minOccurs="0" name="statusCodeLast" type="xsd:string" />
+          <xsd:element minOccurs="0" name="statusCodeNext" type="xsd:string" />
+          <xsd:element minOccurs="0" name="zoneNumber" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="warehouseAddress">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:valueObject">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="addressLine1" type="xsd:string" />
+          <xsd:element minOccurs="0" name="addressLine2" type="xsd:string" />
+          <xsd:element minOccurs="0" name="addressLine3" type="xsd:string" />
+          <xsd:element minOccurs="0" name="addressLine4" type="xsd:string" />
+          <xsd:element minOccurs="0" name="city" type="xsd:string" />
+          <xsd:element minOccurs="0" name="countryCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="countyCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="mailingName" type="xsd:string" />
+          <xsd:element minOccurs="0" name="postalCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="stateCode" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="userReservedData">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:valueObject">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="userReservedAmount" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="userReservedCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="userReservedDate" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="userReservedNumber" type="xsd:int" />
+          <xsd:element minOccurs="0" name="userReservedReference" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="processSOHeaderV3">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:valueObject">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="attachmentText" type="xsd:string" />
+          <xsd:element minOccurs="0" name="billing" type="ns0:processSOHeaderBillingV2" />
+          <xsd:element minOccurs="0" name="businessUnit" type="xsd:string" />
+          <xsd:element minOccurs="0" name="carrierGLN" type="xsd:string" />
+          <xsd:element minOccurs="0" name="company" type="xsd:string" />
+          <xsd:element minOccurs="0" name="currencyCodeTo" type="xsd:string" />
+          <xsd:element minOccurs="0" name="customerPO" type="xsd:string" />
+          <xsd:element minOccurs="0" name="dateCancel" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="dateOrdered" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="dateRequested" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="dateScheduledPick" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="deliverTo" type="ns0:entity" />
+          <xsd:element minOccurs="0" name="deliverToGLN" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="detail" nillable="true" type="ns0:processSODetailV2" />
+          <xsd:element minOccurs="0" name="forwardToGLN" type="xsd:string" />
+          <xsd:element minOccurs="0" name="forwardedTo" type="ns0:entity" />
+          <xsd:element minOccurs="0" name="holdOrderCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="invoiceToGLN" type="xsd:string" />
+          <xsd:element minOccurs="0" name="invoicedTo" type="ns0:entity" />
+          <xsd:element minOccurs="0" name="orderTakenBy" type="xsd:string" />
+          <xsd:element minOccurs="0" name="orderedBy" type="xsd:string" />
+          <xsd:element minOccurs="0" name="paidBy" type="ns0:entity" />
+          <xsd:element minOccurs="0" name="paidByGLN" type="xsd:string" />
+          <xsd:element minOccurs="0" name="processing" type="ns0:processSOHeaderProcessing" />
+          <xsd:element minOccurs="0" name="rateExchange" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="salesOrderKey" type="ns0:salesOrderKey" />
+          <xsd:element minOccurs="0" name="shipTo" type="ns0:processSOCustomerV2" />
+          <xsd:element minOccurs="0" name="soldTo" type="ns0:processSOCustomerV2" />
+          <xsd:element minOccurs="0" name="timeRequested" type="xsd:int" />
+          <xsd:element minOccurs="0" name="timeScheduledPick" type="xsd:int" />
+          <xsd:element minOccurs="0" name="userReservedData" type="ns0:userReservedData" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="getSalesOrderV3">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:valueObject">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="header" type="ns0:getSalesHeaderV3" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="processSOHeaderV2">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:valueObject">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="attachmentText" type="xsd:string" />
+          <xsd:element minOccurs="0" name="billing" type="ns0:processSOHeaderBillingV2" />
+          <xsd:element minOccurs="0" name="businessUnit" type="xsd:string" />
+          <xsd:element minOccurs="0" name="company" type="xsd:string" />
+          <xsd:element minOccurs="0" name="currencyCodeTo" type="xsd:string" />
+          <xsd:element minOccurs="0" name="customerPO" type="xsd:string" />
+          <xsd:element minOccurs="0" name="dateCancel" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="dateOrdered" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="dateRequested" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="dateScheduledPick" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="deliverTo" type="ns0:entity" />
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="detail" nillable="true" type="ns0:processSODetailV2" />
+          <xsd:element minOccurs="0" name="forwardedTo" type="ns0:entity" />
+          <xsd:element minOccurs="0" name="holdOrderCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="invoicedTo" type="ns0:entity" />
+          <xsd:element minOccurs="0" name="orderTakenBy" type="xsd:string" />
+          <xsd:element minOccurs="0" name="orderedBy" type="xsd:string" />
+          <xsd:element minOccurs="0" name="paidBy" type="ns0:entity" />
+          <xsd:element minOccurs="0" name="processing" type="ns0:processSOHeaderProcessing" />
+          <xsd:element minOccurs="0" name="rateExchange" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="salesOrderKey" type="ns0:salesOrderKey" />
+          <xsd:element minOccurs="0" name="shipTo" type="ns0:processSOCustomerV2" />
+          <xsd:element minOccurs="0" name="soldTo" type="ns0:processSOCustomerV2" />
+          <xsd:element minOccurs="0" name="timeRequested" type="xsd:int" />
+          <xsd:element minOccurs="0" name="timeScheduledPick" type="xsd:int" />
+          <xsd:element minOccurs="0" name="userReservedData" type="ns0:userReservedData" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="getSalesOrderV2">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:valueObject">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="header" type="ns0:getSalesHeaderV2" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="processSOHeaderV5">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:valueObject">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="attachmentText" type="xsd:string" />
+          <xsd:element minOccurs="0" name="billing" type="ns0:processSOHeaderBillingV2" />
+          <xsd:element minOccurs="0" name="businessUnit" type="xsd:string" />
+          <xsd:element minOccurs="0" name="carrierGLN" type="xsd:string" />
+          <xsd:element minOccurs="0" name="company" type="xsd:string" />
+          <xsd:element minOccurs="0" name="currencyCodeTo" type="xsd:string" />
+          <xsd:element minOccurs="0" name="customerPO" type="xsd:string" />
+          <xsd:element minOccurs="0" name="dateCancel" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="dateOrdered" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="dateRequested" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="dateScheduledPick" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="deliverTo" type="ns0:entity" />
+          <xsd:element minOccurs="0" name="deliverToGLN" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="detail" nillable="true" type="ns0:processSODetailV4" />
+          <xsd:element minOccurs="0" name="forwardToGLN" type="xsd:string" />
+          <xsd:element minOccurs="0" name="forwardedTo" type="ns0:entity" />
+          <xsd:element minOccurs="0" name="holdOrderCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="invoiceToGLN" type="xsd:string" />
+          <xsd:element minOccurs="0" name="invoicedTo" type="ns0:entity" />
+          <xsd:element minOccurs="0" name="opportunityId" type="xsd:string" />
+          <xsd:element minOccurs="0" name="orderTakenBy" type="xsd:string" />
+          <xsd:element minOccurs="0" name="orderedBy" type="xsd:string" />
+          <xsd:element minOccurs="0" name="paidBy" type="ns0:entity" />
+          <xsd:element minOccurs="0" name="paidByGLN" type="xsd:string" />
+          <xsd:element minOccurs="0" name="processing" type="ns0:processSOHeaderProcessing" />
+          <xsd:element minOccurs="0" name="rateExchange" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="salesOrderKey" type="ns0:salesOrderKey" />
+          <xsd:element minOccurs="0" name="shipTo" type="ns0:processSOCustomerV2" />
+          <xsd:element minOccurs="0" name="soldTo" type="ns0:processSOCustomerV2" />
+          <xsd:element minOccurs="0" name="timeRequested" type="xsd:int" />
+          <xsd:element minOccurs="0" name="timeScheduledPick" type="xsd:int" />
+          <xsd:element minOccurs="0" name="userReservedData" type="ns0:userReservedData" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="processSOHeaderV4">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:valueObject">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="attachmentText" type="xsd:string" />
+          <xsd:element minOccurs="0" name="billing" type="ns0:processSOHeaderBillingV2" />
+          <xsd:element minOccurs="0" name="businessUnit" type="xsd:string" />
+          <xsd:element minOccurs="0" name="carrierGLN" type="xsd:string" />
+          <xsd:element minOccurs="0" name="company" type="xsd:string" />
+          <xsd:element minOccurs="0" name="currencyCodeTo" type="xsd:string" />
+          <xsd:element minOccurs="0" name="customerPO" type="xsd:string" />
+          <xsd:element minOccurs="0" name="dateCancel" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="dateOrdered" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="dateRequested" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="dateScheduledPick" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="deliverTo" type="ns0:entity" />
+          <xsd:element minOccurs="0" name="deliverToGLN" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="detail" nillable="true" type="ns0:processSODetailV3" />
+          <xsd:element minOccurs="0" name="forwardToGLN" type="xsd:string" />
+          <xsd:element minOccurs="0" name="forwardedTo" type="ns0:entity" />
+          <xsd:element minOccurs="0" name="holdOrderCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="invoiceToGLN" type="xsd:string" />
+          <xsd:element minOccurs="0" name="invoicedTo" type="ns0:entity" />
+          <xsd:element minOccurs="0" name="orderTakenBy" type="xsd:string" />
+          <xsd:element minOccurs="0" name="orderedBy" type="xsd:string" />
+          <xsd:element minOccurs="0" name="paidBy" type="ns0:entity" />
+          <xsd:element minOccurs="0" name="paidByGLN" type="xsd:string" />
+          <xsd:element minOccurs="0" name="processing" type="ns0:processSOHeaderProcessing" />
+          <xsd:element minOccurs="0" name="rateExchange" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="salesOrderKey" type="ns0:salesOrderKey" />
+          <xsd:element minOccurs="0" name="shipTo" type="ns0:processSOCustomerV2" />
+          <xsd:element minOccurs="0" name="soldTo" type="ns0:processSOCustomerV2" />
+          <xsd:element minOccurs="0" name="timeRequested" type="xsd:int" />
+          <xsd:element minOccurs="0" name="timeScheduledPick" type="xsd:int" />
+          <xsd:element minOccurs="0" name="userReservedData" type="ns0:userReservedData" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="confirmSalesOrder">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:messageValueObject">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="header" type="ns0:confirmSOHeader" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="showItemPriceAndAvailabilityV2">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:messageValueObject">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="currencyCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="product" type="ns0:productOutV2" />
+          <xsd:element minOccurs="0" name="useTaxedPrices" type="xsd:boolean" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="showItemPriceAndAvailabilityV3">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:messageValueObject">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="currencyCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="product" type="ns0:productOutV3" />
+          <xsd:element minOccurs="0" name="useTaxedPrices" type="xsd:boolean" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="document">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:valueObject">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="documentKey" type="ns0:documentKey" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="showItemPriceAndAvailability">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:messageValueObject">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="currencyCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="product" type="ns0:productOut" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="dates">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:valueObject">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="dateEffective" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="dateExpiration" type="xsd:dateTime" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="confirmSOHeaderV2">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:valueObject">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="actionType" type="xsd:string" />
+          <xsd:element minOccurs="0" name="amountTotalOrderDomestic" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="amountTotalOrderForeign" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="attachmentText" type="xsd:string" />
+          <xsd:element minOccurs="0" name="businessUnit" type="xsd:string" />
+          <xsd:element minOccurs="0" name="customerPO" type="xsd:string" />
+          <xsd:element minOccurs="0" name="dates" type="ns0:confirmSOHeaderDates" />
+          <xsd:element minOccurs="0" name="delivery" type="ns0:confirmSOHeaderDelivery" />
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="detail" nillable="true" type="ns0:confirmSODetailV2" />
+          <xsd:element minOccurs="0" name="financial" type="ns0:confirmSOHeaderFinancial" />
+          <xsd:element minOccurs="0" name="holdOrderCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="salesOrderKey" type="ns0:salesOrderKey" />
+          <xsd:element minOccurs="0" name="shipTo" type="ns0:processSOCustomer" />
+          <xsd:element minOccurs="0" name="useTaxedPrices" type="xsd:boolean" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="confirmSOHeaderV3">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:valueObject">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="actionType" type="xsd:string" />
+          <xsd:element minOccurs="0" name="amountTotalOrderDomestic" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="amountTotalOrderForeign" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="attachmentText" type="xsd:string" />
+          <xsd:element minOccurs="0" name="businessUnit" type="xsd:string" />
+          <xsd:element minOccurs="0" name="customerPO" type="xsd:string" />
+          <xsd:element minOccurs="0" name="dates" type="ns0:confirmSOHeaderDates" />
+          <xsd:element minOccurs="0" name="delivery" type="ns0:confirmSOHeaderDelivery" />
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="detail" nillable="true" type="ns0:confirmSODetailV3" />
+          <xsd:element minOccurs="0" name="financial" type="ns0:confirmSOHeaderFinancial" />
+          <xsd:element minOccurs="0" name="holdOrderCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="opportunityId" type="xsd:string" />
+          <xsd:element minOccurs="0" name="salesOrderKey" type="ns0:salesOrderKey" />
+          <xsd:element minOccurs="0" name="shipTo" type="ns0:processSOCustomer" />
+          <xsd:element minOccurs="0" name="useTaxedPrices" type="xsd:boolean" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="relatedOrder">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:valueObject">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="documentLineNumber" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="relatedOrderKey" type="ns0:relatedOrderKey" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="showPriceHistoryDetail">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:priceHistory">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="priceAdjustmentLedger" nillable="true" type="ns0:priceAdjustmentLedger" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="showSalesDetailProduct">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:valueObject">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="description1" type="xsd:string" />
+          <xsd:element minOccurs="0" name="description2" type="xsd:string" />
+          <xsd:element minOccurs="0" name="item" type="ns0:showDetailItem" />
+          <xsd:element minOccurs="0" name="itemVolume" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="itemWeight" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="location" type="xsd:string" />
+          <xsd:element minOccurs="0" name="lotNumber" type="xsd:string" />
+          <xsd:element minOccurs="0" name="unitOfMeasureCodeVolume" type="xsd:string" />
+          <xsd:element minOccurs="0" name="unitOfMeasureCodeWeight" type="xsd:string" />
+          <xsd:element minOccurs="0" name="zoneNumber" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="confirmSODetailFinancialV2">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:valueObject">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="priceExtendedDomestic" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="priceExtendedForeign" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="priceUnitDomestic" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="priceUnitForeign" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="taxAmountExtendedDomestic" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="taxAmountExtendedForeign" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="taxAmountUnitDomestic" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="taxAmountUnitForeign" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="taxedPriceExtendedDomestic" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="taxedPriceExtendedForeign" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="taxedPriceUnitDomestic" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="taxedPriceUnitForeign" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="unitOfMeasureCodePricing" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="productOut">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:valueObject">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="availability" nillable="true" type="ns0:availability" />
+          <xsd:element minOccurs="0" name="item" type="ns0:itemGroupCustomer" />
+          <xsd:element minOccurs="0" name="priceExtended" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="priceUnit" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="quantityOrdered" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="unitOfMeasureCodePricing" type="xsd:string" />
+          <xsd:element minOccurs="0" name="unitOfMeasureCodeTransaction" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="showCustomerItemPriceV2">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:messageValueObject">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="businessUnit" type="xsd:string" />
+          <xsd:element minOccurs="0" name="costExtendedDomestic" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="costExtendedForeign" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="costUnitDomestic" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="costUnitForeign" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="currencyCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="currencyModeCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="customer" type="ns0:customer" />
+          <xsd:element minOccurs="0" name="datePriceEffective" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="dateTaxedPricesEffective" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="priceExtendedDomestic" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="priceExtendedForeign" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="priceListDomestic" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="priceListForeign" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="priceUnitDomestic" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="priceUnitForeign" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="product" type="ns0:product" />
+          <xsd:element minOccurs="0" name="quantityOrdered" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="taxAmountExtendedDomestic" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="taxAmountExtendedForeign" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="taxAmountUnitDomestic" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="taxAmountUnitForeign" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="taxedPriceExtendedDomestic" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="taxedPriceExtendedForeign" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="taxedPriceUnitDomestic" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="taxedPriceUnitForeign" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="unitOfMeasureCodePricing" type="xsd:string" />
+          <xsd:element minOccurs="0" name="unitOfMeasureCodeTransaction" type="xsd:string" />
+          <xsd:element minOccurs="0" name="useTaxedPrices" type="xsd:boolean" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="relatedOrderKey">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:valueObject">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="documentCompany" type="xsd:string" />
+          <xsd:element minOccurs="0" name="documentNumber" type="xsd:string" />
+          <xsd:element minOccurs="0" name="documentTypeCode" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="originalOrderKey">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:valueObject">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="documentCompany" type="xsd:string" />
+          <xsd:element minOccurs="0" name="documentNumber" type="xsd:string" />
+          <xsd:element minOccurs="0" name="documentTypeCode" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="processSODetailV3">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:valueObject">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="agreementId" type="xsd:string" />
+          <xsd:element minOccurs="0" name="agreementSupplement" type="xsd:int" />
+          <xsd:element minOccurs="0" name="billing" type="ns0:processSODetailBillingV2" />
+          <xsd:element minOccurs="0" name="businessUnit" type="xsd:string" />
+          <xsd:element minOccurs="0" name="businessUnitDestination" type="xsd:string" />
+          <xsd:element minOccurs="0" name="categoryCodesPurchasing" type="ns0:categoryCodesPurchasing" />
+          <xsd:element minOccurs="0" name="categoryCodesSales" type="ns0:categoryCodesSales" />
+          <xsd:element minOccurs="0" name="customerPO" type="xsd:string" />
+          <xsd:element minOccurs="0" name="dateCancel" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="datePromisedDelivery" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="datePromisedOriginal" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="datePromisedShip" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="dateRequested" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="dateScheduledPick" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="documentLineNumber" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="dutyStatusCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="endUseCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="lineOfBusinessCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="lineTypeCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="originalOrder" type="ns0:processSOOriginalOrder" />
+          <xsd:element minOccurs="0" name="priorityCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="processing" type="ns0:processSODetailProcessing" />
+          <xsd:element minOccurs="0" name="product" type="ns0:processSODetailProductV2" />
+          <xsd:element minOccurs="0" name="quantityBackOrdered" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="quantityCanceled" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="quantityOrdered" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="quantityShippable" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="reference" type="xsd:string" />
+          <xsd:element minOccurs="0" name="relatedOrder" type="ns0:relatedOrder" />
+          <xsd:element minOccurs="0" name="shipTo" type="ns0:entity" />
+          <xsd:element minOccurs="0" name="statusCodeLast" type="xsd:string" />
+          <xsd:element minOccurs="0" name="statusCodeNext" type="xsd:string" />
+          <xsd:element minOccurs="0" name="supplier" type="ns0:entity" />
+          <xsd:element minOccurs="0" name="timePromisedDelivery" type="xsd:int" />
+          <xsd:element minOccurs="0" name="timePromisedOriginal" type="xsd:int" />
+          <xsd:element minOccurs="0" name="timePromisedShip" type="xsd:int" />
+          <xsd:element minOccurs="0" name="timeRequested" type="xsd:int" />
+          <xsd:element minOccurs="0" name="timeScheduledPick" type="xsd:int" />
+          <xsd:element minOccurs="0" name="unitOfMeasureCodeTransaction" type="xsd:string" />
+          <xsd:element minOccurs="0" name="userReservedData" type="ns0:userReservedData" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="processSODetailV2">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:valueObject">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="agreementId" type="xsd:string" />
+          <xsd:element minOccurs="0" name="agreementSupplement" type="xsd:int" />
+          <xsd:element minOccurs="0" name="billing" type="ns0:processSODetailBillingV2" />
+          <xsd:element minOccurs="0" name="businessUnit" type="xsd:string" />
+          <xsd:element minOccurs="0" name="businessUnitDestination" type="xsd:string" />
+          <xsd:element minOccurs="0" name="categoryCodesPurchasing" type="ns0:categoryCodesPurchasing" />
+          <xsd:element minOccurs="0" name="categoryCodesSales" type="ns0:categoryCodesSales" />
+          <xsd:element minOccurs="0" name="customerPO" type="xsd:string" />
+          <xsd:element minOccurs="0" name="dateCancel" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="datePromisedDelivery" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="datePromisedOriginal" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="datePromisedShip" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="dateRequested" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="dateScheduledPick" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="documentLineNumber" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="dutyStatusCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="endUseCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="lineOfBusinessCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="lineTypeCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="originalOrder" type="ns0:processSOOriginalOrder" />
+          <xsd:element minOccurs="0" name="priorityCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="processing" type="ns0:processSODetailProcessing" />
+          <xsd:element minOccurs="0" name="product" type="ns0:processSODetailProduct" />
+          <xsd:element minOccurs="0" name="quantityBackOrdered" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="quantityCanceled" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="quantityOrdered" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="quantityShippable" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="reference" type="xsd:string" />
+          <xsd:element minOccurs="0" name="relatedOrder" type="ns0:relatedOrder" />
+          <xsd:element minOccurs="0" name="shipTo" type="ns0:entity" />
+          <xsd:element minOccurs="0" name="statusCodeLast" type="xsd:string" />
+          <xsd:element minOccurs="0" name="statusCodeNext" type="xsd:string" />
+          <xsd:element minOccurs="0" name="supplier" type="ns0:entity" />
+          <xsd:element minOccurs="0" name="timePromisedDelivery" type="xsd:int" />
+          <xsd:element minOccurs="0" name="timePromisedOriginal" type="xsd:int" />
+          <xsd:element minOccurs="0" name="timePromisedShip" type="xsd:int" />
+          <xsd:element minOccurs="0" name="timeRequested" type="xsd:int" />
+          <xsd:element minOccurs="0" name="timeScheduledPick" type="xsd:int" />
+          <xsd:element minOccurs="0" name="unitOfMeasureCodeTransaction" type="xsd:string" />
+          <xsd:element minOccurs="0" name="userReservedData" type="ns0:userReservedData" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="processSOCustomerV2">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:valueObject">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="addressLine1" type="xsd:string" />
+          <xsd:element minOccurs="0" name="addressLine2" type="xsd:string" />
+          <xsd:element minOccurs="0" name="addressLine3" type="xsd:string" />
+          <xsd:element minOccurs="0" name="addressLine4" type="xsd:string" />
+          <xsd:element minOccurs="0" name="city" type="xsd:string" />
+          <xsd:element minOccurs="0" name="countryCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="countyCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="customer" type="ns0:entity" />
+          <xsd:element minOccurs="0" name="customerGLN" type="xsd:string" />
+          <xsd:element minOccurs="0" name="mailingName" type="xsd:string" />
+          <xsd:element minOccurs="0" name="postalCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="stateCode" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="processSalesPriceAdjustmentV2">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:valueObject">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="adjustmentTypeCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="costTypeCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="customer" type="ns0:entity" />
+          <xsd:element minOccurs="0" name="customerGLN" type="xsd:string" />
+          <xsd:element minOccurs="0" name="dates" type="ns0:dates" />
+          <xsd:element minOccurs="0" name="financial" type="ns0:financial" />
+          <xsd:element minOccurs="0" name="item" type="ns0:itemGroupCustomer" />
+          <xsd:element minOccurs="0" name="priceAdjustmentId" type="xsd:int" />
+          <xsd:element minOccurs="0" name="processing" type="ns0:processing" />
+          <xsd:element minOccurs="0" name="promotionAddChangeMask" type="xsd:string" />
+          <xsd:element minOccurs="0" name="unitOfMeasureTransaction" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="processSODetailV4">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:valueObject">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="agreementId" type="xsd:string" />
+          <xsd:element minOccurs="0" name="agreementSupplement" type="xsd:int" />
+          <xsd:element minOccurs="0" name="billing" type="ns0:processSODetailBillingV2" />
+          <xsd:element minOccurs="0" name="businessUnit" type="xsd:string" />
+          <xsd:element minOccurs="0" name="businessUnitDestination" type="xsd:string" />
+          <xsd:element minOccurs="0" name="categoryCodesPurchasing" type="ns0:categoryCodesPurchasing" />
+          <xsd:element minOccurs="0" name="categoryCodesSales" type="ns0:categoryCodesSales" />
+          <xsd:element minOccurs="0" name="customerPO" type="xsd:string" />
+          <xsd:element minOccurs="0" name="dateCancel" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="datePromisedDelivery" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="datePromisedOriginal" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="datePromisedShip" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="dateRequested" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="dateScheduledPick" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="documentLineNumber" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="dutyStatusCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="endUseCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="lineOfBusinessCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="lineTypeCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="opportunityId" type="xsd:string" />
+          <xsd:element minOccurs="0" name="originalOrder" type="ns0:processSOOriginalOrder" />
+          <xsd:element minOccurs="0" name="priorityCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="processing" type="ns0:processSODetailProcessing" />
+          <xsd:element minOccurs="0" name="product" type="ns0:processSODetailProductV2" />
+          <xsd:element minOccurs="0" name="quantityBackOrdered" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="quantityCanceled" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="quantityOrdered" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="quantityShippable" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="reference" type="xsd:string" />
+          <xsd:element minOccurs="0" name="relatedOrder" type="ns0:relatedOrder" />
+          <xsd:element minOccurs="0" name="shipTo" type="ns0:entity" />
+          <xsd:element minOccurs="0" name="statusCodeLast" type="xsd:string" />
+          <xsd:element minOccurs="0" name="statusCodeNext" type="xsd:string" />
+          <xsd:element minOccurs="0" name="supplier" type="ns0:entity" />
+          <xsd:element minOccurs="0" name="timePromisedDelivery" type="xsd:int" />
+          <xsd:element minOccurs="0" name="timePromisedOriginal" type="xsd:int" />
+          <xsd:element minOccurs="0" name="timePromisedShip" type="xsd:int" />
+          <xsd:element minOccurs="0" name="timeRequested" type="xsd:int" />
+          <xsd:element minOccurs="0" name="timeScheduledPick" type="xsd:int" />
+          <xsd:element minOccurs="0" name="unitOfMeasureCodeTransaction" type="xsd:string" />
+          <xsd:element minOccurs="0" name="userReservedData" type="ns0:userReservedData" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="product">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:valueObject">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="businessUnit" type="xsd:string" />
+          <xsd:element minOccurs="0" name="item" type="ns0:itemGroupCustomer" />
+          <xsd:element minOccurs="0" name="itemVolume" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="itemWeight" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="lineType" type="xsd:string" />
+          <xsd:element minOccurs="0" name="location" type="xsd:string" />
+          <xsd:element minOccurs="0" name="lotNumber" type="xsd:string" />
+          <xsd:element minOccurs="0" name="shipTo" type="ns0:entity" />
+          <xsd:element minOccurs="0" name="unitOfMeasureCodeVolume" type="xsd:string" />
+          <xsd:element minOccurs="0" name="unitOfMeasureCodeWeight" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="confirmSODetail">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:valueObject">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="dates" type="ns0:confirmSODetailDates" />
+          <xsd:element minOccurs="0" name="delivery" type="ns0:confirmSODetailDelivery" />
+          <xsd:element minOccurs="0" name="documentLineNumber" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="financial" type="ns0:confirmSODetailFinancial" />
+          <xsd:element minOccurs="0" name="product" type="ns0:confirmSODetailProduct" />
+          <xsd:element minOccurs="0" name="quantity" type="ns0:quantity" />
+          <xsd:element minOccurs="0" name="shipTo" type="ns0:entity" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="itemListPriceRecord">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:itemListPriceShared">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="location" type="xsd:string" />
+          <xsd:element minOccurs="0" name="lotGrade" type="xsd:string" />
+          <xsd:element minOccurs="0" name="lotNumber" type="xsd:string" />
+          <xsd:element minOccurs="0" name="lotPotency" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="priceList" type="xsd:decimal" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="confirmSOHeaderDates">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:valueObject">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="orderDate" type="xsd:dateTime" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="configuration">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:valueObject">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="businessUnit" type="xsd:string" />
+          <xsd:element minOccurs="0" name="description1" type="xsd:string" />
+          <xsd:element minOccurs="0" name="item" type="ns0:itemGroupCustomer" />
+          <xsd:element minOccurs="0" name="itemParent" type="ns0:itemGroupCustomer" />
+          <xsd:element minOccurs="0" name="lineTypeCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="quantityComponent" type="xsd:decimal" />
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="segment" nillable="true" type="ns0:segment" />
+          <xsd:element minOccurs="0" name="unitOfMeasureCodeComponent" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="showSalesDetailLineBillingV2">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:valueObject">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="carrier" type="ns0:entity" />
+          <xsd:element minOccurs="0" name="freightHandlingCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="linePricing" type="ns0:showSalesDetailLinePricingV2" />
+          <xsd:element minOccurs="0" name="modeOfTransport" type="xsd:string" />
+          <xsd:element minOccurs="0" name="paymentInstrumentCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="paymentTermsCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="printMessageCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="subledger" type="xsd:string" />
+          <xsd:element minOccurs="0" name="subledgerTypeCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="taxExplanationCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="taxRateAreaCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="taxableCode" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="processSOOriginalOrder">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:valueObject">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="documentLineNumber" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="originalOrderKey" type="ns0:originalOrderKey" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="showSalesOrderV3">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:messageValueObject">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="header" nillable="true" type="ns0:showSalesHeaderV3" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="getSalesHeaderV2">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:valueObject">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="RMAId" type="xsd:int" />
+          <xsd:element minOccurs="0" name="RMAType" type="xsd:string" />
+          <xsd:element minOccurs="0" name="amountTotalOrderDomestic" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="amountTotalOrderForeign" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="businessUnit" type="xsd:string" />
+          <xsd:element minOccurs="0" name="carrierGLN" type="xsd:string" />
+          <xsd:element minOccurs="0" name="company" type="xsd:string" />
+          <xsd:element minOccurs="0" name="currencyCodeFrom" type="xsd:string" />
+          <xsd:element minOccurs="0" name="customerPO" type="xsd:string" />
+          <xsd:element minOccurs="0" name="dateActualShip" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="dateCancel" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="datePromisedPick" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="dateRequested" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="dateTransaction" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="deliverTo" type="ns0:entity" />
+          <xsd:element minOccurs="0" name="deliverToGLN" type="xsd:string" />
+          <xsd:element minOccurs="0" name="detail" type="ns0:getSalesDetailV2" />
+          <xsd:element minOccurs="0" name="forwardToGLN" type="xsd:string" />
+          <xsd:element minOccurs="0" name="forwardedTo" type="ns0:entity" />
+          <xsd:element minOccurs="0" name="holdOrderCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="invoiceToGLN" type="xsd:string" />
+          <xsd:element minOccurs="0" name="invoicedTo" type="ns0:entity" />
+          <xsd:element minOccurs="0" name="orderTakenBy" type="xsd:string" />
+          <xsd:element minOccurs="0" name="originalOrder" type="ns0:originalOrder" />
+          <xsd:element minOccurs="0" name="paidBy" type="ns0:entity" />
+          <xsd:element minOccurs="0" name="paidByGLN" type="xsd:string" />
+          <xsd:element minOccurs="0" name="rateExchangeOverride" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="salesOrderKey" type="ns0:salesOrderKey" />
+          <xsd:element minOccurs="0" name="shipTo" type="ns0:entity" />
+          <xsd:element minOccurs="0" name="shipToGLN" type="xsd:string" />
+          <xsd:element minOccurs="0" name="soldTo" type="ns0:entity" />
+          <xsd:element minOccurs="0" name="soldToGLN" type="xsd:string" />
+          <xsd:element minOccurs="0" name="vendorGLN" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="showSalesOrderV4">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:messageValueObject">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="header" nillable="true" type="ns0:showSalesHeaderV4" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="productOutV2">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:valueObject">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="availability" nillable="true" type="ns0:availability" />
+          <xsd:element minOccurs="0" name="item" type="ns0:itemGroupCustomer" />
+          <xsd:element minOccurs="0" name="priceExtended" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="priceUnit" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="quantityOrdered" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="taxAmountExtended" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="taxAmountUnit" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="taxedPriceExtended" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="taxedPriceUnit" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="unitOfMeasureCodePricing" type="xsd:string" />
+          <xsd:element minOccurs="0" name="unitOfMeasureCodeTransaction" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="productOutV3">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:valueObject">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="availability" nillable="true" type="ns0:availabilityV2" />
+          <xsd:element minOccurs="0" name="item" type="ns0:itemGroupCustomer" />
+          <xsd:element minOccurs="0" name="priceExtended" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="priceUnit" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="quantityOrdered" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="taxAmountExtended" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="taxAmountUnit" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="taxedPriceExtended" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="taxedPriceUnit" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="unitOfMeasureCodePricing" type="xsd:string" />
+          <xsd:element minOccurs="0" name="unitOfMeasureCodeTransaction" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="itemGroupCustomer">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:valueObject">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="itemCatalog" type="xsd:string" />
+          <xsd:element minOccurs="0" name="itemCustomer" type="xsd:string" />
+          <xsd:element minOccurs="0" name="itemDescription" type="xsd:string" />
+          <xsd:element minOccurs="0" name="itemFreeForm" type="xsd:string" />
+          <xsd:element minOccurs="0" name="itemId" type="xsd:int" />
+          <xsd:element minOccurs="0" name="itemProduct" type="xsd:string" />
+          <xsd:element minOccurs="0" name="itemUOMPrimary" type="xsd:string" />
+          <xsd:element minOccurs="0" name="itemUOMSecondary" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="segment">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:valueObject">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="segmentNumber" type="xsd:int" />
+          <xsd:element minOccurs="0" name="segmentValue" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="entity">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:valueObject">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="entityId" type="xsd:int" />
+          <xsd:element minOccurs="0" name="entityLongId" type="xsd:string" />
+          <xsd:element minOccurs="0" name="entityTaxId" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="showSalesOrderV2">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:messageValueObject">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="header" nillable="true" type="ns0:showSalesHeaderV2" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="pricingV2">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:valueObject">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="adjustmentScheduleCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="datePriceEffective" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="isZeroPriceOverride" type="xsd:boolean" />
+          <xsd:element minOccurs="0" name="isZeroTaxedPriceOverride" type="xsd:boolean" />
+          <xsd:element minOccurs="0" name="priceCode1" type="xsd:string" />
+          <xsd:element minOccurs="0" name="priceCode2" type="xsd:string" />
+          <xsd:element minOccurs="0" name="priceCode3" type="xsd:string" />
+          <xsd:element minOccurs="0" name="priceExtendedDomestic" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="priceExtendedForeign" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="priceUnitDomestic" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="priceUnitForeign" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="taxedPriceExtendedDomestic" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="taxedPriceExtendedForeign" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="taxedPriceUnitDomestic" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="taxedPriceUnitForeign" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="unitOfMeasureCodePricing" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="warehouseV2">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:valueObject">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="address" type="ns0:warehouseAddress" />
+          <xsd:element minOccurs="0" name="warehouse" type="xsd:int" />
+          <xsd:element minOccurs="0" name="warehouseDescriptive" type="xsd:string" />
+          <xsd:element minOccurs="0" name="warehouseGLN" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="processSOHeaderBilling">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:valueObject">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="adjustmentScheduleCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="carrier" type="ns0:entity" />
+          <xsd:element minOccurs="0" name="checkNumber" type="xsd:string" />
+          <xsd:element minOccurs="0" name="creditCardAccountName" type="xsd:string" />
+          <xsd:element minOccurs="0" name="creditCardAccountNumber" type="xsd:string" />
+          <xsd:element minOccurs="0" name="creditCardTypeCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="customerPriceGroupCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="dateExpiration" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="deliveryInstruction1" type="xsd:string" />
+          <xsd:element minOccurs="0" name="deliveryInstruction2" type="xsd:string" />
+          <xsd:element minOccurs="0" name="freightHandlingCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="paymentInstrumentCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="paymentTermsCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="percentDiscountTrade" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="printMessageCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="taxExplanationCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="taxRateAreaCode" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="priceHistory">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:valueObject">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="documentLineNumber" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="salesOrderKey" type="ns0:salesOrderKey" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="showSalesOrderPriceHistory">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:messageValueObject">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="detail" nillable="true" type="ns0:showPriceHistoryDetail" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="confirmSODetailV3">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:valueObject">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="dates" type="ns0:confirmSODetailDates" />
+          <xsd:element minOccurs="0" name="delivery" type="ns0:confirmSODetailDelivery" />
+          <xsd:element minOccurs="0" name="documentLineNumber" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="financial" type="ns0:confirmSODetailFinancialV2" />
+          <xsd:element minOccurs="0" name="opportunityId" type="xsd:string" />
+          <xsd:element minOccurs="0" name="product" type="ns0:confirmSODetailProduct" />
+          <xsd:element minOccurs="0" name="quantity" type="ns0:quantity" />
+          <xsd:element minOccurs="0" name="shipTo" type="ns0:entity" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="confirmSalesOrderV5">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:messageValueObject">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="header" type="ns0:confirmSOHeaderV3" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="confirmSalesOrderV4">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:messageValueObject">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="header" type="ns0:confirmSOHeaderV2" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="showSalesShipTo">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:valueObject">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="addressLine1" type="xsd:string" />
+          <xsd:element minOccurs="0" name="addressLine2" type="xsd:string" />
+          <xsd:element minOccurs="0" name="addressLine3" type="xsd:string" />
+          <xsd:element minOccurs="0" name="addressLine4" type="xsd:string" />
+          <xsd:element minOccurs="0" name="city" type="xsd:string" />
+          <xsd:element minOccurs="0" name="countryCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="countyCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="mailingName" type="xsd:string" />
+          <xsd:element minOccurs="0" name="postalCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="shipTo" type="ns0:entity" />
+          <xsd:element minOccurs="0" name="stateCode" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="confirmSODetailV2">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:valueObject">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="dates" type="ns0:confirmSODetailDates" />
+          <xsd:element minOccurs="0" name="delivery" type="ns0:confirmSODetailDelivery" />
+          <xsd:element minOccurs="0" name="documentLineNumber" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="financial" type="ns0:confirmSODetailFinancialV2" />
+          <xsd:element minOccurs="0" name="product" type="ns0:confirmSODetailProduct" />
+          <xsd:element minOccurs="0" name="quantity" type="ns0:quantity" />
+          <xsd:element minOccurs="0" name="shipTo" type="ns0:entity" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="e1MessageList">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" maxOccurs="unbounded" name="e1Messages" nillable="true" type="ns0:e1Message" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="getSalesDetail">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:valueObject">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="agreementId" type="xsd:string" />
+          <xsd:element minOccurs="0" name="businessUnit" type="xsd:string" />
+          <xsd:element minOccurs="0" name="carrier" type="ns0:entity" />
+          <xsd:element minOccurs="0" name="categoryCodesPurchasing" type="ns0:categoryCodesPurchasing" />
+          <xsd:element minOccurs="0" name="categoryCodesSales" type="ns0:categoryCodesSales" />
+          <xsd:element minOccurs="0" name="company" type="xsd:string" />
+          <xsd:element minOccurs="0" name="currencyCodeFrom" type="xsd:string" />
+          <xsd:element minOccurs="0" name="customerPO" type="xsd:string" />
+          <xsd:element minOccurs="0" name="dateAccounting" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="dateActualShip" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="dateCancel" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="dateInvoice" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="datePriceEffective" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="datePromisedDelivery" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="datePromisedOriginal" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="dateRequested" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="dateScheduledPick" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="dateTransaction" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="deliverTo" type="ns0:entity" />
+          <xsd:element minOccurs="0" name="deliveryId" type="xsd:int" />
+          <xsd:element minOccurs="0" name="description1" type="xsd:string" />
+          <xsd:element minOccurs="0" name="description2" type="xsd:string" />
+          <xsd:element minOccurs="0" name="document" type="ns0:document" />
+          <xsd:element minOccurs="0" name="documentLineNumber" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="freightHandlingCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="modeOfTransportCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="originalOrder" type="ns0:originalOrder" />
+          <xsd:element minOccurs="0" name="parent" type="ns0:entity" />
+          <xsd:element minOccurs="0" name="pickSlipId" type="xsd:int" />
+          <xsd:element minOccurs="0" name="priceUnitDomestic" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="priceUnitForeign" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="product" type="ns0:getDetailProduct" />
+          <xsd:element minOccurs="0" name="quantityBackOrdered" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="quantityCanceled" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="quantityOrdered" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="quantityShippable" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="rateExchangeOverride" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="relatedOrder" type="ns0:relatedOrder" />
+          <xsd:element minOccurs="0" name="shipTo" type="ns0:entity" />
+          <xsd:element minOccurs="0" name="shipmentId" type="xsd:int" />
+          <xsd:element minOccurs="0" name="soldTo" type="ns0:entity" />
+          <xsd:element minOccurs="0" name="unitOfMeasureCodePricing" type="xsd:string" />
+          <xsd:element minOccurs="0" name="unitOfMeasureCodeTransaction" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="showSalesDetailLinePricingV2">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:valueObject">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="adjustmentScheduleCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="datePriceEffective" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="dateTaxedPricesEffective" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="itemPriceGroupCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="priceCode1" type="xsd:string" />
+          <xsd:element minOccurs="0" name="priceCode2" type="xsd:string" />
+          <xsd:element minOccurs="0" name="priceCode3" type="xsd:string" />
+          <xsd:element minOccurs="0" name="priceExtendedDomestic" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="priceExtendedForeign" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="priceUnitDomestic" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="priceUnitForeign" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="taxAmountExtendedDomestic" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="taxAmountExtendedForeign" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="taxAmountUnitDomestic" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="taxAmountUnitForeign" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="taxedPriceExtendedDomestic" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="taxedPriceExtendedForeign" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="taxedPriceInvoicedForKitDomestic" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="taxedPriceInvoicedForKitForeign" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="taxedPriceUnitDomestic" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="taxedPriceUnitForeign" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="unitOfMeasureCodePricing" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="showSalesDetail">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:valueObject">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="agreementId" type="xsd:string" />
+          <xsd:element minOccurs="0" name="agreementSupplement" type="xsd:int" />
+          <xsd:element minOccurs="0" name="businessUnit" type="xsd:string" />
+          <xsd:element minOccurs="0" name="categoryCodesPurchasing" type="ns0:categoryCodesPurchasing" />
+          <xsd:element minOccurs="0" name="categoryCodesSales" type="ns0:categoryCodesSales" />
+          <xsd:element minOccurs="0" name="company" type="xsd:string" />
+          <xsd:element minOccurs="0" name="costExtendedDomestic" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="costExtendedForeign" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="costUnitPurchasingDomestic" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="costUnitPurchasingForeign" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="currencyCodeFrom" type="xsd:string" />
+          <xsd:element minOccurs="0" name="customerPO" type="xsd:string" />
+          <xsd:element minOccurs="0" name="dateAccounting" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="dateActualShip" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="dateCancel" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="dateInvoice" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="dateOrdered" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="datePromisedDelivery" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="datePromisedOriginal" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="datePromisedShip" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="dateRequested" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="dateScheduledPick" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="deliverTo" type="ns0:entity" />
+          <xsd:element minOccurs="0" name="deliveryId" type="xsd:int" />
+          <xsd:element minOccurs="0" name="document" type="ns0:document" />
+          <xsd:element minOccurs="0" name="documentLineNumber" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="dutyStatusCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="endUseCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="entityIdSupplier" type="xsd:int" />
+          <xsd:element minOccurs="0" name="lineBilling" type="ns0:showSalesDetailLineBilling" />
+          <xsd:element minOccurs="0" name="lineOfBusinessCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="lineTypeCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="originalOrder" type="ns0:showSalesDetailOriginalOrder" />
+          <xsd:element minOccurs="0" name="parent" type="ns0:entity" />
+          <xsd:element minOccurs="0" name="pickSlipId" type="xsd:int" />
+          <xsd:element minOccurs="0" name="product" type="ns0:showSalesDetailProduct" />
+          <xsd:element minOccurs="0" name="quantityBackOrdered" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="quantityCanceled" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="quantityOrdered" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="quantityShippable" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="rateExchangeOverride" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="reference" type="xsd:string" />
+          <xsd:element minOccurs="0" name="relatedOrder" type="ns0:relatedOrder" />
+          <xsd:element minOccurs="0" name="shipTo" type="ns0:entity" />
+          <xsd:element minOccurs="0" name="shipmentId" type="xsd:int" />
+          <xsd:element minOccurs="0" name="soldTo" type="ns0:entity" />
+          <xsd:element minOccurs="0" name="statusCodeLast" type="xsd:string" />
+          <xsd:element minOccurs="0" name="statusCodeNext" type="xsd:string" />
+          <xsd:element minOccurs="0" name="timePromisedDelivery" type="xsd:int" />
+          <xsd:element minOccurs="0" name="timePromisedOriginal" type="xsd:int" />
+          <xsd:element minOccurs="0" name="timePromisedShip" type="xsd:int" />
+          <xsd:element minOccurs="0" name="timeRequested" type="xsd:int" />
+          <xsd:element minOccurs="0" name="timeScheduledPick" type="xsd:int" />
+          <xsd:element minOccurs="0" name="unitOfMeasureCodeTransaction" type="xsd:string" />
+          <xsd:element minOccurs="0" name="userReservedData" type="ns0:userReservedData" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="showSalesDetailLinePricing">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:valueObject">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="adjustmentScheduleCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="datePriceEffective" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="itemPriceGroupCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="priceCode1" type="xsd:string" />
+          <xsd:element minOccurs="0" name="priceCode2" type="xsd:string" />
+          <xsd:element minOccurs="0" name="priceCode3" type="xsd:string" />
+          <xsd:element minOccurs="0" name="priceExtendedDomestic" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="priceExtendedForeign" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="priceUnitDomestic" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="priceUnitForeign" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="unitOfMeasureCodePricing" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="processing">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:valueObject">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="actionType" type="xsd:string" />
+          <xsd:element minOccurs="0" name="processingVersion" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="showDetailItem">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:valueObject">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="itemCatalog" type="xsd:string" />
+          <xsd:element minOccurs="0" name="itemId" type="xsd:int" />
+          <xsd:element minOccurs="0" name="itemProduct" type="xsd:string" />
+          <xsd:element minOccurs="0" name="itemUPCEAN" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="financial">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:valueObject">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="amountAdjustment" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="currencyCode" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="showSalesOrder">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:messageValueObject">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="header" nillable="true" type="ns0:showSalesHeader" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="processSODetailProductV2">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:valueObject">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="configuration" nillable="true" type="ns0:configurationV2" />
+          <xsd:element minOccurs="0" name="description1" type="xsd:string" />
+          <xsd:element minOccurs="0" name="description2" type="xsd:string" />
+          <xsd:element minOccurs="0" name="item" type="ns0:itemGroupCustomer" />
+          <xsd:element minOccurs="0" name="itemVolume" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="itemWeight" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="location" type="xsd:string" />
+          <xsd:element minOccurs="0" name="lotNumber" type="xsd:string" />
+          <xsd:element minOccurs="0" name="unitOfMeasureCodeVolume" type="xsd:string" />
+          <xsd:element minOccurs="0" name="unitOfMeasureCodeWeight" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="processSOHeader">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:valueObject">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="attachmentText" type="xsd:string" />
+          <xsd:element minOccurs="0" name="billing" type="ns0:processSOHeaderBilling" />
+          <xsd:element minOccurs="0" name="businessUnit" type="xsd:string" />
+          <xsd:element minOccurs="0" name="company" type="xsd:string" />
+          <xsd:element minOccurs="0" name="currencyCodeTo" type="xsd:string" />
+          <xsd:element minOccurs="0" name="customerPO" type="xsd:string" />
+          <xsd:element minOccurs="0" name="dateCancel" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="dateOrdered" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="dateRequested" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="dateScheduledPick" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="deliverTo" type="ns0:entity" />
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="detail" nillable="true" type="ns0:processSODetail" />
+          <xsd:element minOccurs="0" name="forwardedTo" type="ns0:entity" />
+          <xsd:element minOccurs="0" name="holdOrderCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="invoicedTo" type="ns0:entity" />
+          <xsd:element minOccurs="0" name="orderTakenBy" type="xsd:string" />
+          <xsd:element minOccurs="0" name="orderedBy" type="xsd:string" />
+          <xsd:element minOccurs="0" name="paidBy" type="ns0:entity" />
+          <xsd:element minOccurs="0" name="processing" type="ns0:processSOHeaderProcessing" />
+          <xsd:element minOccurs="0" name="rateExchange" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="salesOrderKey" type="ns0:salesOrderKey" />
+          <xsd:element minOccurs="0" name="shipTo" type="ns0:processSOCustomer" />
+          <xsd:element minOccurs="0" name="soldTo" type="ns0:processSOCustomer" />
+          <xsd:element minOccurs="0" name="timeRequested" type="xsd:int" />
+          <xsd:element minOccurs="0" name="timeScheduledPick" type="xsd:int" />
+          <xsd:element minOccurs="0" name="userReservedData" type="ns0:userReservedData" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="categoryCodesPurchasing">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:valueObject">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="categoryCode001" type="xsd:string" />
+          <xsd:element minOccurs="0" name="categoryCode002" type="xsd:string" />
+          <xsd:element minOccurs="0" name="categoryCode003" type="xsd:string" />
+          <xsd:element minOccurs="0" name="categoryCode004" type="xsd:string" />
+          <xsd:element minOccurs="0" name="categoryCode005" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="confirmSalesOrderV2">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:messageValueObject">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="header" type="ns0:confirmSOHeaderV2" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="showSalesDetailOriginalOrder">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:originalOrder">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="documentLineNumber" type="xsd:decimal" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="confirmSalesOrderV3">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:messageValueObject">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="header" type="ns0:confirmSOHeaderV2" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="configurationV2">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:valueObject">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="businessUnit" type="xsd:string" />
+          <xsd:element minOccurs="0" name="description1" type="xsd:string" />
+          <xsd:element minOccurs="0" name="item" type="ns0:itemGroupCustomer" />
+          <xsd:element minOccurs="0" name="itemParent" type="ns0:itemGroupCustomer" />
+          <xsd:element minOccurs="0" name="lineTypeCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="quantityComponent" type="xsd:decimal" />
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="segment" nillable="true" type="ns0:segment" />
+          <xsd:element minOccurs="0" name="unitOfMeasureCodeComponent" type="xsd:string" />
+          <xsd:element minOccurs="0" name="userAddedComponent" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="getItemPriceAndAvailability">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:valueObject">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="adjustmentScheduleCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="businessUnit" type="xsd:string" />
+          <xsd:element minOccurs="0" name="currencyCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="customer" type="ns0:entity" />
+          <xsd:element minOccurs="0" name="processing" type="ns0:processingVersion" />
+          <xsd:element minOccurs="0" name="product" type="ns0:productIn" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="showSalesHeader">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:valueObject">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="RMAId" type="xsd:int" />
+          <xsd:element minOccurs="0" name="RMAType" type="xsd:string" />
+          <xsd:element minOccurs="0" name="adjustmentScheduleCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="amountTotalOrderDomestic" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="amountTotalOrderForeign" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="businessUnit" type="xsd:string" />
+          <xsd:element minOccurs="0" name="company" type="xsd:string" />
+          <xsd:element minOccurs="0" name="currencyCodeFrom" type="xsd:string" />
+          <xsd:element minOccurs="0" name="currencyModeCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="customerPO" type="xsd:string" />
+          <xsd:element minOccurs="0" name="customerPriceGroupCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="dateActualShip" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="dateCancel" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="datePromisedShip" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="dateRequested" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="dateScheduledPick" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="dateTransaction" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="deliverTo" type="ns0:entity" />
+          <xsd:element minOccurs="0" name="deliveryInstruction1" type="xsd:string" />
+          <xsd:element minOccurs="0" name="deliveryInstruction2" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="detail" nillable="true" type="ns0:showSalesDetail" />
+          <xsd:element minOccurs="0" name="entityIdCarrier" type="xsd:int" />
+          <xsd:element minOccurs="0" name="forwardedTo" type="ns0:entity" />
+          <xsd:element minOccurs="0" name="freightHandlingCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="holdOrderCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="invoicedTo" type="ns0:entity" />
+          <xsd:element minOccurs="0" name="modeOfTransport" type="xsd:string" />
+          <xsd:element minOccurs="0" name="orderTakenBy" type="xsd:string" />
+          <xsd:element minOccurs="0" name="orderedBy" type="xsd:string" />
+          <xsd:element minOccurs="0" name="originalOrder" type="ns0:originalOrder" />
+          <xsd:element minOccurs="0" name="paidBy" type="ns0:entity" />
+          <xsd:element minOccurs="0" name="paymentInstrumentCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="paymentTermsCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="percentDiscountTrade" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="printMessageCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="rateExchangeOverride" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="reasonCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="routeCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="salesOrderKey" type="ns0:salesOrderKey" />
+          <xsd:element minOccurs="0" name="shipTo" type="ns0:showSalesShipTo" />
+          <xsd:element minOccurs="0" name="soldTo" type="ns0:entity" />
+          <xsd:element minOccurs="0" name="stopCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="taxExplanationCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="taxRateAreaCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="userReservedData" type="ns0:userReservedData" />
+          <xsd:element minOccurs="0" name="zoneNumber" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="getSalesHeader">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:valueObject">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="RMAId" type="xsd:int" />
+          <xsd:element minOccurs="0" name="RMAType" type="xsd:string" />
+          <xsd:element minOccurs="0" name="amountTotalOrderDomestic" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="amountTotalOrderForeign" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="businessUnit" type="xsd:string" />
+          <xsd:element minOccurs="0" name="company" type="xsd:string" />
+          <xsd:element minOccurs="0" name="currencyCodeFrom" type="xsd:string" />
+          <xsd:element minOccurs="0" name="customerPO" type="xsd:string" />
+          <xsd:element minOccurs="0" name="dateActualShip" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="dateCancel" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="datePromisedPick" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="dateRequested" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="dateTransaction" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="deliverTo" type="ns0:entity" />
+          <xsd:element minOccurs="0" name="detail" type="ns0:getSalesDetail" />
+          <xsd:element minOccurs="0" name="forwardedTo" type="ns0:entity" />
+          <xsd:element minOccurs="0" name="holdOrderCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="invoicedTo" type="ns0:entity" />
+          <xsd:element minOccurs="0" name="orderTakenBy" type="xsd:string" />
+          <xsd:element minOccurs="0" name="originalOrder" type="ns0:originalOrder" />
+          <xsd:element minOccurs="0" name="paidBy" type="ns0:entity" />
+          <xsd:element minOccurs="0" name="rateExchangeOverride" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="salesOrderKey" type="ns0:salesOrderKey" />
+          <xsd:element minOccurs="0" name="shipTo" type="ns0:entity" />
+          <xsd:element minOccurs="0" name="soldTo" type="ns0:entity" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="confirmSOHeaderDelivery">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:valueObject">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="carrier" type="ns0:entity" />
+          <xsd:element minOccurs="0" name="freightHandlingCode" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="confirmSOHeaderFinancial">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:valueObject">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="currencyCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="paymentTerms" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="getSalesHeaderV3">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:valueObject">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="RMAId" type="xsd:int" />
+          <xsd:element minOccurs="0" name="RMAType" type="xsd:string" />
+          <xsd:element minOccurs="0" name="amountTotalOrderDomestic" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="amountTotalOrderForeign" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="businessUnit" type="xsd:string" />
+          <xsd:element minOccurs="0" name="carrierGLN" type="xsd:string" />
+          <xsd:element minOccurs="0" name="company" type="xsd:string" />
+          <xsd:element minOccurs="0" name="currencyCodeFrom" type="xsd:string" />
+          <xsd:element minOccurs="0" name="customerPO" type="xsd:string" />
+          <xsd:element minOccurs="0" name="dateActualShip" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="dateCancel" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="datePromisedPick" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="dateRequested" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="dateTransaction" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="deliverTo" type="ns0:entity" />
+          <xsd:element minOccurs="0" name="deliverToGLN" type="xsd:string" />
+          <xsd:element minOccurs="0" name="detail" type="ns0:getSalesDetailV3" />
+          <xsd:element minOccurs="0" name="forwardToGLN" type="xsd:string" />
+          <xsd:element minOccurs="0" name="forwardedTo" type="ns0:entity" />
+          <xsd:element minOccurs="0" name="holdOrderCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="invoiceToGLN" type="xsd:string" />
+          <xsd:element minOccurs="0" name="invoicedTo" type="ns0:entity" />
+          <xsd:element minOccurs="0" name="opportUnityId" type="xsd:string" />
+          <xsd:element minOccurs="0" name="orderTakenBy" type="xsd:string" />
+          <xsd:element minOccurs="0" name="originalOrder" type="ns0:originalOrder" />
+          <xsd:element minOccurs="0" name="paidBy" type="ns0:entity" />
+          <xsd:element minOccurs="0" name="paidByGLN" type="xsd:string" />
+          <xsd:element minOccurs="0" name="rateExchangeOverride" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="salesOrderKey" type="ns0:salesOrderKey" />
+          <xsd:element minOccurs="0" name="shipTo" type="ns0:entity" />
+          <xsd:element minOccurs="0" name="shipToGLN" type="xsd:string" />
+          <xsd:element minOccurs="0" name="soldTo" type="ns0:entity" />
+          <xsd:element minOccurs="0" name="soldToGLN" type="xsd:string" />
+          <xsd:element minOccurs="0" name="vendorGLN" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="getCustomerItemPriceV2">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:valueObject">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="agreementID" type="xsd:string" />
+          <xsd:element minOccurs="0" name="businessUnit" type="xsd:string" />
+          <xsd:element minOccurs="0" name="carrier" type="ns0:entity" />
+          <xsd:element minOccurs="0" name="currencyCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="customer" type="ns0:customer" />
+          <xsd:element minOccurs="0" name="customerPriceGroupCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="datePriceEffective" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="dateTaxedPricesEffective" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="discountTrade" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="endUseCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="freightHandlingCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="lineOfBusinessCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="modeOfTransportCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="paymentInstrumentCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="paymentTermsCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="priceAdjustmentId" type="xsd:string" />
+          <xsd:element minOccurs="0" name="priceCode1" type="xsd:string" />
+          <xsd:element minOccurs="0" name="priceCode2" type="xsd:string" />
+          <xsd:element minOccurs="0" name="priceCode3" type="xsd:string" />
+          <xsd:element minOccurs="0" name="processing" type="ns0:processingVersion" />
+          <xsd:element minOccurs="0" name="product" type="ns0:product" />
+          <xsd:element minOccurs="0" name="rateExchange" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="routeCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="statusCodeDuty" type="xsd:string" />
+          <xsd:element minOccurs="0" name="stopCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="transactionQuantity" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="unitOfMeasureCodePricing" type="xsd:string" />
+          <xsd:element minOccurs="0" name="unitOfMeasureCodeTransaction" type="xsd:string" />
+          <xsd:element minOccurs="0" name="useTaxedPrices" type="xsd:boolean" />
+          <xsd:element minOccurs="0" name="zoneNumber" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="getSalesOrder">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:valueObject">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="header" type="ns0:getSalesHeader" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="getItemListPrice">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:itemListPriceShared">
+        <xsd:sequence />
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="showItemListPrice">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:messageValueObject">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="showItemListPrice" nillable="true" type="ns0:itemListPriceRecord" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="processSOCustomer">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:valueObject">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="addressLine1" type="xsd:string" />
+          <xsd:element minOccurs="0" name="addressLine2" type="xsd:string" />
+          <xsd:element minOccurs="0" name="addressLine3" type="xsd:string" />
+          <xsd:element minOccurs="0" name="addressLine4" type="xsd:string" />
+          <xsd:element minOccurs="0" name="city" type="xsd:string" />
+          <xsd:element minOccurs="0" name="countryCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="countyCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="customer" type="ns0:entity" />
+          <xsd:element minOccurs="0" name="mailingName" type="xsd:string" />
+          <xsd:element minOccurs="0" name="postalCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="stateCode" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="getSalesOrderPriceHistory">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:valueObject">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="detail" type="ns0:priceHistory" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="availabilityV2">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:valueObject">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="quantityAvailable" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="warehouse" type="ns0:warehouseV2" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="confirmSOHeader">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:valueObject">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="actionType" type="xsd:string" />
+          <xsd:element minOccurs="0" name="amountTotalOrderDomestic" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="amountTotalOrderForeign" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="attachmentText" type="xsd:string" />
+          <xsd:element minOccurs="0" name="businessUnit" type="xsd:string" />
+          <xsd:element minOccurs="0" name="customerPO" type="xsd:string" />
+          <xsd:element minOccurs="0" name="dates" type="ns0:confirmSOHeaderDates" />
+          <xsd:element minOccurs="0" name="delivery" type="ns0:confirmSOHeaderDelivery" />
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="detail" nillable="true" type="ns0:confirmSODetail" />
+          <xsd:element minOccurs="0" name="financial" type="ns0:confirmSOHeaderFinancial" />
+          <xsd:element minOccurs="0" name="holdOrderCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="salesOrderKey" type="ns0:salesOrderKey" />
+          <xsd:element minOccurs="0" name="shipTo" type="ns0:processSOCustomer" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="availability">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:valueObject">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="quantityAvailable" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="warehouse" type="ns0:warehouse" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="processSOHeaderProcessing">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:valueObject">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="actionType" type="xsd:string" />
+          <xsd:element minOccurs="0" name="processingVersion" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="confirmSODetailFinancial">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:valueObject">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="priceExtendedDomestic" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="priceExtendedForeign" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="priceUnitDomestic" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="priceUnitForeign" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="unitOfMeasureCodePricing" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="processSalesOrderV5">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:valueObject">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="header" type="ns0:processSOHeaderV5" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="processSODetailBillingV2">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:valueObject">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="carrier" type="ns0:entity" />
+          <xsd:element minOccurs="0" name="freightHandlingCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="modeOfTransportCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="paymentInstrumentCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="paymentTermsCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="pricing" type="ns0:pricingV2" />
+          <xsd:element minOccurs="0" name="printMessageCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="subledger" type="xsd:string" />
+          <xsd:element minOccurs="0" name="subledgerTypeCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="taxExplanationCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="taxRateAreaCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="taxableCode" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="BusinessServiceException">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="message" type="xsd:string" />
+      <xsd:element minOccurs="0" name="requestID" type="xsd:string" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="processingVersion">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:valueObject">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="processingVersion" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="showCustomerItemPrice">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:messageValueObject">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="businessUnit" type="xsd:string" />
+          <xsd:element minOccurs="0" name="costExtendedDomestic" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="costExtendedForeign" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="costUnitDomestic" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="costUnitForeign" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="currencyCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="currencyModeCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="customer" type="ns0:customer" />
+          <xsd:element minOccurs="0" name="datePriceEffective" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="priceExtendedDomestic" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="priceExtendedForeign" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="priceListDomestic" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="priceListForeign" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="priceUnitDomestic" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="priceUnitForeign" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="product" type="ns0:product" />
+          <xsd:element minOccurs="0" name="quantityOrdered" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="unitOfMeasureCodePricing" type="xsd:string" />
+          <xsd:element minOccurs="0" name="unitOfMeasureCodeTransaction" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="productIn">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:valueObject">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="item" type="ns0:itemGroupCustomer" />
+          <xsd:element minOccurs="0" name="quantityOrdered" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="unitOfMeasureCodeTransaction" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="e1Message">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="message" type="xsd:string" />
+      <xsd:element minOccurs="0" name="messagePrefix" type="xsd:string" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="getSalesDetailV3">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:valueObject">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="agreementId" type="xsd:string" />
+          <xsd:element minOccurs="0" name="businessUnit" type="xsd:string" />
+          <xsd:element minOccurs="0" name="carrier" type="ns0:entity" />
+          <xsd:element minOccurs="0" name="carrierGLN" type="xsd:string" />
+          <xsd:element minOccurs="0" name="categoryCodesPurchasing" type="ns0:categoryCodesPurchasing" />
+          <xsd:element minOccurs="0" name="categoryCodesSales" type="ns0:categoryCodesSales" />
+          <xsd:element minOccurs="0" name="company" type="xsd:string" />
+          <xsd:element minOccurs="0" name="currencyCodeFrom" type="xsd:string" />
+          <xsd:element minOccurs="0" name="customerPO" type="xsd:string" />
+          <xsd:element minOccurs="0" name="dateAccounting" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="dateActualShip" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="dateCancel" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="dateInvoice" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="datePriceEffective" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="datePromisedDelivery" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="datePromisedOriginal" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="dateRequested" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="dateScheduledPick" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="dateTransaction" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="deliverTo" type="ns0:entity" />
+          <xsd:element minOccurs="0" name="deliverToGLN" type="xsd:string" />
+          <xsd:element minOccurs="0" name="deliveryId" type="xsd:int" />
+          <xsd:element minOccurs="0" name="description1" type="xsd:string" />
+          <xsd:element minOccurs="0" name="description2" type="xsd:string" />
+          <xsd:element minOccurs="0" name="document" type="ns0:document" />
+          <xsd:element minOccurs="0" name="documentLineNumber" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="freightHandlingCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="modeOfTransportCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="opportUnityId" type="xsd:string" />
+          <xsd:element minOccurs="0" name="originalOrder" type="ns0:originalOrder" />
+          <xsd:element minOccurs="0" name="parent" type="ns0:entity" />
+          <xsd:element minOccurs="0" name="parentGLN" type="xsd:string" />
+          <xsd:element minOccurs="0" name="pickSlipId" type="xsd:int" />
+          <xsd:element minOccurs="0" name="priceUnitDomestic" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="priceUnitForeign" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="product" type="ns0:getDetailProduct" />
+          <xsd:element minOccurs="0" name="quantityBackOrdered" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="quantityCanceled" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="quantityOrdered" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="quantityShippable" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="rateExchangeOverride" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="relatedOrder" type="ns0:relatedOrder" />
+          <xsd:element minOccurs="0" name="shipTo" type="ns0:entity" />
+          <xsd:element minOccurs="0" name="shipToGLN" type="xsd:string" />
+          <xsd:element minOccurs="0" name="shipmentId" type="xsd:int" />
+          <xsd:element minOccurs="0" name="soldTo" type="ns0:entity" />
+          <xsd:element minOccurs="0" name="soldToGLN" type="xsd:string" />
+          <xsd:element minOccurs="0" name="unitOfMeasureCodePricing" type="xsd:string" />
+          <xsd:element minOccurs="0" name="unitOfMeasureCodeTransaction" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="getCustomerItemPrice">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:valueObject">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="agreementID" type="xsd:string" />
+          <xsd:element minOccurs="0" name="businessUnit" type="xsd:string" />
+          <xsd:element minOccurs="0" name="carrier" type="ns0:entity" />
+          <xsd:element minOccurs="0" name="currencyCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="customer" type="ns0:customer" />
+          <xsd:element minOccurs="0" name="customerPriceGroupCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="datePriceEffective" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="discountTrade" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="endUseCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="freightHandlingCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="lineOfBusinessCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="modeOfTransportCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="paymentInstrumentCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="paymentTermsCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="priceAdjustmentId" type="xsd:string" />
+          <xsd:element minOccurs="0" name="priceCode1" type="xsd:string" />
+          <xsd:element minOccurs="0" name="priceCode2" type="xsd:string" />
+          <xsd:element minOccurs="0" name="priceCode3" type="xsd:string" />
+          <xsd:element minOccurs="0" name="processing" type="ns0:processingVersion" />
+          <xsd:element minOccurs="0" name="product" type="ns0:product" />
+          <xsd:element minOccurs="0" name="rateExchange" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="routeCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="statusCodeDuty" type="xsd:string" />
+          <xsd:element minOccurs="0" name="stopCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="transactionQuantity" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="unitOfMeasureCodePricing" type="xsd:string" />
+          <xsd:element minOccurs="0" name="unitOfMeasureCodeTransaction" type="xsd:string" />
+          <xsd:element minOccurs="0" name="zoneNumber" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="getSalesDetailV2">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:valueObject">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="agreementId" type="xsd:string" />
+          <xsd:element minOccurs="0" name="businessUnit" type="xsd:string" />
+          <xsd:element minOccurs="0" name="carrier" type="ns0:entity" />
+          <xsd:element minOccurs="0" name="carrierGLN" type="xsd:string" />
+          <xsd:element minOccurs="0" name="categoryCodesPurchasing" type="ns0:categoryCodesPurchasing" />
+          <xsd:element minOccurs="0" name="categoryCodesSales" type="ns0:categoryCodesSales" />
+          <xsd:element minOccurs="0" name="company" type="xsd:string" />
+          <xsd:element minOccurs="0" name="currencyCodeFrom" type="xsd:string" />
+          <xsd:element minOccurs="0" name="customerPO" type="xsd:string" />
+          <xsd:element minOccurs="0" name="dateAccounting" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="dateActualShip" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="dateCancel" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="dateInvoice" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="datePriceEffective" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="datePromisedDelivery" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="datePromisedOriginal" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="dateRequested" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="dateScheduledPick" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="dateTransaction" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="deliverTo" type="ns0:entity" />
+          <xsd:element minOccurs="0" name="deliverToGLN" type="xsd:string" />
+          <xsd:element minOccurs="0" name="deliveryId" type="xsd:int" />
+          <xsd:element minOccurs="0" name="description1" type="xsd:string" />
+          <xsd:element minOccurs="0" name="description2" type="xsd:string" />
+          <xsd:element minOccurs="0" name="document" type="ns0:document" />
+          <xsd:element minOccurs="0" name="documentLineNumber" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="freightHandlingCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="modeOfTransportCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="originalOrder" type="ns0:originalOrder" />
+          <xsd:element minOccurs="0" name="parent" type="ns0:entity" />
+          <xsd:element minOccurs="0" name="parentGLN" type="xsd:string" />
+          <xsd:element minOccurs="0" name="pickSlipId" type="xsd:int" />
+          <xsd:element minOccurs="0" name="priceUnitDomestic" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="priceUnitForeign" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="product" type="ns0:getDetailProduct" />
+          <xsd:element minOccurs="0" name="quantityBackOrdered" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="quantityCanceled" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="quantityOrdered" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="quantityShippable" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="rateExchangeOverride" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="relatedOrder" type="ns0:relatedOrder" />
+          <xsd:element minOccurs="0" name="shipTo" type="ns0:entity" />
+          <xsd:element minOccurs="0" name="shipToGLN" type="xsd:string" />
+          <xsd:element minOccurs="0" name="shipmentId" type="xsd:int" />
+          <xsd:element minOccurs="0" name="soldTo" type="ns0:entity" />
+          <xsd:element minOccurs="0" name="soldToGLN" type="xsd:string" />
+          <xsd:element minOccurs="0" name="unitOfMeasureCodePricing" type="xsd:string" />
+          <xsd:element minOccurs="0" name="unitOfMeasureCodeTransaction" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="getItemPriceAndAvailabilityV3">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:valueObject">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="adjustmentScheduleCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="businessUnit" type="xsd:string" />
+          <xsd:element minOccurs="0" name="currencyCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="customer" type="ns0:entity" />
+          <xsd:element minOccurs="0" name="customerGLN" type="xsd:string" />
+          <xsd:element minOccurs="0" name="processing" type="ns0:processingVersion" />
+          <xsd:element minOccurs="0" name="product" type="ns0:productIn" />
+          <xsd:element minOccurs="0" name="useTaxedPrices" type="xsd:boolean" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="processSalesPriceAdjustment">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:valueObject">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="adjustmentTypeCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="costTypeCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="customer" type="ns0:entity" />
+          <xsd:element minOccurs="0" name="dates" type="ns0:dates" />
+          <xsd:element minOccurs="0" name="financial" type="ns0:financial" />
+          <xsd:element minOccurs="0" name="item" type="ns0:itemGroupCustomer" />
+          <xsd:element minOccurs="0" name="priceAdjustmentId" type="xsd:int" />
+          <xsd:element minOccurs="0" name="processing" type="ns0:processing" />
+          <xsd:element minOccurs="0" name="promotionAddChangeMask" type="xsd:string" />
+          <xsd:element minOccurs="0" name="unitOfMeasureTransaction" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="getItemPriceAndAvailabilityV2">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:valueObject">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="adjustmentScheduleCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="businessUnit" type="xsd:string" />
+          <xsd:element minOccurs="0" name="currencyCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="customer" type="ns0:entity" />
+          <xsd:element minOccurs="0" name="processing" type="ns0:processingVersion" />
+          <xsd:element minOccurs="0" name="product" type="ns0:productIn" />
+          <xsd:element minOccurs="0" name="useTaxedPrices" type="xsd:boolean" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="salesOrderKey">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:valueObject">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="documentCompany" type="xsd:string" />
+          <xsd:element minOccurs="0" name="documentNumber" type="xsd:int" />
+          <xsd:element minOccurs="0" name="documentTypeCode" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="processSalesOrderV3">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:valueObject">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="header" type="ns0:processSOHeaderV3" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="processSalesOrderV4">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:valueObject">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="header" type="ns0:processSOHeaderV4" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="processSalesOrderV2">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="ns0:valueObject">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="header" type="ns0:processSOHeaderV2" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="getSalesOrderPriceHistoryResponse" nillable="true" type="ns0:showSalesOrderPriceHistory" />
+  <xsd:element name="processSalesOrderV2Response" nillable="true" type="ns0:confirmSalesOrderV2" />
+  <xsd:element name="processSalesOrder" nillable="true" type="ns0:processSalesOrder" />
+  <xsd:element name="getSalesOrderV3" nillable="true" type="ns0:getSalesOrderV2" />
+  <xsd:element name="getSalesOrderV2" nillable="true" type="ns0:getSalesOrder" />
+  <xsd:element name="getCustomerItemPriceV2" nillable="true" type="ns0:getCustomerItemPriceV2" />
+  <xsd:element name="getSalesOrder" nillable="true" type="ns0:getSalesOrder" />
+  <xsd:element name="processSalesPriceAdjustmentResponse" nillable="true" type="ns0:confirmSalesPriceAdjustment" />
+  <xsd:element name="getItemListPrice" nillable="true" type="ns0:getItemListPrice" />
+  <xsd:element name="getSalesOrderV4" nillable="true" type="ns0:getSalesOrderV3" />
+  <xsd:element name="processSalesOrderV5Response" nillable="true" type="ns0:confirmSalesOrderV5" />
+  <xsd:element name="getItemPriceAndAvailabilityV3Response" nillable="true" type="ns0:showItemPriceAndAvailabilityV3" />
+  <xsd:element name="getSalesOrderV3Response" nillable="true" type="ns0:showSalesOrderV3" />
+  <xsd:element name="processSalesOrderV3Response" nillable="true" type="ns0:confirmSalesOrderV3" />
+  <xsd:element name="getSalesOrderPriceHistory" nillable="true" type="ns0:getSalesOrderPriceHistory" />
+  <xsd:element name="getSalesOrderV4Response" nillable="true" type="ns0:showSalesOrderV4" />
+  <xsd:element name="getItemPriceAndAvailabilityV2Response" nillable="true" type="ns0:showItemPriceAndAvailabilityV2" />
+  <xsd:element name="getItemPriceAndAvailabilityResponse" nillable="true" type="ns0:showItemPriceAndAvailability" />
+  <xsd:element name="processSalesOrderV5" nillable="true" type="ns0:processSalesOrderV5" />
+  <xsd:element name="getSalesOrderResponse" nillable="true" type="ns0:showSalesOrder" />
+  <xsd:element name="BusinessServiceException" type="ns0:BusinessServiceException" />
+  <xsd:element name="getItemListPriceResponse" nillable="true" type="ns0:showItemListPrice" />
+  <xsd:element name="getCustomerItemPriceV2Response" nillable="true" type="ns0:showCustomerItemPriceV2" />
+  <xsd:element name="processSalesPriceAdjustmentV2" nillable="true" type="ns0:processSalesPriceAdjustmentV2" />
+  <xsd:element name="getCustomerItemPrice" nillable="true" type="ns0:getCustomerItemPrice" />
+  <xsd:element name="getSalesOrderV2Response" nillable="true" type="ns0:showSalesOrderV2" />
+  <xsd:element name="getItemPriceAndAvailabilityV3" nillable="true" type="ns0:getItemPriceAndAvailabilityV3" />
+  <xsd:element name="getItemPriceAndAvailability" nillable="true" type="ns0:getItemPriceAndAvailability" />
+  <xsd:element name="getItemPriceAndAvailabilityV2" nillable="true" type="ns0:getItemPriceAndAvailabilityV2" />
+  <xsd:element name="processSalesPriceAdjustment" nillable="true" type="ns0:processSalesPriceAdjustment" />
+  <xsd:element name="processSalesOrderResponse" nillable="true" type="ns0:confirmSalesOrder" />
+  <xsd:element name="getCustomerItemPriceResponse" nillable="true" type="ns0:showCustomerItemPrice" />
+  <xsd:element name="processSalesOrderV3" nillable="true" type="ns0:processSalesOrderV3" />
+  <xsd:element name="processSalesOrderV4" nillable="true" type="ns0:processSalesOrderV4" />
+  <xsd:element name="processSalesOrderV4Response" nillable="true" type="ns0:confirmSalesOrderV4" />
+  <xsd:element name="processSalesOrderV2" nillable="true" type="ns0:processSalesOrderV2" />
+  <xsd:element name="processSalesPriceAdjustmentV2Response" nillable="true" type="ns0:confirmSalesPriceAdjustmentV2" />
+</xsd:schema>

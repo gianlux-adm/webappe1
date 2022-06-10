@@ -1,0 +1,109 @@
+﻿@model Ica.SalesOrders.Web.ViewModels.Sales.DettaglioSchedeViewModel
+<div id="" class="modal-content" style="border-radius: 5px;">
+    <div class="modal-header">
+        <h3 class="modal-title">@Html.Translate("Sales", "SheetModalTitle")</h3>
+    </div>
+    <div class="modal-body">
+        <div class="form-horizontal">
+            <div class="form-group">
+                <label class="col-sm-2">@Html.Translate("Sales", "ArticleCode")</label>
+                <div class="col-sm-10">
+                    <label class="form-control">@Model.CodiceArticolo</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2">@Html.Translate("Sales", "Language")</label>
+                <div class="col-sm-10">
+                    <div class="searchLanguage"></div>
+                </div>
+            </div>
+            <table id="sheet_table" class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>@Html.Translate("Sales", "SheetType")</th>
+                        <th>@Html.Translate("Sales", "Language")</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Schede)
+        {
+            <tr>
+                <td>
+                    @if (item.Tipo == "Scheda Tecnica")
+        {
+            @Html.Translate("Sales", "TechnicalSheet")
+}
+else
+{
+            @Html.Translate("Sales", "SecuritySheet")
+}
+                </td>
+                <td>@item.Lingua.ToUpper()</td>
+                <td><a href="/Sales/DownloadScheda/@item.ItemID?type=@item.Tipo" target="_blank"><span class="btn btn-primary">@Html.Translate("Sales", "Download")</span> </a> </td>
+            </tr>
+}
+                </tbody>
+                <tfoot style="display:none">
+                    <tr>
+                        <th></th>
+                        <th>@Html.Translate("Shared", "All")</th>
+                        <th></th>
+                    </tr>
+                
+                </tfoot>
+            </table>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">
+            @Html.Translate("Shared", "Close")
+        </button>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        var mySheetTable = $("#sheet_table").dataTable({
+            "language": { "url": "@Html.DataTablesUrl()" },
+            buttons: [],
+            "bFilter": true,
+            "iDisplayLength": 10,
+            "bLengthChange": false,
+            "deferLoading": "0",
+            "bPaginate": true,
+            "bProcessing": false,
+            "aaSorting": [[0, "asc"]],
+            "aoColumns": [
+                {
+                    "sType": "string",
+                    "bSortable": true
+                }
+                , {
+                    "sType": "string",
+                    "bSortable": true
+                }
+                , {
+                    "sType": "string",
+                    "bSortable": false
+                }
+            ]
+        });
+        debugger;
+        mySheetTable.columnFilter(
+            {
+                aoColumns: [
+                    null, //command
+                    { sSelector: ".searchLanguage", type: "select" },  //Categoria
+                    null
+
+                ]
+            });
+    });
+</script>
+
+
+
+
+

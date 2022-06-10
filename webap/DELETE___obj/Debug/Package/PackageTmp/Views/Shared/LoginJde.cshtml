@@ -1,0 +1,53 @@
+﻿@model Ica.SalesOrders.Web.ViewModels.JdeLoginViewModel
+@{
+    ViewBag.Title = Html.Translate("Menu", "UserManagement");
+}
+
+@section breadcrumb {
+    <ol class="breadcrumb">
+        <li class="active"><a href="@Model.Function.Url"><i class="@Model.Function.Icon"></i> @Html.Translate(Model.Function.PageTranslation, Model.Function.KeyTranslation)</a></li>
+    </ol>
+}
+
+
+@using (Html.BeginForm("JdeLogin","Account", FormMethod.Post))
+            {
+    @Html.HiddenFor(m=>m.IdFunction)
+    @Html.HiddenFor(m=>m.ReturnUrl)
+    <div class="login-box" style="width:450px;">
+        <div class="login-logo">
+            <img src="~/Content/Images/JDE.png" />
+        </div><!-- /.login-logo -->
+        <div class="login-box-body">
+            <p class="login-box-msg">@Html.Translate("Login", "SignIn")</p>
+            <form action="#" method="post">
+                <div class="form-group has-feedback">
+                    @Html.AntiForgeryToken()
+                    @Html.TextBoxFor(u => u.Username, new { @class = "form-control", placeholder = "Username" })
+                    @Html.ValidationMessageFor(u => u.Username)
+                    <!--
+                        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                    -->
+                    <span class="fa fa-user form-control-feedback"></span>
+                </div>
+                <div class="form-group has-feedback">
+                    @Html.PasswordFor(u => u.Password, new { @class = "form-control", placeholder = "Password" })
+                    @Html.ValidationMessageFor(u => u.Password)
+                    <span class="fa fa-lock form-control-feedback"></span>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <button id="btn_login" type="submit" class="btn btn-danger btn-block .btn-lg">Login</button>
+                    </div><!-- /.col -->
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        @Html.ValidationMessage("UtenteNonTrovato", new { id = "user" })
+                    </div>
+                </div>
+            </form>
+            @*<a href="#">I forgot my password</a><br>*@
+        </div><!-- /.login-box-body -->
+    </div><!-- /.login-box -->
+            }
+

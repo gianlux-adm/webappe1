@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<configurationSnapshot xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="urn:schemas-microsoft-com:xml-wcfconfigurationsnapshot">
+  <behaviors />
+  <bindings>
+    <binding digest="System.ServiceModel.Configuration.CustomBindingElement, System.ServiceModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089:&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;Data name=&quot;SalesOrderManagerPortBinding&quot;&gt;&lt;httpsTransport /&gt;&lt;textMessageEncoding messageVersion=&quot;Soap11&quot; /&gt;&lt;/Data&gt;" bindingType="customBinding" name="SalesOrderManagerPortBinding" />
+  </bindings>
+  <endpoints>
+    <endpoint normalizedDigest="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;Data address=&quot;https://ica-bssv1:9192/PD910/SalesOrderManager&quot; binding=&quot;customBinding&quot; bindingConfiguration=&quot;SalesOrderManagerPortBinding&quot; contract=&quot;WS.SalesOrderManager&quot; name=&quot;SalesOrderManagerPort&quot; /&gt;" digest="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;Data address=&quot;https://ica-bssv1:9192/PD910/SalesOrderManager&quot; binding=&quot;customBinding&quot; bindingConfiguration=&quot;SalesOrderManagerPortBinding&quot; contract=&quot;WS.SalesOrderManager&quot; name=&quot;SalesOrderManagerPort&quot; /&gt;" contractName="WS.SalesOrderManager" name="SalesOrderManagerPort" />
+  </endpoints>
+</configurationSnapshot>

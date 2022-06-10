@@ -1,0 +1,35 @@
+﻿@using Ica.SalesOrders.Web.Helpers
+@{
+    Layout = null;
+}
+
+@using (Html.Box(titolo: ViewBag.Title as string, footer: "", aspetto: AspettoBox.Primary, chiudibile: true, overlayCaricamento: true))
+{
+    @RenderBody()
+    @RenderSection("end", required: false)
+}
+
+
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        var form = $("form");
+        form.removeData('validator');
+        form.removeData('unobtrusiveValidation');
+        form.attr("target", "postback-modale");
+        $.validator.unobtrusive.parse(form);
+        //form.validateBootstrap(true);
+        var modale = form.closest(".modal-dialog");
+        var submit = modale.find(":submit");
+        var footer = modale.find(".box-footer");
+        modale.off("submit").on("submit",
+            function () {
+                // alert('bulba');
+                // modale.find(".overlay").show();
+                // footer.clearQueue().hide();
+                // submit.prop("disabled", true);
+            });
+    });
+</script>
+

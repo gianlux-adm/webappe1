@@ -1,0 +1,129 @@
+﻿@model Ica.SalesOrders.Web.ViewModels.Orders.OrdersIndexViewModel
+@{
+    ViewBag.Title = Html.Translate("OrdiniVendita", "Elenco");
+}
+
+@section breadcrumb {
+    <ol class="breadcrumb">
+        <li class="active">
+            <a href="/Orders">
+                @Html.Translate("Menu", "Orders")
+            </a>
+        </li>
+    </ol>
+}
+
+<style>
+    @@media (max-width:767px) {
+        .btn_full_xs {
+            width: 100%;
+        }
+    }
+
+    @@media (min-width:768px) and (max-width:992px) {
+        .btn_full_xs {
+            width: 200px;
+        }
+
+        .btnAction {
+            float: right;
+        }
+    }
+
+    @@media (min-width:993px) {
+        .btn_full_xs {
+            width: 200px;
+        }
+
+        .btnAction {
+            float: right;
+        }
+    }
+
+    @@media (orientation: landscape) {
+    }
+
+    @@media (orientation: portrait) {
+        .hide_landscape {
+            display: none;
+        }
+    }
+
+    [data-toggle="collapse"].collapsed .if-not-collapsed {
+        display: none;
+    }
+
+    [data-toggle="collapse"]:not(.collapsed) .if-collapsed {
+        display: none;
+    }
+</style>
+
+
+<div class="box filtro">
+    <div class="box-header with-border">
+        <h3 class="box-title">@Html.Translate("OrdiniVendita", "Elenco")</h3>
+    </div>
+    <div class="box-body form-horizontal">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>
+                        <a href="/Orders/Edit">
+                            <span class="btn btn-success">@Html.Translate("OrdiniVendita", "PulsanteAggiungi")</span>
+                        </a>
+                    </th>
+                    <th>@Html.Translate("OrdiniVendita", "NumeroIndirizzo")</th>
+                    <th>@Html.Translate("OrdiniVendita", "DescrizioneIndirizzo")</th>
+                    <th>@Html.Translate("OrdiniVendita", "IdChiaveUnivoca")</th>
+                    <th>@Html.Translate("OrdiniVendita", "SocietaOrdine")</th>
+                    <th>@Html.Translate("OrdiniVendita", "CentroContr")</th>
+                    <th>@Html.Translate("OrdiniVendita", "CodiceDestinatario")</th>
+                    <th>@Html.Translate("OrdiniVendita", "DescrizioneDestinatario")</th>
+                    <th>@Html.Translate("OrdiniVendita", "SoeSt")</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Carrelli)
+                {
+                    <tr>
+                        <td>
+                            <a href="/Orders/DeleteCarello/@item.IdChiaveUnivoca" data-target="#modal" data-toggle="modal">
+                                <span class="btn btn-danger">@Html.Translate("OrdiniVendita", "PulsanteElimina")</span>
+                            </a>
+                            <a href="/Orders/Edit/@item.IdChiaveUnivoca">
+                                <span class="btn btn-primary">@Html.Translate("OrdiniVendita", "PulsanteDettaglio")</span>
+                            </a>
+                        </td>
+                        <td>@item.NumeroIndirizzo</td>
+                        <td>@item.DescrizioneIndirizzo</td>
+                        <td>@item.IdChiaveUnivoca</td>
+                        <td>@item.SocietaOrdine</td>
+                        <td>@item.CentroControllo</td>
+                        <td>@item.CodiceDestinatario</td>
+                        <td>@item.DescrizioneDestinatario</td>
+                        <td>@item.SoeSt</td>
+                    </tr>
+                }
+                @if (Model.Carrelli.Count == 0)
+                {
+                    <tr>
+                        <td colspan="9">@Html.Translate("OrdiniVendita", "NessunCarrelloEsistente")</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+@section scripts {
+
+    <script type="text/javascript">
+
+    $(document).ready(function () {
+
+
+    });
+    </script>
+}
+

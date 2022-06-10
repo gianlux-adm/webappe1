@@ -1,0 +1,22 @@
+﻿@{
+    ViewBag.Title = Html.Translate("Sales", "SalesManagement");
+}
+
+
+<div class="alert alert-danger">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+    <h4><i class="icon fa fa-ban"></i>@Html.Translate("Shared", "Error");</h4>
+    <p>@Html.Translate("Sales", "NoFileInsideSharepoint");</p>
+</div>
+
+
+
+    @section scripts {
+
+        <script src="~/Scripts/jquery.datatable.yadcf.js"></script>
+        <script src="~/Scripts/chosen.min.js"></script>
+
+        <script type="text/javascript">
+
+        </script>
+    }

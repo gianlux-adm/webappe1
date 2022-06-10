@@ -1,0 +1,96 @@
+﻿@model Ica.SalesOrders.Web.ViewModels.Orders.EditRowViewModel
+<div id="" class="modal-content" style="border-radius: 5px;">
+    <div class="modal-header">
+        <h3 class="modal-title">@Html.Translate("OrdiniVendita", "TitoleModaleCancellazioneRiga")</h3>
+    </div>
+    <div id="edit_body" class="modal-body">
+        @using (Ajax.BeginForm("DeleteRow", "Orders", new AjaxOptions() { HttpMethod = "POST",  OnSuccess = "ModalCallback_OnSuccess" }, new { @class = "form-horizontal", id = "form_delete_row" }))
+        {
+        @Html.HiddenFor(m=>m.IdChiaveUnivoca)
+        @Html.HiddenFor(m=>m.NumeroRiga)
+        @Html.HiddenFor(m=>m.Societa)
+        <div class="row">
+            <div class="col-sm-12 col-xs-12">
+                <label class="control-label">@Html.Translate("OrdiniVendita", "CodiceArticolo")</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 col-xs-12">
+                <label id="UnitaMisuraLabel" class="form-control">@Model.CodiceArticolo</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 col-xs-12">
+                <label class="control-label">@Html.Translate("OrdiniVendita", "UnitaMisura")</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 col-xs-12">
+                <label id="UnitaMisuraLabel" class="form-control">@Model.UnitaMisura</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 col-xs-12">
+                <label class="control-label">@Html.Translate("OrdiniVendita", "Quantita")</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 col-xs-12">
+                <label id="UnitaMisuraLabel" class="form-control">@Model.Quantita</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 col-xs-12">
+                <label class="control-label">@Html.Translate("OrdiniVendita", "ControlloQualita")</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 col-xs-12">
+                <label class="form-control">
+                    @{ 
+                        if (Model.ValoriDazio.ContainsKey(Model.StatoDazio))
+                        {
+                            <text>@Model.ValoriDazio[Model.StatoDazio]</text>
+                        }
+                    }
+
+                </label>
+            </div>
+        </div>
+
+}
+    </div>
+    <div id="edit_footer" class="modal-footer">
+        <div class="col-sm-6">
+            <button type="button" class="btn btn-danger" data-dismiss="modal" style="float:left">
+                @Html.Translate("Shared", "Close")
+            </button>
+        </div>
+        <div class="col-sm-6">
+
+            <button id="btnDeleteRow" type="button" class="btn btn-primary">
+                @Html.Translate("OrdiniVendita", "BtnElimina")
+            </button>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+
+    function refreshOrder() {
+        window.location.href = "/Orders/Edit/@Model.IdChiaveUnivoca";
+    }
+
+    $(document).ready(function () {
+
+       $("#btnDeleteRow").click(function() {
+            $("#form_delete_row").submit();
+              $("#edit_footer").html("");
+            $("#edit_body").html('<div style="line-height:100px;font-size:20px;min-height:100px;"><i class="fa fa-circle-o-notch fa-spin"></i>@Html.Translate("OrdiniVendita","OperazioneInCorso")</div>');
+ 
+        });
+    });
+</script>
+
+

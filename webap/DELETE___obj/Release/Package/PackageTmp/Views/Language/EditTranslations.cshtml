@@ -1,0 +1,106 @@
+﻿@model Ica.SalesOrders.Web.ViewModels.EditLanguageTranslationsViewModel
+
+@section breadcrumb {
+    <ol class="breadcrumb">
+        <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="/Language"><i class="fa fa-flag"></i> @Html.Translate("Menu","LanguageManagement")</a></li>
+        <li class="active">@Html.Translate("LanguageManagement","Translations")</li>
+    </ol>
+}
+
+<div class="box">
+        <div class="box-header with-border">
+            <h3 class="box-title">@Html.Translate("LanguageManagement","LanguageInfo")</h3>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+            <div class="form-horizontal">
+                <div class="form-group">
+                    <div class="col-sm-2">
+                        @Html.LabelFor(l => l.Language.LanguageID, new { @class = "control-label" })
+                    </div>
+                    <div class="col-sm-2">
+                            <label class="form-control">@Model.Language.LanguageID</label>
+                            @Html.HiddenFor(m=>m.Language.LanguageID)
+                    </div>
+                    <div class="col-sm-2">
+                        @Html.LabelFor(l => l.Language.LanguageName, new { @class = "control-label" })
+                    </div>
+                    <div class="col-sm-2">
+                        <label class="form-control">@Model.Language.LanguageName</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-2">
+                        <label class="control-label">Page</label>
+                    </div>
+                    <div class="col-sm-4">
+                        @Html.DropDownListFor(m=>m.SelectedPage,new SelectList(Model.Pages),"-------",new { @class="form-control"})
+                    </div>
+                </div>
+                <div class="mycontainer" @if (String.IsNullOrEmpty(Model.SelectedPage))
+                                       {
+                                            <text>style = "display:none" </text>
+                                       }>
+                    <div class="translationContainer">
+                        @if(!String.IsNullOrEmpty(Model.SelectedPage)) {
+                            @Html.Partial("EditPage", Model)
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+@section scripts {
+    <script src="~/Scripts/tinymce/tinymce.min.js"></script>
+    <script type="text/javascript">
+        function initTinyMce() {
+            var page = $("#page").val();
+            
+            if (typeof (tinymce) != "undefined") {
+                tinymce.editors = []; // remove any existing references
+            }
+            if (page == "Email") {
+                tinymce.init({
+                    selector: 'textarea',
+                    height: 200,
+                    plugins: [
+                      'advlist autolink lists link image charmap print preview anchor',
+                      'searchreplace visualblocks code fullscreen',
+                      'insertdatetime media table contextmenu paste code'
+                    ],
+                    toolbar: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+                    setup: function (editor) {
+                        if ($('#' + editor.id).attr('readonly')) {
+                            editor.settings.readonly = true;
+                        }
+
+                        editor.on('change', function () {
+                            editor.save();
+                        });
+                            
+                    }
+                });
+            }
+        }
+        $(document).ready(function () {
+            $("#SelectedPage").change(function () {
+                var value = $(this).val();
+                if (value == "") {
+                    $(".mycontainer").hide();
+                }
+                else {
+                    $(".alert").remove();
+                    $.get("/Language/TranslationPage/?id=" + $("#Language_LanguageID").val() +"&page="+ value, function (data) {
+                        $(".mycontainer").show();
+                        $(".translationContainer").html(data);
+                        initTinyMce();
+                    });
+                }
+            });
+
+            initTinyMce();
+        });
+    </script>
+}

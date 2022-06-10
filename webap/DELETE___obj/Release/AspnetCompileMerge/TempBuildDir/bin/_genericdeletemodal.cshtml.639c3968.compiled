@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<preserve resultType="2" virtualPath="/Views/Shared/_GenericDeleteModal.cshtml" hash="ffffffffd86d5c2d" filehash="17087577205d" flags="110000" assembly="AppCode" type="ASP._Page_Views_Shared__GenericDeleteModal_cshtml">
+  <filedeps>
+    <filedep name="/Views/Shared/_GenericDeleteModal.cshtml" />
+  </filedeps>
+</preserve>

@@ -1,0 +1,111 @@
+﻿@model Ica.SalesOrders.Web.ViewModels.Consultazioni.DettaglioConfViewModel
+@{
+    ViewBag.Title = Html.Translate("Consultazioni", "DettaglioConfTitle");
+}
+
+
+<div class="box">
+    <div class="box-header with-border">
+        <h3 class="box-title">@Html.Translate("Consultazioni", "DettaglioConfTitle")</h3>
+        <div class="box-tools pull-right">
+            <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                <i class="fa fa-minus"></i>
+            </button>
+        </div>
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body form-horizontal">
+        <div class="row">
+            <label class="col-sm-2">@Html.Translate("Consultazioni", "CodiceArticolo")</label>
+            <div class="col-sm-4">
+                <label class="form-control">@Model.Articolo</label>
+            </div>
+            <label class="col-sm-2">@Html.Translate("Consultazioni", "UnitaMisura")</label>
+            <div class="col-sm-4">
+                <label class="form-control">@Model.Um</label>
+            </div>
+        </div>
+        <div class="row">
+            <label class="col-sm-2">@Html.Translate("Consultazioni", "ConfezioneBase")</label>
+            <div class="col-sm-4">
+                <label class="form-control">@Model.ConfezioneBase</label>
+            </div>
+            <label class="col-sm-2">@Html.Translate("Consultazioni", "FammRettConf")</label>
+            <div class="col-sm-4">
+                <label class="form-control">@Model.FammRett</label>
+            </div>
+        </div>
+        <div class="row">
+            <label class="col-sm-2">@Html.Translate("Consultazioni", "PrezzoListino")</label>
+            <div class="col-sm-4">
+                <label class="form-control">@Model.PrezzoListino</label>
+            </div>
+            <label class="col-sm-2">@Html.Translate("Consultazioni", "Valuta")</label>
+            <div class="col-sm-4">
+                <label class="form-control">@Model.Valuta</label>
+            </div>
+
+        </div>
+        <div class="row">
+            <label class="col-sm-2">@Html.Translate("Consultazioni", "Trasporto")</label>
+            <div class="col-sm-4">
+                <label class="form-control">@Model.Trasporto</label>
+            </div>
+            <label class="col-sm-2">@Html.Translate("Consultazioni", "Aumento")</label>
+            <div class="col-sm-4">
+                <label class="form-control">@Model.Aumento</label>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="box">
+    <div class="box-header with-border">
+        <h3 class="box-title">@Html.Translate("Shared", "Results")</h3>
+        <div class="box-tools pull-right">
+            <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                <i class="fa fa-minus"></i>
+            </button>
+        </div>
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body form-horizontal">
+    <table class="table table-bordered table-stripped">
+            <thead>
+                <tr>
+                    <th>@Html.Translate("Consultazioni", "MCU")</th>
+                    <th>@Html.Translate("Consultazioni", "Articolo")</th>
+                    <th>@Html.Translate("Consultazioni", "PrezzoConfezione")</th>
+                    <th>@Html.Translate("Consultazioni", "Scorta")</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(var item in Model.Risultati)
+                {
+                    <tr>
+                        <td>@item.Mcu</td>
+                        <td>@item.Articolo</td>
+                        <td>@item.PrezzoConfezione</td>
+                        <td>@if (item.Scorta.Equals("Y")) {
+                            <img src="~/Content/Images/scorta.png" width="24" />    
+                        }</td>
+                        
+                        
+                    </tr>
+                }
+            </tbody>
+    </table>
+    </div>
+</div>
+
+        @section scripts {
+
+            <script type="text/javascript">
+
+                $(document).ready(function () {
+
+                });
+
+
+            </script>
+        }

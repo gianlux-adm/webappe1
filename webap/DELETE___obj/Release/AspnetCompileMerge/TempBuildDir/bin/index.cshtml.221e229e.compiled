@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<preserve resultType="2" virtualPath="/Views/SalesOrders/Index.cshtml" hash="ffffffffd86d5c2d" filehash="ffffbf850073b790" flags="110000" assembly="AppCode" type="ASP._Page_Views_SalesOrders_Index_cshtml">
+  <filedeps>
+    <filedep name="/Views/SalesOrders/Index.cshtml" />
+  </filedeps>
+</preserve>

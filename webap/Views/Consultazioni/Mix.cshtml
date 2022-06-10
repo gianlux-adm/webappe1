@@ -1,0 +1,109 @@
+﻿@model Ica.SalesOrders.Web.ViewModels.Consultazioni.DettaglioMixViewModel
+@{
+    ViewBag.Title = Html.Translate("Mix", "DettaglioMixTitle");
+}
+
+@if (Model.Success)
+{
+<div class="box">
+    <div class="box-header with-border">
+        <h3 class="box-title">@Html.Translate("Mix", "DettaglioMixTitle")</h3>
+        <div class="box-tools pull-right">
+            <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                <i class="fa fa-minus"></i>
+            </button>
+        </div>
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body form-horizontal">
+        <div class="row">
+            <label class="col-sm-2">@Html.Translate("Mix", "CodiceArticolo")</label>
+            <div class="col-sm-4">
+                <label class="form-control">@Model.Articolo</label>
+            </div>
+            <label class="col-sm-2">@Html.Translate("Mix", "UnitaMisura")</label>
+            <div class="col-sm-4">
+                <label class="form-control">@Model.Um</label>
+            </div>
+        </div>
+        <div class="row">
+            <label class="col-sm-2">@Html.Translate("Mix", "ConfezioneBase")</label>
+            <div class="col-sm-4">
+                <label class="form-control">@Model.ConfezioneBase</label>
+            </div>
+            <label class="col-sm-2">@Html.Translate("Mix", "FammRettConf")</label>
+            <div class="col-sm-4">
+                <label class="form-control">@Model.FammRett</label>
+            </div>
+        </div>
+        <div class="row">
+            <label class="col-sm-2">@Html.Translate("Mix", "PrezzoListino")</label>
+            <div class="col-sm-4">
+                <label class="form-control">@Model.PrezzoListino</label>
+            </div>
+            <label class="col-sm-2">@Html.Translate("Mix", "Valuta")</label>
+            <div class="col-sm-4">
+                <label class="form-control">@Model.Valuta</label>
+            </div>
+
+        </div>
+        <div class="row">
+            <label class="col-sm-2">@Html.Translate("Mix", "Trasporto")</label>
+            <div class="col-sm-4">
+                <label class="form-control">@Model.Trasporto</label>
+            </div>
+            <label class="col-sm-2">@Html.Translate("Mix", "Aumento")</label>
+            <div class="col-sm-4">
+                <label class="form-control">@Model.Aumento</label>
+            </div>
+        </div>
+    </div>
+</div>
+    
+    <div class="box">
+        <div class="box-header with-border">
+            <h3 class="box-title">@Html.Translate("Shared", "Results")</h3>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body form-horizontal">
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>@Html.Translate("Mix", "Codice")</th>
+                        <th>@Html.Translate("Mix", "Descrizione")</th>
+                        <th>@Html.Translate("Mix", "PercentualeMiscela")</th>
+                        <th>@Html.Translate("Mix", "Prezzo")</th>
+                        <th>@Html.Translate("Mix", "UM")</th>
+                        <th>@Html.Translate("Mix", "PrezzoMiscela")</th>                        
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var result in Model.Risultati)
+                    {
+                        <tr>
+                            <td>@result.CodiceArticolo</td>
+                            <td>@result.DescrizioneArticolo</td>
+                            <td>@result.PercentualeMiscela</td>
+                            <td>@result.Prezzo</td>
+                            <td>@result.UM</td>
+                            <td>@result.PrezzoInMiscela</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>}
+else { }
+
+
+@section scripts {
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+        });
+
+
+    </script>
+}

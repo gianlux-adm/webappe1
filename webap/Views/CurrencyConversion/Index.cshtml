@@ -1,0 +1,54 @@
+﻿@model Ica.SalesOrders.Web.ViewModels.CurrencyConversionViewModel
+
+@{
+    ViewBag.Title = Html.Translate("Menu", "Currencies");
+
+}
+
+<div class="box filtro">
+    <div class="box-header with-border">
+        <h3 class="box-title">@Html.Translate("Menu", "Currencies")</h3>
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body">
+        
+
+        <table class="table table-striped table-bordered">
+            <tr>
+                <th>
+                    @Html.Translate("Currencies", "Currency")
+                </th>
+                <th>
+                    @Html.Translate("Currencies", "ExchangeRate")
+                </th>
+                <th>
+                    <a href="/CurrencyConversion/Edit">
+                        <span class="btn btn-success">@Html.Translate("Shared", "Add")</span>
+                    </a>
+                </th>
+            </tr>
+
+            @foreach (var item in Model.Currencies)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Currency)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ConversionValue)
+                </td>
+                <td>
+                    <a href="/CurrencyConversion/Edit/@item.Currency">
+                        <span class="btn btn-primary">@Html.Translate("Shared", "Edit")</span>
+                    </a>
+                    <a href="/CurrencyConversion/Delete/@item.Currency">
+                        <span class="btn btn-danger">@Html.Translate("Shared", "Delete")</span>
+                        </a>            
+                </td>
+            </tr>
+    }
+
+        </table>
+
+    </div>
+</div>

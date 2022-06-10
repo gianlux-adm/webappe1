@@ -1,0 +1,67 @@
+﻿@model Ica.SalesOrders.Web.ViewModels.CurrencyConversionViewModel
+
+@{
+    ViewBag.Title = "Edit";
+
+}
+
+<div class="box filtro">
+    <div class="box-header with-border">
+        <h3 class="box-title">@Html.Translate("Menu", "Currencies")</h3>
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body">
+        @using (Html.BeginForm())
+        {
+
+            <div class="form-horizontal">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                <div class="form-group">
+                    <label class="control-label col-md-2">
+                        @Html.Translate("Currencies", "Currency")
+                    </label>
+                    <div class="col-sm-10">
+                        @if (String.IsNullOrEmpty(Model.SelectedItem.Currency))
+                        {
+                            <input type="text" name="currency" id="currency" value="" />
+                            @Html.ValidationMessage("SelectedItem.Currency", "", new { @class = "text-danger" })
+                        }
+                        else
+                        {
+                            <label class="form-control">
+                                @Model.SelectedItem.Currency
+                                <input type="hidden" name="currency" value="@Model.SelectedItem.Currency" />
+                            </label>
+                        }
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-2">
+                        @Html.Translate("Currencies", "ExchangeRate")
+                    </label>
+
+                    <div class="col-md-10">
+                        <input type="text" id="value" name="value" class="form-control"
+                               value="@Model.SelectedItem.ConversionValue.ToString().Replace(",",".")" />
+                        @Html.ValidationMessage("SelectedItem.ConversionValue", "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="form-actions no-color">
+                        <div class="col-sm-6">
+                            <a href="/CurrencyConversion/Index">
+                                <span class="btn btn-primary">@Html.Translate("Currencies", "TornaALista")</span>
+                            </a>
+                        </div>
+                        <div class="col-sm-6">
+                            <button style="float:right" class="btn btn-success">@Html.Translate("Shared", "Save")</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

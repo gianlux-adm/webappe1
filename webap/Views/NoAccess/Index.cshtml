@@ -1,0 +1,17 @@
+﻿@model Ica.SalesOrders.Web.ViewModels.NoAccessViewModel
+
+<div class="alert alert-danger alert-dismissible">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+    <h4><i class="icon fa fa-ban"></i> @Html.Translate("NoAccess", "Attention")</h4>
+    @String.Format(Html.Translate("NoAccess", "MainMessage"), Model.Username)
+</div>
+
+
+
+@section scripts {
+
+    <script type="text/javascript">
+
+    </script>
+}
+

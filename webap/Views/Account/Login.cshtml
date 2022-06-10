@@ -1,0 +1,19 @@
+﻿@model Ica.SalesOrders.Web.ViewModels.LoginViewModel
+
+<h2>@Html.Translate("Home","Welcome")</h2>
+
+@if (User.Identity.IsAuthenticated == false)
+{
+<br />
+<a class="" href="/Account/Login/?force=1">
+    <span class="btn btn-primary">Login</span>
+</a>
+}
+
+
+@section scripts {
+
+    <script type="text/javascript">
+
+    </script>
+}

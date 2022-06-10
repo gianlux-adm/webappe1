@@ -1,0 +1,323 @@
+﻿@model Ica.SalesOrders.Web.ViewModels.LogViewModel
+@{
+    ViewBag.Title = Html.Translate("Menu", "Logs");
+}
+<style>
+    #logs_table_filter {
+        display: none;
+    }
+</style>
+@section breadcrumb {
+    <ol class="breadcrumb">
+        <li><a href="/"><i class="fa fa-dashboard"></i>Home</a></li>
+        <li><a href="/Log/Index"><i class="fa fa-history"></i>@Html.Translate("Menu", "Logs")</a></li>
+    </ol>
+}
+<form action="/Log/Download" method="post" target="_blank">
+    <div class="box">
+        <div class="box-header with-border">
+            <h3 class="box-title">@Html.Translate("Shared", "Filter")</h3>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+            <div class="form-horizontal">
+                <div class="form-group">
+                    <div class="col-sm-3">
+                        @Html.Label(Html.Translate("Logs", "Type"), new { @class = "control-label" })
+                    </div>
+                    <div class="col-sm-3">
+                        @Html.Label(Html.Translate("Logs", "Action"), new { @class = "control-label" })
+                    </div>
+                    <div class="col-sm-3 itemIdTypeHeader" style="display: none">
+                    </div>
+                    <div class="col-sm-3 secondItemIdTypeHeader" style="display: none">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-3">
+                        @Html.DropDownListFor(m => m.LogArea, new SelectList(Model.LogAreas, "LogAreaID", "LogAreaName"), "-----", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.LogArea, "*")
+                    </div>
+                    <div class="col-sm-3">
+                        @Html.DropDownListFor(m => m.LogAction, new SelectList(Model.LogActions, "LogActionID", "LogActionName"), "-----", new { @class = "form-control" })
+                    </div>
+                    <div class="col-sm-3 itemIdTypeContent" style="display: none">
+                        <div class="typeahead-container">
+                            <div class="typeahead-field">
+                                <span class="typeahead-query">
+                                    <div class="input-group">
+                                        <input type="text" id="itemIdTypeText" class="form-control" autocomplete="off" />
+                                        <span class="input-group-addon" style="cursor: pointer;"><i class="fa fa-remove"></i></span>
+                                    </div>
+                                </span>
+                            </div>
+                        </div>
+                        <input type="hidden" id="itemIdTypeValue" name="itemIdTypeValue" value='value="@Model.itemIdTypeValue"'/>
+                    </div>
+                    <div class="col-sm-3 secondItemIdTypeContent" style="display: none">
+                        <div class="typeahead-container">
+                            <div class="typeahead-field">
+                                <span class="typeahead-query">
+                                    <div class="input-group">
+                                        <input type="text" id="secondItemIdTypeText" class="form-control" autocomplete="off"/>
+                                        <span class="input-group-addon" style="cursor: pointer;"><i class="fa fa-remove"></i></span>
+                                    </div>
+                                </span>
+                            </div>
+                        </div>
+                        <input type="hidden" id="secondItemIdTypeValue" name="secondItemIdTypeValue" value="@Model.secondItemIdTypeValue"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-3">
+                        @Html.Label(Html.Translate("Logs", "DateStart"), new { @class = "control-label" })
+                    </div>
+                    <div class="col-sm-3">
+                        @Html.Label(Html.Translate("Logs", "DateEnd"), new { @class = "control-label" })
+                    </div>
+                    <div class="col-sm-3">
+                        @Html.Label(Html.Translate("Logs", "ExecutedBy"), new { @class = "control-label" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-3">
+                        @Html.EditorFor(m => m.DateStart)
+                        @Html.ValidationMessageFor(m => m.DateStart, "*")
+                    </div>
+                    <div class="col-sm-3">
+                        @Html.EditorFor(m => m.DateEnd)
+                        @Html.ValidationMessageFor(m => m.DateEnd, "*")
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="typeahead-container">
+                            <div class="typeahead-field">
+                                <div class="typeahead-query">
+                                    <div class="input-group">
+                                        <input type="text" id="authorAutocomplete" class="form-control" autocomplete="off"/>
+                                        <span class="input-group-addon" style="cursor: pointer;"><i class="fa fa-remove"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <input type="hidden" id="author" name="author" value="" />
+                    </div>
+                    <div class="col-sm-3">
+                        <button class="btn btn-primary" type="button" id="btnSearch">
+                            @Html.Translate("Shared", "Search")
+                        </button>
+                        <button id="btnDownload" class="btn btn-danger" style="margin-left:15px;">
+                            @Html.Translate("Shared", "Download")
+                        </button>
+                    </div>
+                    <div class="col-sm-3">
+                        <label class="control-label" id="search_error" style="color: red;"></label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="results2" style="display: none;">
+        <div class="box">
+            <div class="box-header with-border">
+                <h3 class="box-title">@Html.Translate("Logs", "Results")</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+                <table id="logs_table" class="table table-bordered table-striped" style="width: 100%">
+                    <colgroup>
+                        <col class="col-sm-1" />
+                        <col class="col-sm-1" />
+                        <col class="col-sm-9" />
+                        <col class="col-sm-1" />
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <th>@Html.Translate("Logs", "Date")</th>
+                            <th>@Html.Translate("Logs", "Action")</th>
+                            <th>@Html.Translate("Logs", "Message")</th>
+                            <th>@Html.Translate("Logs", "ExecutedBy")</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</form>
+
+@section Scripts {
+    <link href="~/Scripts/bootstrap-datetimepicker.css" rel="stylesheet" />
+    <script type="text/javascript">
+        var logsTable;
+        function initLogsDT() {
+            logsTable = $('#logs_table')
+                    .dataTable({
+                        dom: 'lrtip',
+                        "language": {
+                            "url": "@Html.DataTablesUrl()"
+                        },
+                        buttons: [],
+                        "bFilter": true,
+                        "sPaginationType": "full_numbers",
+                        "iDisplayLength": 10,
+                        "bProcessing": true,
+                        "bLengthChange": true,
+                        "bServerSide": true,
+                        "searchDelay": 1000,
+                        "sAjaxSource": "/Log/List",
+                        "fnRowCallback": function (nRow, aData, iDisplayIndex) {
+                            return nRow;
+                        },
+                        "fnServerData": function (url, data, callback) {
+                            data.push({ "name": "Author", "value": $("#author").val() });
+                            data.push({ "name": "LogArea", "value": $("#LogArea").val() });
+                            data.push({ "name": "LogAction", "value": $("#LogAction").val() });
+                            data.push({ "name": "DateStart", "value": $("#DateStart").val() });
+                            data.push({ "name": "DateEnd", "value": $("#DateEnd").val() });
+                            data.push({ "name": "itemIdTypeValue", "value": $("#itemIdTypeValue").val() });
+                            data.push({ "name": "secondItemIdTypeValue", "value": $("#secondItemIdTypeValue").val() });
+                            $.ajax({
+                                "url": url,
+                                "data": data,
+                                "success": callback,
+                                "contentType": "application/x-www-form-urlencoded; charset=utf-8",
+                                "dataType": "json",
+                                "type": "POST",
+                                "cache": false,
+                                "error": function (err) {
+                                    if (err.status == 403) {
+                                        window.location.href = "/Account/Login?expired=true";
+                                        return;
+                                    }
+                                    if (err.status == 500) {
+                                        $("#search_error").html(err.statusText);
+                                        return;
+                                    }
+                                    alert("DataTables warning: JSON data from server failed to load or be parsed. " +
+                                "This is most likely to be caused by a JSON formatting error.");
+                                }
+                            });
+                        },
+                        "aaSorting": [[0, "desc"]],
+                        "aoColumns": [
+                                { "sType": "string", "sName": "Data", "mData": "Data", "bSortable": true }, //Command
+                                { "sType": "string", "sName": "LogActionName", "mData": "LogActionName", "bSortable": false }, //USername
+                                { "sType": "string", "sName": "Message", "mData": "Message", "bSortable": false }, //Name
+                                { "sType": "string", "sName": "Author", "mData": "Author", "bSortable": false } //Name
+                        ],
+                        "fnInitComplete": function () {
+                            /*releaseModal();*/
+                        }
+
+                    });
+                }
+
+                function clearTypes() {
+                    $("#itemIdTypeText").val("");
+                    $("#itemIdTypeValue").val("");
+                    $("#itemIdTypeText").removeAttr("disabled");
+                    $(".itemIdTypeHeader").hide();
+                    $(".itemIdTypeContent").hide();
+                    $("#secondItemIdTypeText").val("");
+                    $("#secondItemIdTypeValue").val("");
+                    $("#secondItemIdTypeText").removeAttr("disabled");
+                    $(".secondItemIdTypeHeader").hide();
+                    $(".secondItemIdTypeContent").hide();
+                }
+                function handleFilterType(type, prefix, label) {
+                    $("#" + prefix + "Text").val("");
+                    $("#" + prefix + "Value").val("");
+                    $("#" + prefix + "Text").removeAttr("disabled");
+                    if (type == "") {
+                        $("." + prefix + "Header").hide();
+                        $("." + prefix + "Content").hide();
+                    }
+                    else {
+                        $("." + prefix + "Content").show();
+                        $("." + prefix + "Header").show();
+                        $("." + prefix + "Header").html("<label class='control-label'>" + label + "</label>");
+                        window["initAutocomplete" + type]("#" + prefix + "Text", "#" + prefix + "Value", "@Html.Translate("Shared", "NoResults")");
+            }
+        }
+        $(document).ready(function () {
+
+
+            initAutocompleteUser("#authorAutocomplete", "#author", "@Html.Translate("Shared", "NoResults")");
+            $(".date").datetimepicker({
+                sideBySide: true,
+                format: 'DD/MM/YYYY HH:mm',
+                locale: '@System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName',
+                useCurrent: false
+            });
+
+            $("#btnDownload").click(function () {
+                var logArea = $("#LogArea").val();
+                if (logArea == "") {
+                    $("#search_error").html("@Html.Translate("Logs", "LogAreaRequired")");
+                    return false;
+                }
+                $("#search_error").html("");
+            });
+            $("#btnSearch").click(function () {
+                var logArea = $("#LogArea").val();
+                if (logArea == "") {
+                    $("#search_error").html("@Html.Translate("Logs", "LogAreaRequired")");
+                    return;
+                }
+                $("#search_error").html("");
+
+                logsTable.fnDraw(false);
+                $("#results2").show();
+            });
+            $("#LogAction").change(function () {
+                clearTypes();
+
+                var itemIdType = $("#LogAction option:checked").attr("data-itemIdType");
+                var itemLabel = $("#LogAction option:checked").attr("data-label");
+                if (itemIdType == undefined) {
+                    itemIdType = "";
+                }
+                if (itemLabel == undefined) {
+                    itemLabel = "";
+                }
+                var secondItemIdType = $("#LogAction option:checked").attr("data-secondItemIdType");
+                var secondItemLabel = $("#LogAction option:checked").attr("data-secondlabel");
+                if (secondItemIdType == undefined) {
+                    secondItemIdType = "";
+                }
+                if (secondItemLabel == undefined) {
+                    secondItemLabel = "";
+                }
+                handleFilterType(itemIdType, "itemIdType", itemLabel);
+                handleFilterType(secondItemIdType, "secondItemIdType", secondItemLabel);
+            });
+            $("#LogArea").change(function () {
+                clearTypes();
+
+                var val = $(this).val();
+                if (val == 0) {
+                    $("#LogAction").attr('disabled', true);
+                }
+                else {
+                    $.getJSON("/Log/Actions?areaID=" + val, function (data) {
+                        $("#LogAction").html('');
+                        $("#LogAction").append("<option data-itemIdType='' data-secondItemIdType='' value='0'>@Html.Translate("Shared", "All")</option>");
+                        $.each(data, function (item) {
+                            var actionID = data[item].LogActionID;
+                            var actionName = data[item].LogActionName;
+                            var itemIdType = data[item].ItemIdType;
+                            var secondItemIdType = data[item].SecondItemIdType;
+                            var label = data[item].Label;
+                            var secondLabel = data[item].SecondLabel;
+                            $("#LogAction").append("<option data-secondlabel='" + secondLabel + "' data-label='" + label + "' data-itemIdType='" + itemIdType + "' data-secondItemIdType='" + secondItemIdType + "' value='" + actionID + "'>" + actionName + "</option>");
+                        });
+                        $("#LogAction").attr('disabled', false);
+                    });
+                }
+            });
+
+            $("#LogAction").trigger("change");
+            initLogsDT();
+        });
+    </script>
+}
